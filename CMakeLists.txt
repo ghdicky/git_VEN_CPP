@@ -62,7 +62,7 @@ if (SAMPLE)
   target_link_libraries (samplevenmgr LINK_PUBLIC oadr oadrsd curl xerces-c pthread)
 endif()
 
-if (TEST)
+if (0)
   
   add_subdirectory(googletest-release-1.7.0)
 

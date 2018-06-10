@@ -64,7 +64,8 @@ public:
 
 	virtual void run();
 	virtual void stop();
-
+        
+       
 	void visitJobs(std::function<void (const SchedulerJob *schedulerJob)> callback);
 };
 

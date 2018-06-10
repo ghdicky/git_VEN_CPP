@@ -1,0 +1,1 @@
+/usr/bin/g++    -Wall -std=c++11 -O0 -g   CMakeFiles/samplevenmgr.dir/samplevenmanager/samplevenmanager/VENImpl.cpp.o CMakeFiles/samplevenmgr.dir/samplevenmanager/samplevenmanager/main.cpp.o  -o samplevenmgr -rdynamic liboadr.so liboadrsd.so -lcurl -lxerces-c -lpthread -Wl,-rpath,/home/hao/Downloads/VEN_CPP_source 

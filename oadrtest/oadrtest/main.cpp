@@ -319,6 +319,9 @@
 
 #include <string>
 
+/* include <global_variable.h> */
+#include "../../samplevenmanager/samplevenmanager/global_variable.h"
+
 using namespace std;
 
 /*

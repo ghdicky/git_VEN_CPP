@@ -13,6 +13,17 @@
 
 #include <stdlib.h>
 
+
+/* include DateTimeConverter.h for method DateTimeConverter::DateTimeToTime_t() */
+#include "../../oadr/oadr/helper/DateTimeConverter.h"
+
+/* include ISO8601Duration.h for method ISO8601Duration::TotalSeconds() */
+#include "../../oadr/oadr/helper/ISO8601Duration.h"
+
+/**/
+#include <string>
+
+
 using namespace std;
 
 namespace samplevenmanager
@@ -29,6 +40,18 @@ VENImpl::VENImpl(string venName, bool logToStdout)
 	conf.setGlobally(el::ConfigurationType::Filename, "logs/" + venName + ".log");
 
 	el::Loggers::reconfigureLogger("default", conf);
+        
+        /* use another logger for receiving events */
+        el::Configurations eventlog_conf;
+        
+        eventlog_conf.setGlobally(el::ConfigurationType::ToStandardOutput, (logToStdout ? "true" : "false"));
+        
+        eventlog_conf.setGlobally(el::ConfigurationType::ToFile, "true");
+	eventlog_conf.setGlobally(el::ConfigurationType::Filename, "logs/" + venName + "----Event-List" +".log");
+        
+        el::Loggers::reconfigureLogger("eventlog", eventlog_conf);
+        
+        
 }
 
 /********************************************************************************/
@@ -191,6 +214,9 @@ void VENImpl::OnEventNew(const std::string& eventID,
 		const oadr2b::oadr::oadrEvent* event, oadr2b::ei::OptTypeType::value &optType)
 {
 	LOG(INFO) << "new event received: " << eventID;
+        
+        logEventList(eventID, event, optType);
+               
 }
 
 /********************************************************************************/
@@ -266,6 +292,118 @@ void VENImpl::OnCurlException(CurlException &ex)
 void VENImpl::VENImpl::OnException(std::exception &ex)
 {
 	LOG(ERROR) << "std exception : " << ex.what();
+}
+
+void VENImpl::logEventList(const std::string& eventID,
+		const oadr2b::oadr::oadrEvent* event, oadr2b::ei::OptTypeType::value &optType)
+{       
+        /*time_t eventDtstart = DateTimeConverter::DateTimeToTime_t(event->eiEvent().eiActivePeriod().properties().dtstart().date_time());*/
+        
+        /* obtain the event start date time with type of data_time_type */
+        icalendar_2_0::dtstart::date_time_type eventDtstart = event->eiEvent().eiActivePeriod().properties().dtstart().date_time();
+        
+        
+        int day = eventDtstart.day();
+        std::string day_str;
+        if (day < 10){
+        
+            day_str = "0" + std::to_string(day);
+        } else {
+        
+            day_str = std::to_string(day);
+        }
+        
+        int month = eventDtstart.month();
+        std::string month_str;
+        if (month < 10){
+        
+            month_str = "0" + std::to_string(month);
+        } else {
+        
+            month_str = std::to_string(month);
+        }
+        
+        int hour = eventDtstart.hours();
+        std::string hour_str;
+        if (hour < 10){
+        
+            hour_str = "0" + std::to_string(hour);
+        } else {
+        
+            hour_str = std::to_string(hour);
+        }
+        
+        int minute = eventDtstart.minutes();
+        std::string minute_str;
+        if (minute < 10){
+        
+            minute_str = "0" + std::to_string(minute);
+        } else {
+        
+            minute_str = std::to_string(minute);
+        }
+        
+        int second = eventDtstart.seconds();
+        std::string second_str;
+        if (second < 10){
+        
+            second_str = "0" + std::to_string(second);
+        } else {
+        
+            second_str = std::to_string(second);
+        }
+        
+        /* No need to use time zone because all timestamps sent from VTN is presented in UTC time; */
+        /* For example, local time is 22:23 UTC+03:00, VTN only sends 19:23 UTC+00:00 */
+        /*
+        int zone_hour = eventDtstart.zone_hours();
+        std::string zone_hour_str;
+        if (zone_hour >= 0){
+            
+            if (zone_hour >= 10){
+            
+                zone_hour_str = "+" + std::to_string(zone_hour) + ":00";
+            
+            } else if (zone_hour < 10){
+            
+                zone_hour_str = "+0" + std::to_string(zone_hour) + ":00";
+            }
+        } else if (zone_hour < 0){
+        
+            if (zone_hour <= -10){
+            
+                zone_hour_str = "-" + std::to_string(zone_hour) + ":00"; 
+            } else if (zone_hour > -10){
+            
+                zone_hour_str = "-0" + std::to_string(zone_hour) + ":00";
+            }        
+        } */
+            
+     
+        
+        
+        /* construct time string in the formate dd/mm/yyyy hh:mm:ss */
+        std::ostringstream eventDtstart_temp;    
+   
+        eventDtstart_temp << day_str << "/" << month_str << "/" << eventDtstart.year() << " " << hour_str << ":" << minute_str << ":" << second_str << " UTC+00:00";
+        
+        std::string eventDtstart_string = eventDtstart_temp.str();
+        
+               
+	/*int durationInSeconds = ISO8601Duration::TotalSeconds(event->eiEvent().eiActivePeriod().properties().duration().duration());*/
+        /*int durationInMinutes = durationInSeconds / 60;*/
+        std::string duration = event->eiEvent().eiActivePeriod().properties().duration().duration().data();
+    
+        
+        std::string eventStatus = event->eiEvent().eventDescriptor().eventStatus().data();
+        
+        /* The event data will be logged using the eventlog_conf; LOG(INFO) is using the default log which is conf*/
+        /* The information involves: Event ID, Start Time, Duration, Status, Opt State, Market Context, Signal Type, Current Value, VTN Comment, Test Event, Response */
+        /*CLOG(INFO, "eventlog") << eventID << "              " << eventDtstart << "              " << durationInMinutes << endl;*/
+        
+        CLOG(INFO, "eventlog") << "\nEvent ID" << "                   " << "Start Time"        << "                         " << "Duration"             << "      "     << "Status"    << "      \n"       
+                               << eventID      << "       "             << eventDtstart_string << "      "                    << duration               << "          " << eventStatus << "\n\n=================================\n";
+
 }
 
 } /* namespace samplevenmanager */

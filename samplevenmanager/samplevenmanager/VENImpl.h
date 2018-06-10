@@ -17,6 +17,9 @@
 
 #include "easylogging++.h"
 
+
+
+
 namespace samplevenmanager
 {
 
@@ -59,6 +62,11 @@ public:
 
 	virtual void OnCurlException(CurlException &ex);
 	virtual void OnException(std::exception &ex);
+        
+        /* declare the method logEventList() to log events using "eventlog" logger; */
+        /* this method is originally declared in IEventService.h */
+        /* this method is override in VENImpl.cpp; */
+        virtual void logEventList(const std::string &eventID, const oadr2b::oadr::oadrEvent *event, oadr2b::ei::OptTypeType::value &optType);
 };
 
 } /* namespace samplevenmanager */

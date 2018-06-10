@@ -29,6 +29,9 @@ public:
 	virtual void OnEventCancel(const std::string &eventID, const oadr2b::oadr::oadrEvent *event, oadr2b::ei::OptTypeType::value &optType) = 0;
 
 	virtual void OnEventImplicitCancel(const std::string &eventID, const oadr2b::oadr::oadrEvent *event) = 0;
+        
+        /* declare the method logEventList() which is override in VENImpl.h */
+        virtual void logEventList(const std::string &eventID, const oadr2b::oadr::oadrEvent *event, oadr2b::ei::OptTypeType::value &optType) = 0;
 };
 
 #endif /* OADR_OADR_VEN_VENMANAGER_IEVENTSERVICE_H_ */

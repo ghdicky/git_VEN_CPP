@@ -1,0 +1,41 @@
+file(REMOVE_RECURSE
+  "CMakeFiles/testoadr.dir/oadrtest/oadrtest/helper/MockScheduler.cpp.o"
+  "CMakeFiles/testoadr.dir/oadrtest/oadrtest/helper/LoadFile.cpp.o"
+  "CMakeFiles/testoadr.dir/oadrtest/oadrtest/helper/MockGlobalIncrementingTime.cpp.o"
+  "CMakeFiles/testoadr.dir/oadrtest/oadrtest/helper/MockGlobalTime.cpp.o"
+  "CMakeFiles/testoadr.dir/oadrtest/oadrtest/tests/helper/TimeZoneTest.cpp.o"
+  "CMakeFiles/testoadr.dir/oadrtest/oadrtest/tests/helper/ISO8601DurationTest.cpp.o"
+  "CMakeFiles/testoadr.dir/oadrtest/oadrtest/tests/helper/ReportHelperTest.cpp.o"
+  "CMakeFiles/testoadr.dir/oadrtest/oadrtest/tests/helper/DateTimeConverterTest.cpp.o"
+  "CMakeFiles/testoadr.dir/oadrtest/oadrtest/tests/reportmanager/BlankReportService.cpp.o"
+  "CMakeFiles/testoadr.dir/oadrtest/oadrtest/tests/reportmanager/BlankSendReport.cpp.o"
+  "CMakeFiles/testoadr.dir/oadrtest/oadrtest/tests/reportmanager/ReportManagerTest.cpp.o"
+  "CMakeFiles/testoadr.dir/oadrtest/oadrtest/tests/reportmanager/RegisteredReportsTest.cpp.o"
+  "CMakeFiles/testoadr.dir/oadrtest/oadrtest/tests/Oadr2bHelperTest.cpp.o"
+  "CMakeFiles/testoadr.dir/oadrtest/oadrtest/tests/ven/MockHttp.cpp.o"
+  "CMakeFiles/testoadr.dir/oadrtest/oadrtest/tests/ven/VenTest.cpp.o"
+  "CMakeFiles/testoadr.dir/oadrtest/oadrtest/tests/CurlHTTPTest.cpp.o"
+  "CMakeFiles/testoadr.dir/oadrtest/oadrtest/tests/VEN2bTestSetTest.cpp.o"
+  "CMakeFiles/testoadr.dir/oadrtest/oadrtest/tests/scheduler/JobSlow.cpp.o"
+  "CMakeFiles/testoadr.dir/oadrtest/oadrtest/tests/scheduler/MockConditionalSleep.cpp.o"
+  "CMakeFiles/testoadr.dir/oadrtest/oadrtest/tests/scheduler/SchedulerTest.cpp.o"
+  "CMakeFiles/testoadr.dir/oadrtest/oadrtest/tests/scheduler/SchedulerJobTest.cpp.o"
+  "CMakeFiles/testoadr.dir/oadrtest/oadrtest/tests/scheduler/JobException.cpp.o"
+  "CMakeFiles/testoadr.dir/oadrtest/oadrtest/tests/scheduler/JobNull.cpp.o"
+  "CMakeFiles/testoadr.dir/oadrtest/oadrtest/tests/CurlReceiveBufferTest.cpp.o"
+  "CMakeFiles/testoadr.dir/oadrtest/oadrtest/tests/CurrencyTest.cpp.o"
+  "CMakeFiles/testoadr.dir/oadrtest/oadrtest/tests/XMLOutputTest.cpp.o"
+  "CMakeFiles/testoadr.dir/oadrtest/oadrtest/tests/eventmanager/EventManagerTest.cpp.o"
+  "CMakeFiles/testoadr.dir/oadrtest/oadrtest/tests/eventmanager/CreateEventHelper.cpp.o"
+  "CMakeFiles/testoadr.dir/oadrtest/oadrtest/tests/eventmanager/BlankEventService.cpp.o"
+  "CMakeFiles/testoadr.dir/oadrtest/oadrtest/tests/eventmanager/BlankSendCreatedEvent.cpp.o"
+  "CMakeFiles/testoadr.dir/oadrtest/oadrtest/tests/ParserTest.cpp.o"
+  "CMakeFiles/testoadr.dir/oadrtest/oadrtest/main.cpp.o"
+  "testoadr.pdb"
+  "testoadr"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang CXX)
+  include(CMakeFiles/testoadr.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

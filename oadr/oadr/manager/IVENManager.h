@@ -20,6 +20,11 @@ public:
 	virtual ~IVENManager();
 
 	virtual Scheduler *getScheduler() = 0;
+        
+        /* Declare method inputOut() which is actually defined in VENManager.cpp */
+        virtual void selectOptFunction() = 0;
+        
+        
 };
 
 #endif /* OADR_OADR_MANAGER_IVENMANAGER_H_ */

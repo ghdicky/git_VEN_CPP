@@ -1,0 +1,1245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="100">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <df root="." name="0">
+      <df name="build">
+        <df name="debug">
+        </df>
+      </df>
+      <df name="CMakeFiles">
+        <df name="3.5.1">
+          <df name="CompilerIdC">
+            <in>CMakeCCompilerId.c</in>
+          </df>
+          <df name="CompilerIdCXX">
+            <in>CMakeCXXCompilerId.cpp</in>
+          </df>
+        </df>
+        <df name="CMakeTmp">
+        </df>
+        <df name="oadr.dir">
+          <df name="oadr">
+            <df name="oadr">
+              <df name="helper">
+                <df name="conditionalsleep">
+                </df>
+                <df name="globaltime">
+                </df>
+                <df name="thread">
+                </df>
+              </df>
+              <df name="manager">
+                <df name="eventmanager">
+                  <df name="job">
+                    <df name="event">
+                    </df>
+                  </df>
+                </df>
+                <df name="reportmanager">
+                </df>
+                <df name="transport">
+                </df>
+              </df>
+              <df name="request">
+                <df name="opt">
+                </df>
+                <df name="report">
+                </df>
+              </df>
+              <df name="scheduler">
+              </df>
+              <df name="ven">
+                <df name="http">
+                </df>
+              </df>
+            </df>
+          </df>
+        </df>
+        <df name="oadrsd.dir">
+          <df name="oadrsd">
+            <df name="oadrsd">
+              <df name="2b">
+              </df>
+            </df>
+          </df>
+        </df>
+        <df name="samplevenmgr.dir">
+          <df name="samplevenmanager">
+            <df name="samplevenmanager">
+            </df>
+          </df>
+        </df>
+        <df name="testoadr.dir">
+          <df name="oadrtest">
+            <df name="oadrtest">
+              <df name="helper">
+              </df>
+              <df name="tests">
+                <df name="eventmanager">
+                </df>
+                <df name="helper">
+                </df>
+                <df name="reportmanager">
+                </df>
+                <df name="scheduler">
+                </df>
+                <df name="ven">
+                </df>
+              </df>
+            </df>
+          </df>
+        </df>
+        <in>feature_tests.c</in>
+        <in>feature_tests.cxx</in>
+      </df>
+      <df name="googletest-release-1.7.0">
+        <df name="build-aux">
+        </df>
+        <df name="cmake">
+        </df>
+        <df name="CMakeFiles">
+          <df name="gtest.dir">
+            <df name="src">
+            </df>
+          </df>
+          <df name="gtest_main.dir">
+            <df name="src">
+            </df>
+          </df>
+        </df>
+        <df name="codegear">
+          <in>gtest_all.cc</in>
+          <in>gtest_link.cc</in>
+        </df>
+        <df name="include">
+          <df name="gtest">
+            <df name="internal">
+              <in>gtest-death-test-internal.h</in>
+              <in>gtest-filepath.h</in>
+              <in>gtest-internal.h</in>
+              <in>gtest-linked_ptr.h</in>
+              <in>gtest-param-util-generated.h</in>
+              <in>gtest-param-util.h</in>
+              <in>gtest-port.h</in>
+              <in>gtest-string.h</in>
+              <in>gtest-tuple.h</in>
+              <in>gtest-type-util.h</in>
+            </df>
+            <in>gtest-death-test.h</in>
+            <in>gtest-message.h</in>
+            <in>gtest-param-test.h</in>
+            <in>gtest-printers.h</in>
+            <in>gtest-spi.h</in>
+            <in>gtest-test-part.h</in>
+            <in>gtest-typed-test.h</in>
+            <in>gtest.h</in>
+            <in>gtest_pred_impl.h</in>
+            <in>gtest_prod.h</in>
+          </df>
+        </df>
+        <df name="m4">
+        </df>
+        <df name="make">
+        </df>
+        <df name="msvc">
+        </df>
+        <df name="samples">
+          <in>prime_tables.h</in>
+          <in>sample1.cc</in>
+          <in>sample1.h</in>
+          <in>sample10_unittest.cc</in>
+          <in>sample1_unittest.cc</in>
+          <in>sample2.cc</in>
+          <in>sample2.h</in>
+          <in>sample2_unittest.cc</in>
+          <in>sample3-inl.h</in>
+          <in>sample3_unittest.cc</in>
+          <in>sample4.cc</in>
+          <in>sample4.h</in>
+          <in>sample4_unittest.cc</in>
+          <in>sample5_unittest.cc</in>
+          <in>sample6_unittest.cc</in>
+          <in>sample7_unittest.cc</in>
+          <in>sample8_unittest.cc</in>
+          <in>sample9_unittest.cc</in>
+        </df>
+        <df name="scripts">
+          <df name="test">
+          </df>
+        </df>
+        <df name="src">
+          <in>gtest-all.cc</in>
+          <in>gtest-death-test.cc</in>
+          <in>gtest-filepath.cc</in>
+          <in>gtest-internal-inl.h</in>
+          <in>gtest-port.cc</in>
+          <in>gtest-printers.cc</in>
+          <in>gtest-test-part.cc</in>
+          <in>gtest-typed-test.cc</in>
+          <in>gtest.cc</in>
+          <in>gtest_main.cc</in>
+        </df>
+        <df name="test">
+          <in>gtest-death-test_ex_test.cc</in>
+          <in>gtest-death-test_test.cc</in>
+          <in>gtest-filepath_test.cc</in>
+          <in>gtest-linked_ptr_test.cc</in>
+          <in>gtest-listener_test.cc</in>
+          <in>gtest-message_test.cc</in>
+          <in>gtest-options_test.cc</in>
+          <in>gtest-param-test2_test.cc</in>
+          <in>gtest-param-test_test.cc</in>
+          <in>gtest-param-test_test.h</in>
+          <in>gtest-port_test.cc</in>
+          <in>gtest-printers_test.cc</in>
+          <in>gtest-test-part_test.cc</in>
+          <in>gtest-tuple_test.cc</in>
+          <in>gtest-typed-test2_test.cc</in>
+          <in>gtest-typed-test_test.cc</in>
+          <in>gtest-typed-test_test.h</in>
+          <in>gtest-unittest-api_test.cc</in>
+          <in>gtest_all_test.cc</in>
+          <in>gtest_break_on_failure_unittest_.cc</in>
+          <in>gtest_catch_exceptions_test_.cc</in>
+          <in>gtest_color_test_.cc</in>
+          <in>gtest_env_var_test_.cc</in>
+          <in>gtest_environment_test.cc</in>
+          <in>gtest_filter_unittest_.cc</in>
+          <in>gtest_help_test_.cc</in>
+          <in>gtest_list_tests_unittest_.cc</in>
+          <in>gtest_main_unittest.cc</in>
+          <in>gtest_no_test_unittest.cc</in>
+          <in>gtest_output_test_.cc</in>
+          <in>gtest_pred_impl_unittest.cc</in>
+          <in>gtest_premature_exit_test.cc</in>
+          <in>gtest_prod_test.cc</in>
+          <in>gtest_repeat_test.cc</in>
+          <in>gtest_shuffle_test_.cc</in>
+          <in>gtest_sole_header_test.cc</in>
+          <in>gtest_stress_test.cc</in>
+          <in>gtest_throw_on_failure_ex_test.cc</in>
+          <in>gtest_throw_on_failure_test_.cc</in>
+          <in>gtest_uninitialized_test_.cc</in>
+          <in>gtest_unittest.cc</in>
+          <in>gtest_xml_outfile1_test_.cc</in>
+          <in>gtest_xml_outfile2_test_.cc</in>
+          <in>gtest_xml_output_unittest_.cc</in>
+          <in>production.cc</in>
+          <in>production.h</in>
+        </df>
+        <df name="xcode">
+          <df name="Config">
+          </df>
+          <df name="gtest.xcodeproj">
+          </df>
+          <df name="Resources">
+          </df>
+          <df name="Samples">
+            <df name="FrameworkSample">
+              <df name="WidgetFramework.xcodeproj">
+              </df>
+              <in>widget.cc</in>
+              <in>widget.h</in>
+              <in>widget_test.cc</in>
+            </df>
+          </df>
+          <df name="Scripts">
+          </df>
+        </df>
+      </df>
+      <df name="logs">
+        <df name="http:">
+        </df>
+      </df>
+      <df name="oadr">
+        <df name="oadr">
+          <df name="helper">
+            <df name="conditionalsleep">
+              <in>ConditionalSleep.cpp</in>
+              <in>ConditionalSleep.h</in>
+              <in>IConditionalSleep.cpp</in>
+              <in>IConditionalSleep.h</in>
+            </df>
+            <df name="globaltime">
+              <in>GlobalTime.cpp</in>
+              <in>GlobalTime.h</in>
+              <in>GlobalTimeStandard.cpp</in>
+              <in>GlobalTimeStandard.h</in>
+              <in>IGlobalTime.cpp</in>
+              <in>IGlobalTime.h</in>
+            </df>
+            <df name="thread">
+              <in>IRun.cpp</in>
+              <in>IRun.h</in>
+              <in>ThreadRunner.cpp</in>
+              <in>ThreadRunner.h</in>
+            </df>
+            <in>DateTimeConverter.cpp</in>
+            <in>DateTimeConverter.h</in>
+            <in>ISO8601Duration.cpp</in>
+            <in>ISO8601Duration.h</in>
+            <in>RandomHex.cpp</in>
+            <in>RandomHex.h</in>
+            <in>Timezone.cpp</in>
+            <in>Timezone.h</in>
+          </df>
+          <df name="manager">
+            <df name="eventmanager">
+              <df name="job">
+                <df name="event">
+                  <in>JobEventComplete.cpp</in>
+                  <in>JobEventComplete.h</in>
+                  <in>JobEventIntervalStart.cpp</in>
+                  <in>JobEventIntervalStart.h</in>
+                  <in>JobEventStart.cpp</in>
+                  <in>JobEventStart.h</in>
+                </df>
+              </df>
+              <in>EventManager.cpp</in>
+              <in>EventManager.h</in>
+              <in>IEventService.cpp</in>
+              <in>IEventService.h</in>
+              <in>ISendCreatedEvent.cpp</in>
+              <in>ISendCreatedEvent.h</in>
+            </df>
+            <df name="reportmanager">
+              <in>IReportService.cpp</in>
+              <in>IReportService.h</in>
+              <in>ISendReport.cpp</in>
+              <in>ISendReport.h</in>
+              <in>RegisteredReports.cpp</in>
+              <in>RegisteredReports.h</in>
+              <in>ReportManager.cpp</in>
+              <in>ReportManager.h</in>
+            </df>
+            <df name="transport">
+              <in>ITransport.cpp</in>
+              <in>ITransport.h</in>
+            </df>
+            <in>IOADRExceptionService.cpp</in>
+            <in>IOADRExceptionService.h</in>
+            <in>IVENManager.cpp</in>
+            <in>IVENManager.h</in>
+            <in>VENManager.cpp</in>
+            <in>VENManager.h</in>
+            <in>VENManagerConfig.h</in>
+          </df>
+          <df name="request">
+            <df name="opt">
+              <in>CancelOptSchedule.cpp</in>
+              <in>CancelOptSchedule.h</in>
+              <in>CreateOpt.cpp</in>
+              <in>CreateOpt.h</in>
+              <in>CreateOptEvent.cpp</in>
+              <in>CreateOptEvent.h</in>
+              <in>CreateOptSchedule.cpp</in>
+              <in>CreateOptSchedule.h</in>
+              <in>OptReasonValue.cpp</in>
+              <in>OptReasonValue.h</in>
+              <in>OptSchedule.cpp</in>
+              <in>OptSchedule.h</in>
+            </df>
+            <df name="report">
+              <in>RegisterReport.cpp</in>
+              <in>RegisterReport.h</in>
+              <in>RegisteredReport.cpp</in>
+              <in>RegisteredReport.h</in>
+              <in>ReportHelper.cpp</in>
+              <in>ReportHelper.h</in>
+              <in>ReportName.cpp</in>
+              <in>ReportName.h</in>
+              <in>UpdateReport.cpp</in>
+              <in>UpdateReport.h</in>
+            </df>
+            <in>CancelPartyRegistration.cpp</in>
+            <in>CancelPartyRegistration.h</in>
+            <in>CanceledReport.cpp</in>
+            <in>CanceledReport.h</in>
+            <in>CreatePartyRegistration.cpp</in>
+            <in>CreatePartyRegistration.h</in>
+            <in>CreatedEvent.cpp</in>
+            <in>CreatedEvent.h</in>
+            <in>CreatedReport.cpp</in>
+            <in>CreatedReport.h</in>
+            <in>DurationModifier.cpp</in>
+            <in>DurationModifier.h</in>
+            <in>Oadr2bHelper.cpp</in>
+            <in>Oadr2bHelper.h</in>
+            <in>Oadr2bRequest.cpp</in>
+            <in>Oadr2bRequest.h</in>
+            <in>OadrException.cpp</in>
+            <in>OadrException.h</in>
+            <in>Poll.cpp</in>
+            <in>Poll.h</in>
+            <in>QueryRegistration.cpp</in>
+            <in>QueryRegistration.h</in>
+            <in>RequestEvent.cpp</in>
+            <in>RequestEvent.h</in>
+          </df>
+          <df name="scheduler">
+            <in>IJob.cpp</in>
+            <in>IJob.h</in>
+            <in>IScheduler.cpp</in>
+            <in>IScheduler.h</in>
+            <in>JobLambda.cpp</in>
+            <in>JobLambda.h</in>
+            <in>Scheduler.cpp</in>
+            <in>Scheduler.h</in>
+            <in>SchedulerJob.cpp</in>
+            <in>SchedulerJob.h</in>
+            <in>SchedulerJobs.cpp</in>
+            <in>SchedulerJobs.h</in>
+          </df>
+          <df name="ven">
+            <df name="http">
+              <in>CurlBuffer.cpp</in>
+              <in>CurlBuffer.h</in>
+              <in>CurlException.cpp</in>
+              <in>CurlException.h</in>
+              <in>CurlReceiveBuffer.cpp</in>
+              <in>CurlReceiveBuffer.h</in>
+              <in>CurlSendBuffer.cpp</in>
+              <in>CurlSendBuffer.h</in>
+              <in>HttpCurl.cpp</in>
+              <in>HttpCurl.h</in>
+              <in>IHttp.cpp</in>
+              <in>IHttp.h</in>
+            </df>
+            <in>IOadrMessage.cpp</in>
+            <in>IOadrMessage.h</in>
+            <in>VEN2b.cpp</in>
+            <in>VEN2b.h</in>
+          </df>
+        </df>
+      </df>
+      <df name="oadrsd">
+        <df name="oadrsd">
+          <df name="2b">
+            <in>AccuracyType.cxx</in>
+            <in>AccuracyType.hxx</in>
+            <in>AggregatedPnodeType.cxx</in>
+            <in>AggregatedPnodeType.hxx</in>
+            <in>ArrayOfVavailabilityContainedComponents.cxx</in>
+            <in>ArrayOfVavailabilityContainedComponents.hxx</in>
+            <in>ArrayofResponses.cxx</in>
+            <in>ArrayofResponses.hxx</in>
+            <in>AvailableType.cxx</in>
+            <in>AvailableType.hxx</in>
+            <in>BaseUnitType.cxx</in>
+            <in>BaseUnitType.hxx</in>
+            <in>CanonicalizationMethodType.cxx</in>
+            <in>CanonicalizationMethodType.hxx</in>
+            <in>CharTwoFieldParamsType.cxx</in>
+            <in>CharTwoFieldParamsType.hxx</in>
+            <in>ConfidenceType.cxx</in>
+            <in>ConfidenceType.hxx</in>
+            <in>CryptoBinary.cxx</in>
+            <in>CryptoBinary.hxx</in>
+            <in>CurrentType.cxx</in>
+            <in>CurrentType.hxx</in>
+            <in>CurveType.cxx</in>
+            <in>CurveType.hxx</in>
+            <in>DEREncodedKeyValueType.cxx</in>
+            <in>DEREncodedKeyValueType.hxx</in>
+            <in>DSAKeyValueType.cxx</in>
+            <in>DSAKeyValueType.hxx</in>
+            <in>DateTimeType.cxx</in>
+            <in>DateTimeType.hxx</in>
+            <in>DigestMethodType.cxx</in>
+            <in>DigestMethodType.hxx</in>
+            <in>DigestValueType.cxx</in>
+            <in>DigestValueType.hxx</in>
+            <in>DurationPropType.cxx</in>
+            <in>DurationPropType.hxx</in>
+            <in>DurationValueType.cxx</in>
+            <in>DurationValueType.hxx</in>
+            <in>ECKeyValueType.cxx</in>
+            <in>ECKeyValueType.hxx</in>
+            <in>ECParametersType.cxx</in>
+            <in>ECParametersType.hxx</in>
+            <in>ECPointType.cxx</in>
+            <in>ECPointType.hxx</in>
+            <in>ECValidationDataType.cxx</in>
+            <in>ECValidationDataType.hxx</in>
+            <in>EiExtensionTokenType.cxx</in>
+            <in>EiExtensionTokenType.hxx</in>
+            <in>EiOptType.cxx</in>
+            <in>EiOptType.hxx</in>
+            <in>EiResponseType.cxx</in>
+            <in>EiResponseType.hxx</in>
+            <in>EiTargetType.cxx</in>
+            <in>EiTargetType.hxx</in>
+            <in>EndDeviceAssetType.cxx</in>
+            <in>EndDeviceAssetType.hxx</in>
+            <in>EnergyApparentType.cxx</in>
+            <in>EnergyApparentType.hxx</in>
+            <in>EnergyItemType.cxx</in>
+            <in>EnergyItemType.hxx</in>
+            <in>EnergyReactiveType.cxx</in>
+            <in>EnergyReactiveType.hxx</in>
+            <in>EnergyRealType.cxx</in>
+            <in>EnergyRealType.hxx</in>
+            <in>EventStatusEnumeratedType.cxx</in>
+            <in>EventStatusEnumeratedType.hxx</in>
+            <in>FeatureCollection.cxx</in>
+            <in>FeatureCollection.hxx</in>
+            <in>FieldIDType.cxx</in>
+            <in>FieldIDType.hxx</in>
+            <in>FrequencyType.cxx</in>
+            <in>FrequencyType.hxx</in>
+            <in>HMACOutputLengthType.cxx</in>
+            <in>HMACOutputLengthType.hxx</in>
+            <in>ISO3AlphaCurrencyCodeContentType.cxx</in>
+            <in>ISO3AlphaCurrencyCodeContentType.hxx</in>
+            <in>IntervalType.cxx</in>
+            <in>IntervalType.hxx</in>
+            <in>ItemBaseType.cxx</in>
+            <in>ItemBaseType.hxx</in>
+            <in>KeyInfoReferenceType.cxx</in>
+            <in>KeyInfoReferenceType.hxx</in>
+            <in>KeyInfoType.cxx</in>
+            <in>KeyInfoType.hxx</in>
+            <in>KeyValueType.cxx</in>
+            <in>KeyValueType.hxx</in>
+            <in>LinearRing.cxx</in>
+            <in>LinearRing.hxx</in>
+            <in>ManifestType.cxx</in>
+            <in>ManifestType.hxx</in>
+            <in>MarketContextType.cxx</in>
+            <in>MarketContextType.hxx</in>
+            <in>MeterAssetType.cxx</in>
+            <in>MeterAssetType.hxx</in>
+            <in>MridType.cxx</in>
+            <in>MridType.hxx</in>
+            <in>NamedCurveType.cxx</in>
+            <in>NamedCurveType.hxx</in>
+            <in>NodeType.cxx</in>
+            <in>NodeType.hxx</in>
+            <in>ObjectType.cxx</in>
+            <in>ObjectType.hxx</in>
+            <in>OptReasonEnumeratedType.cxx</in>
+            <in>OptReasonEnumeratedType.hxx</in>
+            <in>OptReasonType.cxx</in>
+            <in>OptReasonType.hxx</in>
+            <in>OptTypeType.cxx</in>
+            <in>OptTypeType.hxx</in>
+            <in>PGPDataType.cxx</in>
+            <in>PGPDataType.hxx</in>
+            <in>PayloadBaseType.cxx</in>
+            <in>PayloadBaseType.hxx</in>
+            <in>PayloadFloatType.cxx</in>
+            <in>PayloadFloatType.hxx</in>
+            <in>PnBFieldParamsType.cxx</in>
+            <in>PnBFieldParamsType.hxx</in>
+            <in>PnodeType.cxx</in>
+            <in>PnodeType.hxx</in>
+            <in>Polygon.cxx</in>
+            <in>Polygon.hxx</in>
+            <in>PowerApparentType.cxx</in>
+            <in>PowerApparentType.hxx</in>
+            <in>PowerAttributesType.cxx</in>
+            <in>PowerAttributesType.hxx</in>
+            <in>PowerItemType.cxx</in>
+            <in>PowerItemType.hxx</in>
+            <in>PowerReactiveType.cxx</in>
+            <in>PowerReactiveType.hxx</in>
+            <in>PowerRealType.cxx</in>
+            <in>PowerRealType.hxx</in>
+            <in>PrimeFieldParamsType.cxx</in>
+            <in>PrimeFieldParamsType.hxx</in>
+            <in>QualifiedEventIDType.cxx</in>
+            <in>QualifiedEventIDType.hxx</in>
+            <in>RSAKeyValueType.cxx</in>
+            <in>RSAKeyValueType.hxx</in>
+            <in>ReadingTypeEnumeratedType.cxx</in>
+            <in>ReadingTypeEnumeratedType.hxx</in>
+            <in>ReadingTypeType.cxx</in>
+            <in>ReadingTypeType.hxx</in>
+            <in>ReferenceType.cxx</in>
+            <in>ReferenceType.hxx</in>
+            <in>ReportEnumeratedType.cxx</in>
+            <in>ReportEnumeratedType.hxx</in>
+            <in>ReportPayloadType.cxx</in>
+            <in>ReportPayloadType.hxx</in>
+            <in>ReportSpecifierType.cxx</in>
+            <in>ReportSpecifierType.hxx</in>
+            <in>ReportTypeType.cxx</in>
+            <in>ReportTypeType.hxx</in>
+            <in>ResponseCodeType.cxx</in>
+            <in>ResponseCodeType.hxx</in>
+            <in>ResponseRequiredType.cxx</in>
+            <in>ResponseRequiredType.hxx</in>
+            <in>RetrievalMethodType.cxx</in>
+            <in>RetrievalMethodType.hxx</in>
+            <in>SPKIDataType.cxx</in>
+            <in>SPKIDataType.hxx</in>
+            <in>ServiceAreaType.cxx</in>
+            <in>ServiceAreaType.hxx</in>
+            <in>ServiceDeliveryPointType.cxx</in>
+            <in>ServiceDeliveryPointType.hxx</in>
+            <in>ServiceLocationType.cxx</in>
+            <in>ServiceLocationType.hxx</in>
+            <in>SiScaleCodeType.cxx</in>
+            <in>SiScaleCodeType.hxx</in>
+            <in>SignalNameEnumeratedType.cxx</in>
+            <in>SignalNameEnumeratedType.hxx</in>
+            <in>SignalTypeEnumeratedType.cxx</in>
+            <in>SignalTypeEnumeratedType.hxx</in>
+            <in>SignatureMethodType.cxx</in>
+            <in>SignatureMethodType.hxx</in>
+            <in>SignaturePropertiesType.cxx</in>
+            <in>SignaturePropertiesType.hxx</in>
+            <in>SignaturePropertyType.cxx</in>
+            <in>SignaturePropertyType.hxx</in>
+            <in>SignatureType.cxx</in>
+            <in>SignatureType.hxx</in>
+            <in>SignatureValueType.cxx</in>
+            <in>SignatureValueType.hxx</in>
+            <in>SignedInfoType.cxx</in>
+            <in>SignedInfoType.hxx</in>
+            <in>SpecifierPayloadType.cxx</in>
+            <in>SpecifierPayloadType.hxx</in>
+            <in>StreamBaseType.cxx</in>
+            <in>StreamBaseType.hxx</in>
+            <in>StreamPayloadBaseType.cxx</in>
+            <in>StreamPayloadBaseType.hxx</in>
+            <in>ThermType.cxx</in>
+            <in>ThermType.hxx</in>
+            <in>TnBFieldParamsType.cxx</in>
+            <in>TnBFieldParamsType.hxx</in>
+            <in>TransformType.cxx</in>
+            <in>TransformType.hxx</in>
+            <in>TransformsType.cxx</in>
+            <in>TransformsType.hxx</in>
+            <in>TransportInterfaceType.cxx</in>
+            <in>TransportInterfaceType.hxx</in>
+            <in>UidType.cxx</in>
+            <in>UidType.hxx</in>
+            <in>VavailabilityType.cxx</in>
+            <in>VavailabilityType.hxx</in>
+            <in>VoltageType.cxx</in>
+            <in>VoltageType.hxx</in>
+            <in>WsCalendarIntervalType.cxx</in>
+            <in>WsCalendarIntervalType.hxx</in>
+            <in>X509DataType.cxx</in>
+            <in>X509DataType.hxx</in>
+            <in>X509DigestType.cxx</in>
+            <in>X509DigestType.hxx</in>
+            <in>X509IssuerSerialType.cxx</in>
+            <in>X509IssuerSerialType.hxx</in>
+            <in>categoryType.cxx</in>
+            <in>categoryType.hxx</in>
+            <in>contentType.cxx</in>
+            <in>contentType.hxx</in>
+            <in>currencyItemDescriptionType.cxx</in>
+            <in>currencyItemDescriptionType.hxx</in>
+            <in>currencyType.cxx</in>
+            <in>currencyType.hxx</in>
+            <in>currentValueType.cxx</in>
+            <in>currentValueType.hxx</in>
+            <in>dateTimeType1.cxx</in>
+            <in>dateTimeType1.hxx</in>
+            <in>doubleList.cxx</in>
+            <in>doubleList.hxx</in>
+            <in>dtend.cxx</in>
+            <in>dtend.hxx</in>
+            <in>dtstart.cxx</in>
+            <in>dtstart.hxx</in>
+            <in>eiActivePeriodType.cxx</in>
+            <in>eiActivePeriodType.hxx</in>
+            <in>eiCreatedEvent.cxx</in>
+            <in>eiCreatedEvent.hxx</in>
+            <in>eiEventBaselineType.cxx</in>
+            <in>eiEventBaselineType.hxx</in>
+            <in>eiEventSignalType.cxx</in>
+            <in>eiEventSignalType.hxx</in>
+            <in>eiEventSignalsType.cxx</in>
+            <in>eiEventSignalsType.hxx</in>
+            <in>eiEventType.cxx</in>
+            <in>eiEventType.hxx</in>
+            <in>eiMarketContext.cxx</in>
+            <in>eiMarketContext.hxx</in>
+            <in>eiRequestEvent.cxx</in>
+            <in>eiRequestEvent.hxx</in>
+            <in>emailType.cxx</in>
+            <in>emailType.hxx</in>
+            <in>entryType.cxx</in>
+            <in>entryType.hxx</in>
+            <in>eventDescriptorType.cxx</in>
+            <in>eventDescriptorType.hxx</in>
+            <in>eventResponse.cxx</in>
+            <in>eventResponse.hxx</in>
+            <in>eventResponses.cxx</in>
+            <in>eventResponses.hxx</in>
+            <in>exterior.cxx</in>
+            <in>exterior.hxx</in>
+            <in>feedType.cxx</in>
+            <in>feedType.hxx</in>
+            <in>generatorType.cxx</in>
+            <in>generatorType.hxx</in>
+            <in>iconType.cxx</in>
+            <in>iconType.hxx</in>
+            <in>idType.cxx</in>
+            <in>idType.hxx</in>
+            <in>intervals.cxx</in>
+            <in>intervals.hxx</in>
+            <in>linkType.cxx</in>
+            <in>linkType.hxx</in>
+            <in>location.cxx</in>
+            <in>location.hxx</in>
+            <in>logoType.cxx</in>
+            <in>logoType.hxx</in>
+            <in>oadrCancelOptType.cxx</in>
+            <in>oadrCancelOptType.hxx</in>
+            <in>oadrCancelPartyRegistrationType.cxx</in>
+            <in>oadrCancelPartyRegistrationType.hxx</in>
+            <in>oadrCancelReportType.cxx</in>
+            <in>oadrCancelReportType.hxx</in>
+            <in>oadrCanceledOptType.cxx</in>
+            <in>oadrCanceledOptType.hxx</in>
+            <in>oadrCanceledPartyRegistrationType.cxx</in>
+            <in>oadrCanceledPartyRegistrationType.hxx</in>
+            <in>oadrCanceledReportType.cxx</in>
+            <in>oadrCanceledReportType.hxx</in>
+            <in>oadrCreateOptType.cxx</in>
+            <in>oadrCreateOptType.hxx</in>
+            <in>oadrCreatePartyRegistrationType.cxx</in>
+            <in>oadrCreatePartyRegistrationType.hxx</in>
+            <in>oadrCreateReportType.cxx</in>
+            <in>oadrCreateReportType.hxx</in>
+            <in>oadrCreatedEventType.cxx</in>
+            <in>oadrCreatedEventType.hxx</in>
+            <in>oadrCreatedOptType.cxx</in>
+            <in>oadrCreatedOptType.hxx</in>
+            <in>oadrCreatedPartyRegistrationType.cxx</in>
+            <in>oadrCreatedPartyRegistrationType.hxx</in>
+            <in>oadrCreatedReportType.cxx</in>
+            <in>oadrCreatedReportType.hxx</in>
+            <in>oadrDataQualityType.cxx</in>
+            <in>oadrDataQualityType.hxx</in>
+            <in>oadrDataQualityTypeType.cxx</in>
+            <in>oadrDataQualityTypeType.hxx</in>
+            <in>oadrDistributeEventType.cxx</in>
+            <in>oadrDistributeEventType.hxx</in>
+            <in>oadrEvent.cxx</in>
+            <in>oadrEvent.hxx</in>
+            <in>oadrExtension.cxx</in>
+            <in>oadrExtension.hxx</in>
+            <in>oadrExtensions.cxx</in>
+            <in>oadrExtensions.hxx</in>
+            <in>oadrGBItemBase.cxx</in>
+            <in>oadrGBItemBase.hxx</in>
+            <in>oadrGBStreamPayloadBase.cxx</in>
+            <in>oadrGBStreamPayloadBase.hxx</in>
+            <in>oadrInfo.cxx</in>
+            <in>oadrInfo.hxx</in>
+            <in>oadrLoadControlStateType.cxx</in>
+            <in>oadrLoadControlStateType.hxx</in>
+            <in>oadrLoadControlStateTypeType.cxx</in>
+            <in>oadrLoadControlStateTypeType.hxx</in>
+            <in>oadrPayload.cxx</in>
+            <in>oadrPayload.hxx</in>
+            <in>oadrPayloadResourceStatusType.cxx</in>
+            <in>oadrPayloadResourceStatusType.hxx</in>
+            <in>oadrPendingReportsType.cxx</in>
+            <in>oadrPendingReportsType.hxx</in>
+            <in>oadrPollType.cxx</in>
+            <in>oadrPollType.hxx</in>
+            <in>oadrProfile.cxx</in>
+            <in>oadrProfile.hxx</in>
+            <in>oadrProfileType.cxx</in>
+            <in>oadrProfileType.hxx</in>
+            <in>oadrProfiles.cxx</in>
+            <in>oadrProfiles.hxx</in>
+            <in>oadrQueryRegistrationType.cxx</in>
+            <in>oadrQueryRegistrationType.hxx</in>
+            <in>oadrRegisterReportType.cxx</in>
+            <in>oadrRegisterReportType.hxx</in>
+            <in>oadrRegisteredReportType.cxx</in>
+            <in>oadrRegisteredReportType.hxx</in>
+            <in>oadrReportDescriptionType.cxx</in>
+            <in>oadrReportDescriptionType.hxx</in>
+            <in>oadrReportPayloadType.cxx</in>
+            <in>oadrReportPayloadType.hxx</in>
+            <in>oadrReportRequestType.cxx</in>
+            <in>oadrReportRequestType.hxx</in>
+            <in>oadrReportType.cxx</in>
+            <in>oadrReportType.hxx</in>
+            <in>oadrRequestEventType.cxx</in>
+            <in>oadrRequestEventType.hxx</in>
+            <in>oadrRequestReregistrationType.cxx</in>
+            <in>oadrRequestReregistrationType.hxx</in>
+            <in>oadrResponseType.cxx</in>
+            <in>oadrResponseType.hxx</in>
+            <in>oadrSamplingRateType.cxx</in>
+            <in>oadrSamplingRateType.hxx</in>
+            <in>oadrService.cxx</in>
+            <in>oadrService.hxx</in>
+            <in>oadrServiceNameType.cxx</in>
+            <in>oadrServiceNameType.hxx</in>
+            <in>oadrServiceSpecificInfo.cxx</in>
+            <in>oadrServiceSpecificInfo.hxx</in>
+            <in>oadrSignedObject.cxx</in>
+            <in>oadrSignedObject.hxx</in>
+            <in>oadrTransport.cxx</in>
+            <in>oadrTransport.hxx</in>
+            <in>oadrTransportType.cxx</in>
+            <in>oadrTransportType.hxx</in>
+            <in>oadrTransports.cxx</in>
+            <in>oadrTransports.hxx</in>
+            <in>oadrUpdateReportType.cxx</in>
+            <in>oadrUpdateReportType.hxx</in>
+            <in>oadrUpdatedReportType.cxx</in>
+            <in>oadrUpdatedReportType.hxx</in>
+            <in>oadr_20b.cxx</in>
+            <in>oadr_20b.hxx</in>
+            <in>oadr_ISO_ISO3AlphaCurrencyCode_20100407.cxx</in>
+            <in>oadr_ISO_ISO3AlphaCurrencyCode_20100407.hxx</in>
+            <in>oadr_atom.cxx</in>
+            <in>oadr_atom.hxx</in>
+            <in>oadr_ei_20b.cxx</in>
+            <in>oadr_ei_20b.hxx</in>
+            <in>oadr_emix_20b.cxx</in>
+            <in>oadr_emix_20b.hxx</in>
+            <in>oadr_gml_20b.cxx</in>
+            <in>oadr_gml_20b.hxx</in>
+            <in>oadr_power_20b.cxx</in>
+            <in>oadr_power_20b.hxx</in>
+            <in>oadr_pyld_20b.cxx</in>
+            <in>oadr_pyld_20b.hxx</in>
+            <in>oadr_siscale_20b.cxx</in>
+            <in>oadr_siscale_20b.hxx</in>
+            <in>oadr_strm_20b.cxx</in>
+            <in>oadr_strm_20b.hxx</in>
+            <in>oadr_xcal_20b.cxx</in>
+            <in>oadr_xcal_20b.hxx</in>
+            <in>oadr_xml.cxx</in>
+            <in>oadr_xml.hxx</in>
+            <in>oadr_xmldsig.cxx</in>
+            <in>oadr_xmldsig.hxx</in>
+            <in>oadr_xmldsig11.cxx</in>
+            <in>oadr_xmldsig11.hxx</in>
+            <in>personType.cxx</in>
+            <in>personType.hxx</in>
+            <in>properties.cxx</in>
+            <in>properties.hxx</in>
+            <in>pulseCountType.cxx</in>
+            <in>pulseCountType.hxx</in>
+            <in>reportNameEnumeratedType.cxx</in>
+            <in>reportNameEnumeratedType.hxx</in>
+            <in>reportNameType.cxx</in>
+            <in>reportNameType.hxx</in>
+            <in>schemaVersionEnumeratedType.cxx</in>
+            <in>schemaVersionEnumeratedType.hxx</in>
+            <in>schemaVersionType.cxx</in>
+            <in>schemaVersionType.hxx</in>
+            <in>signalNameType.cxx</in>
+            <in>signalNameType.hxx</in>
+            <in>signalPayloadType.cxx</in>
+            <in>signalPayloadType.hxx</in>
+            <in>sourceType.cxx</in>
+            <in>sourceType.hxx</in>
+            <in>space.cxx</in>
+            <in>space.hxx</in>
+            <in>temperatureType.cxx</in>
+            <in>temperatureType.hxx</in>
+            <in>temperatureUnitType.cxx</in>
+            <in>temperatureUnitType.hxx</in>
+            <in>textType.cxx</in>
+            <in>textType.hxx</in>
+            <in>tolerance.cxx</in>
+            <in>tolerance.hxx</in>
+            <in>tolerate.cxx</in>
+            <in>tolerate.hxx</in>
+            <in>type.cxx</in>
+            <in>type.hxx</in>
+            <in>uid.cxx</in>
+            <in>uid.hxx</in>
+            <in>uriType.cxx</in>
+            <in>uriType.hxx</in>
+          </df>
+          <df name="schema">
+          </df>
+        </df>
+      </df>
+      <df name="oadrtest">
+        <df name="oadrtest">
+          <df name="conf">
+          </df>
+          <df name="expected_output">
+          </df>
+          <df name="helper">
+            <in>LoadFile.cpp</in>
+            <in>LoadFile.h</in>
+            <in>MockGlobalIncrementingTime.cpp</in>
+            <in>MockGlobalIncrementingTime.h</in>
+            <in>MockGlobalTime.cpp</in>
+            <in>MockGlobalTime.h</in>
+            <in>MockScheduler.cpp</in>
+            <in>MockScheduler.h</in>
+          </df>
+          <df name="test_input">
+            <df name="payload">
+            </df>
+          </df>
+          <df name="tests">
+            <df name="eventmanager">
+              <in>BlankEventService.cpp</in>
+              <in>BlankEventService.h</in>
+              <in>BlankSendCreatedEvent.cpp</in>
+              <in>BlankSendCreatedEvent.h</in>
+              <in>CreateEventHelper.cpp</in>
+              <in>CreateEventHelper.h</in>
+              <in>EventManagerTest.cpp</in>
+            </df>
+            <df name="helper">
+              <in>DateTimeConverterTest.cpp</in>
+              <in>ISO8601DurationTest.cpp</in>
+              <in>ReportHelperTest.cpp</in>
+              <in>TimeZoneTest.cpp</in>
+            </df>
+            <df name="reportmanager">
+              <in>BlankReportService.cpp</in>
+              <in>BlankReportService.h</in>
+              <in>BlankSendReport.cpp</in>
+              <in>BlankSendReport.h</in>
+              <in>RegisteredReportsTest.cpp</in>
+              <in>ReportManagerTest.cpp</in>
+            </df>
+            <df name="scheduler">
+              <in>JobException.cpp</in>
+              <in>JobException.h</in>
+              <in>JobNull.cpp</in>
+              <in>JobNull.h</in>
+              <in>JobSlow.cpp</in>
+              <in>JobSlow.h</in>
+              <in>MockConditionalSleep.cpp</in>
+              <in>MockConditionalSleep.h</in>
+              <in>SchedulerJobTest.cpp</in>
+              <in>SchedulerTest.cpp</in>
+            </df>
+            <df name="ven">
+              <in>MockHttp.cpp</in>
+              <in>MockHttp.h</in>
+              <in>VenTest.cpp</in>
+            </df>
+            <in>CurlHTTPTest.cpp</in>
+            <in>CurlReceiveBufferTest.cpp</in>
+            <in>CurrencyTest.cpp</in>
+            <in>Oadr2bHelperTest.cpp</in>
+            <in>ParserTest.cpp</in>
+            <in>VEN2bTestSetTest.cpp</in>
+            <in>XMLOutputTest.cpp</in>
+          </df>
+          <in>main.cpp</in>
+        </df>
+      </df>
+      <df name="samplevenmanager">
+        <df name="samplevenmanager">
+          <in>VENImpl.cpp</in>
+          <in>VENImpl.h</in>
+          <in>easylogging++.h</in>
+          <in>global_variable.h</in>
+          <in>main.cpp</in>
+        </df>
+      </df>
+      <df name="xml">
+        <df name="oadrtest">
+          <df name="conf">
+          </df>
+          <df name="expected_output">
+          </df>
+          <df name="helper">
+          </df>
+          <df name="test_input">
+            <df name="payload">
+            </df>
+          </df>
+          <df name="tests">
+            <df name="eventmanager">
+            </df>
+            <df name="helper">
+            </df>
+            <df name="reportmanager">
+            </df>
+            <df name="scheduler">
+            </df>
+            <df name="ven">
+            </df>
+          </df>
+        </df>
+      </df>
+      <df name="xsd-4.0.0">
+        <df name="xsd">
+          <df name="cxx">
+            <df name="compilers">
+              <df name="vc-8">
+                <in>post.hxx</in>
+                <in>pre.hxx</in>
+              </df>
+            </df>
+            <df name="parser">
+              <df name="expat">
+                <in>elements.hxx</in>
+                <in>elements.txx</in>
+              </df>
+              <df name="non-validating">
+                <in>parser.hxx</in>
+                <in>parser.txx</in>
+                <in>xml-schema-pimpl.hxx</in>
+                <in>xml-schema-pimpl.ixx</in>
+                <in>xml-schema-pimpl.txx</in>
+                <in>xml-schema-pskel.hxx</in>
+                <in>xml-schema-pskel.ixx</in>
+                <in>xml-schema-pskel.txx</in>
+              </df>
+              <df name="validating">
+                <in>exceptions.hxx</in>
+                <in>exceptions.ixx</in>
+                <in>exceptions.txx</in>
+                <in>inheritance-map.hxx</in>
+                <in>inheritance-map.txx</in>
+                <in>parser.hxx</in>
+                <in>parser.txx</in>
+                <in>xml-schema-pimpl.hxx</in>
+                <in>xml-schema-pimpl.ixx</in>
+                <in>xml-schema-pimpl.txx</in>
+                <in>xml-schema-pskel.hxx</in>
+                <in>xml-schema-pskel.ixx</in>
+                <in>xml-schema-pskel.txx</in>
+              </df>
+              <df name="xerces">
+                <in>elements.hxx</in>
+                <in>elements.txx</in>
+              </df>
+              <in>document.hxx</in>
+              <in>document.txx</in>
+              <in>elements.hxx</in>
+              <in>elements.txx</in>
+              <in>error-handler.hxx</in>
+              <in>error-handler.txx</in>
+              <in>exceptions.hxx</in>
+              <in>exceptions.ixx</in>
+              <in>exceptions.txx</in>
+              <in>map.hxx</in>
+              <in>map.ixx</in>
+              <in>map.txx</in>
+              <in>schema-exceptions.hxx</in>
+              <in>schema-exceptions.ixx</in>
+              <in>schema-exceptions.txx</in>
+              <in>substitution-map.hxx</in>
+              <in>substitution-map.txx</in>
+              <in>xml-schema.hxx</in>
+              <in>xml-schema.ixx</in>
+              <in>xml-schema.txx</in>
+            </df>
+            <df name="tree">
+              <df name="bits">
+                <in>literals.hxx</in>
+                <in>literals.ixx</in>
+              </df>
+              <df name="parsing">
+                <in>boolean.hxx</in>
+                <in>byte.hxx</in>
+                <in>date-time.txx</in>
+                <in>decimal.hxx</in>
+                <in>double.hxx</in>
+                <in>element-map.txx</in>
+                <in>float.hxx</in>
+                <in>int.hxx</in>
+                <in>long.hxx</in>
+                <in>short.hxx</in>
+                <in>unsigned-byte.hxx</in>
+                <in>unsigned-int.hxx</in>
+                <in>unsigned-long.hxx</in>
+                <in>unsigned-short.hxx</in>
+              </df>
+              <df name="serialization">
+                <in>boolean.hxx</in>
+                <in>byte.hxx</in>
+                <in>date-time.txx</in>
+                <in>decimal.hxx</in>
+                <in>double.hxx</in>
+                <in>element-map.txx</in>
+                <in>float.hxx</in>
+                <in>int.hxx</in>
+                <in>long.hxx</in>
+                <in>short.hxx</in>
+                <in>unsigned-byte.hxx</in>
+                <in>unsigned-int.hxx</in>
+                <in>unsigned-long.hxx</in>
+                <in>unsigned-short.hxx</in>
+              </df>
+              <in>ace-cdr-stream-common.hxx</in>
+              <in>ace-cdr-stream-extraction.hxx</in>
+              <in>ace-cdr-stream-insertion.hxx</in>
+              <in>buffer.hxx</in>
+              <in>buffer.txx</in>
+              <in>comparison-map.hxx</in>
+              <in>comparison-map.txx</in>
+              <in>containers-wildcard.hxx</in>
+              <in>containers.hxx</in>
+              <in>containers.txx</in>
+              <in>date-time-extraction.txx</in>
+              <in>date-time-insertion.txx</in>
+              <in>date-time-ostream.txx</in>
+              <in>date-time.hxx</in>
+              <in>date-time.ixx</in>
+              <in>date-time.txx</in>
+              <in>element-map.hxx</in>
+              <in>element-map.txx</in>
+              <in>elements.hxx</in>
+              <in>elements.ixx</in>
+              <in>elements.txx</in>
+              <in>error-handler.hxx</in>
+              <in>error-handler.txx</in>
+              <in>exceptions.hxx</in>
+              <in>exceptions.txx</in>
+              <in>facet.hxx</in>
+              <in>istream-fwd.hxx</in>
+              <in>istream.hxx</in>
+              <in>iterator-adapter.hxx</in>
+              <in>list.hxx</in>
+              <in>ostream.hxx</in>
+              <in>parsing.hxx</in>
+              <in>parsing.txx</in>
+              <in>serialization.hxx</in>
+              <in>serialization.txx</in>
+              <in>std-ostream-map.hxx</in>
+              <in>std-ostream-map.txx</in>
+              <in>std-ostream-operators.hxx</in>
+              <in>stream-extraction-map.hxx</in>
+              <in>stream-extraction-map.txx</in>
+              <in>stream-extraction.hxx</in>
+              <in>stream-insertion-map.hxx</in>
+              <in>stream-insertion-map.txx</in>
+              <in>stream-insertion.hxx</in>
+              <in>text.hxx</in>
+              <in>text.txx</in>
+              <in>type-factory-map.hxx</in>
+              <in>type-factory-map.txx</in>
+              <in>type-serializer-map.hxx</in>
+              <in>type-serializer-map.txx</in>
+              <in>types.hxx</in>
+              <in>types.txx</in>
+              <in>xdr-stream-common.hxx</in>
+              <in>xdr-stream-extraction.hxx</in>
+              <in>xdr-stream-insertion.hxx</in>
+            </df>
+            <df name="xml">
+              <df name="bits">
+                <in>literals.hxx</in>
+                <in>literals.ixx</in>
+              </df>
+              <df name="dom">
+                <df name="bits">
+                  <in>error-handler-proxy.hxx</in>
+                  <in>error-handler-proxy.txx</in>
+                </df>
+                <in>auto-ptr.hxx</in>
+                <in>elements.hxx</in>
+                <in>elements.txx</in>
+                <in>parsing-header.hxx</in>
+                <in>parsing-source.hxx</in>
+                <in>parsing-source.txx</in>
+                <in>serialization-header.hxx</in>
+                <in>serialization-header.txx</in>
+                <in>serialization-source.hxx</in>
+                <in>serialization-source.txx</in>
+                <in>wildcard-source.hxx</in>
+                <in>wildcard-source.txx</in>
+              </df>
+              <df name="sax">
+                <df name="bits">
+                  <in>error-handler-proxy.hxx</in>
+                  <in>error-handler-proxy.txx</in>
+                </df>
+                <in>std-input-source.hxx</in>
+              </df>
+              <in>char-iso8859-1.hxx</in>
+              <in>char-iso8859-1.txx</in>
+              <in>char-lcp.hxx</in>
+              <in>char-lcp.txx</in>
+              <in>char-utf8.hxx</in>
+              <in>char-utf8.txx</in>
+              <in>elements.hxx</in>
+              <in>elements.txx</in>
+              <in>error-handler.hxx</in>
+              <in>exceptions.hxx</in>
+              <in>qualified-name.hxx</in>
+              <in>std-memory-manager.hxx</in>
+              <in>string.hxx</in>
+              <in>string.ixx</in>
+              <in>string.txx</in>
+            </df>
+            <in>auto-array.hxx</in>
+            <in>config.hxx</in>
+            <in>exceptions.hxx</in>
+            <in>post.hxx</in>
+            <in>pre.hxx</in>
+            <in>ro-string.hxx</in>
+            <in>ro-string.txx</in>
+            <in>version.hxx</in>
+            <in>zc-istream.hxx</in>
+            <in>zc-istream.txx</in>
+          </df>
+        </df>
+      </df>
+    </df>
+  </logicalFolder>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Default" type="0">
+      <toolsSet>
+        <developmentServer>localhost</developmentServer>
+        <platform>2</platform>
+      </toolsSet>
+      <compile>
+        <compiledirpicklist>
+          <compiledirpicklistitem>.</compiledirpicklistitem>
+          <compiledirpicklistitem>${AUTO_FOLDER}</compiledirpicklistitem>
+        </compiledirpicklist>
+        <compiledir>${AUTO_FOLDER}</compiledir>
+        <compilecommandpicklist>
+          <compilecommandpicklistitem>${MAKE} ${ITEM_NAME}.o</compilecommandpicklistitem>
+          <compilecommandpicklistitem>${AUTO_COMPILE}</compilecommandpicklistitem>
+        </compilecommandpicklist>
+        <compilecommand>${AUTO_COMPILE}</compilecommand>
+      </compile>
+      <dbx_gdbdebugger version="1">
+        <gdb_pathmaps>
+        </gdb_pathmaps>
+        <gdb_interceptlist>
+          <gdbinterceptoptions gdb_all="false" gdb_unhandled="true" gdb_unexpected="true"/>
+        </gdb_interceptlist>
+        <gdb_options>
+          <DebugOptions>
+            <option name="debug_command"
+                    value="&quot;${OUTPUT_PATH}&quot; ./samplevenmgr http://130.159.141.148:443 Hao_Ubuntu_VEN false"/>
+          </DebugOptions>
+        </gdb_options>
+        <gdb_buildfirst gdb_buildfirst_overriden="false" gdb_buildfirst_old="false"/>
+      </dbx_gdbdebugger>
+      <nativedebugger version="1">
+        <engine>gdb</engine>
+      </nativedebugger>
+      <runprofile version="9">
+        <runcommandpicklist>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" ./samplevenmgr http://130.159.141.148:443 ven_Ubuntu_2b</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" ./samplevenmgr http://130.159.141.148:443 ven_Ubuntu_2b true</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" ./samplevenmgr http://192.168.56.101:8080 ven_Ubuntu_VEN true</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" ./samplevenmgr http://192.168.56.101:8080 Hao_Ubuntu_VEN true</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" ./samplevenmgr http://192.168.56.101:8080 Hao_Ubuntu_VEN false</runcommandpicklistitem>
+        </runcommandpicklist>
+        <runcommand>"${OUTPUT_PATH}" ./samplevenmgr http://192.168.56.101:8080 Hao_Ubuntu_VEN false</runcommand>
+        <rundir>.</rundir>
+        <buildfirst>false</buildfirst>
+        <terminal-type>0</terminal-type>
+        <remove-instrumentation>0</remove-instrumentation>
+        <environment>
+        </environment>
+      </runprofile>
+    </conf>
+  </confs>
+</configurationDescriptor>

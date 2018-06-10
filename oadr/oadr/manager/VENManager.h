@@ -32,6 +32,16 @@
 #include <condition_variable>
 #include <mutex>
 
+/* Use global variable global_optType which is defined in global_variable.h */
+/* #include "../../../samplevenmanager/samplevenmanager/global_variable.h" */
+/* Note that global_variable.h has already been included in EventManager.h; so do not need to include here */
+
+/* Include <string> for string comparison */
+#include <string>
+
+/* Include <unistd.h> for sleep() method */
+#include <unistd.h> 
+
 class VENManager : public ISendCreatedEvent, public ISendReport, public IVENManager
 {
 private:
@@ -48,7 +58,20 @@ private:
     mutex m_mutex;
 
 	bool m_shutdown;
+        
+        
+        /* declared a string that will take the input optType */
+        string input_optType;
 
+        /* declared a string that will represent the existing opt status */
+        string existing_opt_status;  
+        
+        /* declared a string that will take the input optFunction */
+        string input_optFunction;
+        
+        /* declared a bool that represent if it is in selectOptType method */
+        bool in_optType_menu;
+        
 	virtual void sendCreatedEvent(string responseCode, string responseDescription, string requestID, oadr2b::ei::eventResponses::eventResponse_sequence &eventResponses);
 
 	virtual void sendUpdateReport(oadrUpdateReportType::oadrReport_sequence &sequence, time_t dtstart, string reportRequestID, time_t createdDateTime);
@@ -70,6 +93,11 @@ private:
 	void registerVenState();
 
 	void pollState();
+        
+        /* method declaration for selectOptType() */
+        void selectOptType();
+        
+       
 
 public:
 
@@ -82,6 +110,11 @@ public:
 	virtual void stop();
 
 	Scheduler *getScheduler();
+        
+        
+       
+       /* method declaration for selectOptFunction()*/
+       virtual void selectOptFunction();
 };
 
 #endif /* VENMANAGER_H_ */

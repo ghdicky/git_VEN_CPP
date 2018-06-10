@@ -19,6 +19,12 @@
 #include "job/event/JobEventIntervalStart.h"
 #include "job/event/JobEventStart.h"
 
+// include <iostream> for std::cout (printf) function: added by Hao
+#include <iostream>
+
+/* Use global variable global_optType which is defined in global_variable.h */
+#include "../../../../samplevenmanager/samplevenmanager/global_variable.h"
+
 using namespace oadr2b::oadr;
 using namespace oadr2b::ei;
 using namespace payloads;
@@ -230,7 +236,8 @@ void EventManager::handleExistingEvent(const string &eventID, const oadr2b::oadr
 	}
 	else
 	{
-		oadr2b::ei::OptTypeType::value optType = oadr2b::ei::OptTypeType::optOut;
+		/*oadr2b::ei::OptTypeType::value optType = oadr2b::ei::OptTypeType::optOut;*/
+                oadr2b::ei::OptTypeType::value optType = global_optType;
 
 		m_service->OnEventModify(eventID, event, existingEvent, optType);
 
@@ -251,15 +258,39 @@ void EventManager::handleNewEvent(const string &eventID, const oadr2b::oadr::oad
 	oadr2b::oadr::oadrEvent *eventCopy = event->_clone();
 
 	m_events[eventID] = unique_ptr<oadr2b::oadr::oadrEvent>(eventCopy);
-
-	oadr2b::ei::OptTypeType::value optType = oadr2b::ei::OptTypeType::optOut;
-
+        
+                       
+        /*if (global_optType.compare("Opt_In") == 0){*/
+	
+        oadr2b::ei::OptTypeType::value optType = global_optType;
+        /*oadr2b::ei::OptTypeType::value optType = oadr2b::ei::OptTypeType::optIn;*/
+        
+          // handle the new incoming events from VTN and the the OptType is optIn
+        /*std::cout << "A new incoming event from VTN is received and the OptType will be optIn." << endl; */
+        
 	m_service->OnEventNew(eventID, eventCopy, optType);
 
 	Oadr2bHelper::appendEventResponse(eventResponses, "200", "OK", eventID,
 			eventCopy->eiEvent().eventDescriptor().modificationNumber(), optType, requestID);
 
 	scheduleEvent(eventID, eventCopy);
+        
+        /*} else if (global_optType.compare("Opt_Out") == 0){*/
+        
+        /*oadr2b::ei::OptTypeType::value optType = oadr2b::ei::OptTypeType::optOut;*/
+        
+         // handle the new incoming events from VTN and the the OptType is optIn
+        /*std::cout << "A new incoming event from VTN is received and the OptType will be optIn." << endl; */
+        
+	/*m_service->OnEventNew(eventID, eventCopy, optType);*/
+
+	/*Oadr2bHelper::appendEventResponse(eventResponses, "200", "OK", eventID,
+			eventCopy->eiEvent().eventDescriptor().modificationNumber(), optType, requestID);*/
+
+	/*scheduleEvent(eventID, eventCopy);
+        } */
+           
+       
 }
 
 /********************************************************************************/
