@@ -341,7 +341,8 @@ unique_ptr<oadrPayload> CreatedEvent::generatePayload()
 	eiCreatedEvent eice(eir, venID());
 
 	eventResponses ers;
-
+        
+        /* m_eventResponses is the eventResponse sequence and contains the major content of {oadrCreatedEvent}*/
 	ers.eventResponse(m_eventResponses);
 
 	eice.eventResponses(ers);

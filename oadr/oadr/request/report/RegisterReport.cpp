@@ -338,7 +338,9 @@ unique_ptr<oadrPayload> RegisterReport::generatePayload()
 	request.schemaVersion("2.0b");
 
 	request.venID(venID());
-
+        
+        /* m_sequence is the sequence containing the content of {oadrRegisterReport}; */
+        /* sequence is defined and pushed in VENImpl.cpp */
 	request.oadrReport(m_sequence);
 
 	unique_ptr<oadrSignedObject> oso(new oadrSignedObject());

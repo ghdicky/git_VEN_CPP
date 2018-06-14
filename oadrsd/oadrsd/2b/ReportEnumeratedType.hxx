@@ -309,7 +309,8 @@ namespace oadr2b
         powerFactor,
         percentUsage,
         percentDemand,
-        x_resourceStatus
+        x_resourceStatus,
+        x_thermostatStatus
       };
 
       ReportEnumeratedType (value v);

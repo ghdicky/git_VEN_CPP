@@ -268,8 +268,17 @@ void EventManager::handleNewEvent(const string &eventID, const oadr2b::oadr::oad
           // handle the new incoming events from VTN and the the OptType is optIn
         /*std::cout << "A new incoming event from VTN is received and the OptType will be optIn." << endl; */
         
+        /* eventCopy contains the event information from {oadrDistributeEvent} */
 	m_service->OnEventNew(eventID, eventCopy, optType);
-
+        
+        /* eventReponses contains multiple eventResponse; */
+        /* each eventResponse contains: 
+           - responseCode: e.g 200
+           - responseDescription: e.g OK
+           - requestID 
+           - qualifiedEventID: here is the eventID 
+           - modificationNumber
+           - optType*/
 	Oadr2bHelper::appendEventResponse(eventResponses, "200", "OK", eventID,
 			eventCopy->eiEvent().eventDescriptor().modificationNumber(), optType, requestID);
 
@@ -300,7 +309,9 @@ void EventManager::manageEvents(oadr2b::oadr::oadrDistributeEventType &message)
 	oadrDistributeEventType::oadrEvent_iterator itr;
 
 	set<string> processedEventIDs;
-
+        
+        /* eventReponses takes the major event contents from {oadrDistributeEvent} and */
+        /* append the response such as Opt-In and Opt-Out to the events */
 	oadr2b::ei::eventResponses::eventResponse_sequence eventResponses;
 
 	for (const auto &event : message.oadrEvent())
@@ -311,6 +322,7 @@ void EventManager::manageEvents(oadr2b::oadr::oadrDistributeEventType &message)
 		if (m_events.find(eventID) == m_events.end())
 		{
 			// This is a new event that needs to be scheduled
+                        /* Pass the event contents &event and response to &event will be included in eventResponses */
 			handleNewEvent(eventID, &event, message.requestID(), eventResponses);
 		}
 		else

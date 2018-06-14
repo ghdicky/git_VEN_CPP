@@ -342,7 +342,8 @@ unique_ptr<oadrPayload> UpdateReport::generatePayload()
 	request->schemaVersion("2.0b");
 
 	request->venID(venID());
-
+        
+        /* this is the major content of the {oadrUpdateReport} */
 	request->oadrReport(m_sequence);
 
 	// generate the oadrPayload

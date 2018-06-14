@@ -151,8 +151,11 @@ void VENImpl::OnGenerateRegisterReport(oadrRegisterReportType::oadrReport_sequen
 	LOG(INFO) << "register report";
 
 	oadrReportType::oadrReportDescription_sequence description;
-
+        
 	// 1 minute energy interval
+        /* this is to generate (oadrReportDescription) element; */
+        /* a {oadrRegisterReport} contains 1 report which can be telemetry_usage, historical_usage and telemetry_status; 
+           1 report e.g. telemetry can contain multiple (oadrReportDescription) elements */
 	oadrReportDescriptionType energy = ReportHelper::generateDescriptionEnergyItem("rid_energy_4184bb93", "DEVICE1", ReportEnumeratedType::reading,
 			ReadingTypeEnumeratedType::Direct_Read, "", 1, 1, false, &DurationModifier::MINUTES,
 			ReportHelper::eEnergyReal, "Wh", SiScaleCodeType::none);

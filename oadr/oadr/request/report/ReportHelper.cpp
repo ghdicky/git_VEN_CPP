@@ -361,7 +361,7 @@ oadrReportDescriptionType ReportHelper::generateDescription(string rID, string r
 
 	if (measuredValue != NULL)
 		reportDescription.itemBase(*measuredValue);
-
+        
 	return reportDescription;
 }
 

@@ -62,7 +62,9 @@ bool ReportManager::validateCreateReport(oadrCreateReportType &createReport)
 			for (auto &interval : reportRequest.reportSpecifier().specifierPayload())
 			{
 				string rID = interval.rID();
-
+                                
+                                /* to check if the (reportSpecifierID) of {oadrCreateReport} from VTN matches that of {oadrRegisterReport} of VEN */
+                                /* m_registeredReports is a map and stores the sequence containing content of {oadrRegisterReport} of VEN */
 				if (!m_registeredReports.reportDescriptionExists(reportSpecifierID, rID))
 					return false;
 			}
@@ -135,10 +137,14 @@ void ReportManager::processReportRequest(oadrReportRequestType &reportRequest)
 
 		return;
 	}
-
+        
+        /* The {oadrCreateReport} from VTN can specify a different reportBackDuration */
+        /* from that is specified by the {oadrRegisterReport} of VEN, 1 minute is defined by {oadrRegisterReport} and this may mean the smallest period that VEN can report back */
 	string reportBackDuration = reportRequest.reportSpecifier().reportBackDuration().duration();
 	unsigned int reportBackDurationInSeconds = ISO8601Duration::TotalSeconds(reportBackDuration);
-
+        
+        /* The {oadrCreateReport} from VTN can specify a different duration */
+        /* from that is specified by the {oadrRegisterReport} of VEN, 120 minutes are defined by {oadrRegisterReport} but we can increase to more than 120 mins */
 	string duration = reportRequest.reportSpecifier().reportInterval()->properties().duration().duration();
 	unsigned int durationInSeconds = ISO8601Duration::TotalSeconds(duration);
 
@@ -202,7 +208,8 @@ void ReportManager::manageCreateReport(oadrCreateReportType &createReport)
 	//
 	// Are all requests valid?
 	//
-
+        
+        /* this mainly compared the reportSpecifierID (e.g. telemetry_usage and telemetry_status) and rid */
 	if (!validateCreateReport(createReport))
 	{
 		m_sendReport->sendCreatedReport(m_pendingReports, createReport.requestID(), "452", "INVALID ID");

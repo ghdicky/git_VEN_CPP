@@ -52,7 +52,9 @@ void VENManager::sendCreatedEvent(string responseCode, string responseDescriptio
 /********************************************************************************/
 
 void VENManager::sendUpdateReport(oadrUpdateReportType::oadrReport_sequence &sequence, time_t dtstart, string reportRequestID, time_t createdDateTime)
-{
+{       
+        /* sequence is the content of the report, in VENImpl.cpp, */
+        /* the defined report content, e.g. telemetry_usage is push back into the sequence */
 	m_ven->updateReport(sequence, dtstart, reportRequestID, createdDateTime);
 }
 
@@ -182,9 +184,11 @@ void VENManager::registerReports()
         // In the OnGenerateRegisterReport() function, the report capability of VEN C++ is defined as RealEnergy and RealPower
         // with periodic duration PT1M and duration PT120M
         // can add more Report components in this function
+        /* sequence contains the telemetry_usage and telemetry_status contents */
 	m_reportService->OnGenerateRegisterReport(sequence);
-
-	m_reportManager->setRegisteredReports(sequence);
+        
+        /* this method will record the sequence containing content of {oadrRegisterReport} in m_registeredReport of the reportManager.cpp */
+       	m_reportManager->setRegisteredReports(sequence);
 
 	m_ven->registerReport(sequence);
 }
@@ -223,7 +227,8 @@ void VENManager::registerVen()
 		// TODO: throw an exception
 		return;
 	}
-
+        
+        /* VEN to send {oadrRegisterReport} to VTN */
 	registerReports();
 
 	poll();
@@ -279,6 +284,8 @@ void VENManager::run()
 		try
 		{
 			if (!m_ven->isRegistered())
+                            /* if the VEN is not yet registered in VTN, method registerVenState() will be called; */
+                            /* VEN will then send {oadrCreatePartyRegistration} and {oadrRegisterReport} to VTN */
 				registerVenState();
 			else
 				pollState();
@@ -412,6 +419,15 @@ void VENManager::selectOptFunction()
     
     }
 
+    
+
+/*void VENManager::runHTTPServer(){ */
+
+    /*while(1)*/
+    
+
+
+/*}*/ 
 
 
 

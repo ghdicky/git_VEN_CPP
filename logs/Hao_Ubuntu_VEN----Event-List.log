@@ -581,3 +581,33 @@ Event ID                   Start Time                         Duration      Stat
 
 =================================
 
+2018-06-12 13:35:08,158 INFO  [eventlog] 
+Event ID                   Start Time                         Duration      Status      
+551228101b60c0e4bdb9       12/06/2018 13:06:00 UTC+00:00      PT100M          far
+
+=================================
+
+2018-06-12 13:35:08,159 INFO  [eventlog] 
+Event ID                   Start Time                         Duration      Status      
+cf2f795eed3e936f9435EE       13/06/2018 21:14:00 UTC+00:00      PT30M          far
+
+=================================
+
+2018-06-12 13:35:08,160 INFO  [eventlog] 
+Event ID                   Start Time                         Duration      Status      
+25186083e975971c99a2       11/05/2018 01:04:00 UTC+00:00      PT10M          completed
+
+=================================
+
+2018-06-12 13:35:08,160 INFO  [eventlog] 
+Event ID                   Start Time                         Duration      Status      
+669dd6b95afcde1d0d48       08/06/2018 09:07:00 UTC+00:00      PT240M          completed
+
+=================================
+
+2018-06-12 13:35:08,160 INFO  [eventlog] 
+Event ID                   Start Time                         Duration      Status      
+45b77ae1088feb48989c       10/06/2018 12:59:00 UTC+00:00      PT10M          completed
+
+=================================
+
