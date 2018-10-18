@@ -1,0 +1,2 @@
+/usr/bin/ar qc libmongoose.a  CMakeFiles/mongoose.dir/mongoose/Server.cpp.o CMakeFiles/mongoose.dir/mongoose/WebController.cpp.o
+/usr/bin/ranlib libmongoose.a

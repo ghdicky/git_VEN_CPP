@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/hao/Downloads/VEN_CPP_source/mysqlmgr/MyDB.cpp
+iostream
+-
+cstdlib
+-
+MyDB.h
+/home/hao/Downloads/VEN_CPP_source/mysqlmgr/MyDB.h
+
+/home/hao/Downloads/VEN_CPP_source/mysqlmgr/MyDB.h
+iostream
+-
+string
+-
+mysql/mysql.h
+-
+

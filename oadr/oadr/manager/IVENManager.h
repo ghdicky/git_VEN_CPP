@@ -21,8 +21,24 @@ public:
 
 	virtual Scheduler *getScheduler() = 0;
         
-        /* Declare method inputOut() which is actually defined in VENManager.cpp */
+        /* Declare method selectOptFunction() which is actually defined in VENManager.cpp */
         virtual void selectOptFunction() = 0;
+        
+        
+        /* Declare method configDefaultOpt() which is actually defined in VENManager.cpp */
+        virtual string configDefaultOpt(string http_opt) = 0;
+        
+         
+        /* Declare method configVENInfo() which is actually defined in VENManager.cpp */
+        virtual void configVENInfo() = 0;
+        
+        
+        /* Declare method getVENInfoDB() which is actually defined in VENManager.cpp */
+        virtual string getVENInfoDB() = 0;
+        
+        
+        /* Declare method configIndividualOpt() in IVENManager.h and this method is actually defined in VENManager.cpp */
+        virtual string configIndividualOpt(string eventID, string individualOptValue) = 0;
         
         
 };

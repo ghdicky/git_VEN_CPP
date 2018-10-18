@@ -42,6 +42,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/oadr.dir/DependInfo.cmake"
+  "CMakeFiles/mysqlmgr.dir/DependInfo.cmake"
   "CMakeFiles/oadrsd.dir/DependInfo.cmake"
   "CMakeFiles/samplevenmgr.dir/DependInfo.cmake"
   )

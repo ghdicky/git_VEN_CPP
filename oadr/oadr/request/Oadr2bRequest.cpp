@@ -405,9 +405,23 @@ string Oadr2bRequest::requestID()
 
 /********************************************************************************/
 
+string Oadr2bRequest::requestType()
+{
+	return m_requestType;
+}
+
+/********************************************************************************/
+
 string Oadr2bRequest::venID()
 {
 	return m_venID;
+}
+
+/********************************************************************************/
+
+string Oadr2bRequest::responseType()
+{
+	return m_responseType;
 }
 
 /********************************************************************************/
@@ -473,3 +487,6 @@ oadrPayload *Oadr2bRequest::response()
 {
 	return m_response.get();
 }
+
+
+

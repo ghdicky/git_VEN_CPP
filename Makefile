@@ -78,28 +78,6 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
-
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
-
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
@@ -121,6 +99,28 @@ install/strip: preinstall
 install/strip/fast: install/strip
 
 .PHONY : install/strip/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -167,6 +167,29 @@ oadr/fast:
 	$(MAKE) -f CMakeFiles/oadr.dir/build.make CMakeFiles/oadr.dir/build
 .PHONY : oadr/fast
 
+# Manual pre-install relink rule for target.
+oadr/preinstall:
+	$(MAKE) -f CMakeFiles/oadr.dir/build.make CMakeFiles/oadr.dir/preinstall
+.PHONY : oadr/preinstall
+
+#=============================================================================
+# Target rules for targets named mysqlmgr
+
+# Build rule for target.
+mysqlmgr: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 mysqlmgr
+.PHONY : mysqlmgr
+
+# fast build rule for target.
+mysqlmgr/fast:
+	$(MAKE) -f CMakeFiles/mysqlmgr.dir/build.make CMakeFiles/mysqlmgr.dir/build
+.PHONY : mysqlmgr/fast
+
+# Manual pre-install relink rule for target.
+mysqlmgr/preinstall:
+	$(MAKE) -f CMakeFiles/mysqlmgr.dir/build.make CMakeFiles/mysqlmgr.dir/preinstall
+.PHONY : mysqlmgr/preinstall
+
 #=============================================================================
 # Target rules for targets named oadrsd
 
@@ -192,6 +215,33 @@ samplevenmgr: cmake_check_build_system
 samplevenmgr/fast:
 	$(MAKE) -f CMakeFiles/samplevenmgr.dir/build.make CMakeFiles/samplevenmgr.dir/build
 .PHONY : samplevenmgr/fast
+
+mysqlmgr/MyDB.o: mysqlmgr/MyDB.cpp.o
+
+.PHONY : mysqlmgr/MyDB.o
+
+# target to build an object file
+mysqlmgr/MyDB.cpp.o:
+	$(MAKE) -f CMakeFiles/mysqlmgr.dir/build.make CMakeFiles/mysqlmgr.dir/mysqlmgr/MyDB.cpp.o
+.PHONY : mysqlmgr/MyDB.cpp.o
+
+mysqlmgr/MyDB.i: mysqlmgr/MyDB.cpp.i
+
+.PHONY : mysqlmgr/MyDB.i
+
+# target to preprocess a source file
+mysqlmgr/MyDB.cpp.i:
+	$(MAKE) -f CMakeFiles/mysqlmgr.dir/build.make CMakeFiles/mysqlmgr.dir/mysqlmgr/MyDB.cpp.i
+.PHONY : mysqlmgr/MyDB.cpp.i
+
+mysqlmgr/MyDB.s: mysqlmgr/MyDB.cpp.s
+
+.PHONY : mysqlmgr/MyDB.s
+
+# target to generate assembly for a file
+mysqlmgr/MyDB.cpp.s:
+	$(MAKE) -f CMakeFiles/mysqlmgr.dir/build.make CMakeFiles/mysqlmgr.dir/mysqlmgr/MyDB.cpp.s
+.PHONY : mysqlmgr/MyDB.cpp.s
 
 oadr/oadr/helper/DateTimeConverter.o: oadr/oadr/helper/DateTimeConverter.cpp.o
 
@@ -7896,13 +7946,17 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... install/local"
+	@echo "... install/strip"
 	@echo "... install"
 	@echo "... list_install_components"
 	@echo "... oadr"
+	@echo "... mysqlmgr"
 	@echo "... oadrsd"
-	@echo "... install/local"
-	@echo "... install/strip"
 	@echo "... samplevenmgr"
+	@echo "... mysqlmgr/MyDB.o"
+	@echo "... mysqlmgr/MyDB.i"
+	@echo "... mysqlmgr/MyDB.s"
 	@echo "... oadr/oadr/helper/DateTimeConverter.o"
 	@echo "... oadr/oadr/helper/DateTimeConverter.i"
 	@echo "... oadr/oadr/helper/DateTimeConverter.s"

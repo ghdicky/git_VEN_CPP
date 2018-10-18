@@ -20,6 +20,11 @@
 #include <set>
 
 
+/* Use global variable global_optType which is defined in global_variable.h */
+#include "../../../../samplevenmanager/samplevenmanager/global_variable.h"
+
+/* to use the global database which is defined in MyDB.h */
+#include "../../../../mysqlmgr/MyDB.h"
 
 
 
@@ -46,6 +51,8 @@ private:
 	void handleNewEvent(const string &eventID, const oadr2b::oadr::oadrEvent *event, const string &requestID, oadr2b::ei::eventResponses::eventResponse_sequence &eventResponses);
 	void handleExistingEvent(const string &eventID, const oadr2b::oadr::oadrEvent *event, const string &requestID, oadr2b::ei::eventResponses::eventResponse_sequence &eventResponses);
 
+        void handleExistingEventIndividualOpt(const string &eventID, const string &individualOptValue, oadr2b::ei::eventResponses::eventResponse_sequence &eventResponses);
+        
 public:
 	EventManager(IScheduler *scheduler, IEventService *service, ISendCreatedEvent *sendCreatedEvent);
 
@@ -56,6 +63,8 @@ public:
 	void removeSchedule(const string &eventID);
 
 	void manageEvents(oadr2b::oadr::oadrDistributeEventType &message);
+        
+        void manageIndividualEventOpt(const string &eventID, const string &individualOptValue);
 };
 
 #endif /* OADR_OADR_VEN_VENMANAGER_EVENTMANAGER_H_ */

@@ -17,6 +17,10 @@
 
 #include "../../oadr/oadr/request/Oadr2bHelper.h"
 
+/*include header files necessary for MySQL database operation*/
+//#include <iostream>
+//#include "../../mysqlmgr/MyDB.h"
+
 /* include <string> for string type */
 /* #include <string> */
 
@@ -27,6 +31,8 @@ extern oadr2b::ei::OptTypeType::value global_optType;
 
 /*extern std::string global_optType;*/
 
+/* Declaration of global database db reference variable must be initialised; */
+//extern MyDB db;
 
 
 #endif /* GLOBAL_VARIABLE_H */

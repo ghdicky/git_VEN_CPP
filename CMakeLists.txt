@@ -38,6 +38,22 @@ set(CMAKE_REQUIRED_FLAGS ${CMAKE_CXX_FLAGS})
 include_directories(oadr)
 include_directories(oadrsd)
 include_directories(xsd-4.0.0)
+#include_directories(mongoose)
+#include_directories(Http)
+include_directories(mysqlmgr)
+
+
+# ---- libmysqlmgr ----
+file(GLOB_RECURSE mysqlmgr_SRC ./mysqlmgr/*.cpp)
+add_library(mysqlmgr ${LIB_TYPE} ${mysqlmgr_SRC})
+install(TARGETS mysqlmgr DESTINATION lib)
+set(INSTALL_ARGS FILES_MATCHING PATTERN "*.h")
+install(DIRECTORY ./mysqlmgr DESTINATION include ${INSTALL_ARGS})
+#must link the mysqlmgr with the library libmysqlclient.a
+#after >sudo apt-get install libmysqlclient-dev, the libmysqlclient.a will be placed in /usr/lib/x86_64-linux-gnu/libmysqlclient.a
+target_link_libraries (mysqlmgr ${CMAKE_SOURCE_DIR}/libmysqlclient/libmysqlclient.a)
+
+
 
 # ---- liboadr ----
 file(GLOB_RECURSE oadr_SRC ./oadr/oadr/*.cpp)
@@ -45,6 +61,7 @@ add_library(oadr ${LIB_TYPE} ${oadr_SRC})
 install(TARGETS oadr DESTINATION lib)
 set(INSTALL_ARGS FILES_MATCHING PATTERN "*.h")
 install(DIRECTORY ./oadr/oadr DESTINATION include ${INSTALL_ARGS})
+target_link_libraries (oadr mysqlmgr)
 
 # ---- liboadrsd ----
 file(GLOB_RECURSE oadrsd_SRC ./oadrsd/oadrsd/*.cxx)
@@ -54,12 +71,45 @@ set(INSTALL_ARGS FILES_MATCHING PATTERN "*.hxx" PATTERN "*.txx" PATTERN "*.ixx")
 install(DIRECTORY ./oadrsd/oadrsd DESTINATION include ${INSTALL_ARGS})
 install(DIRECTORY ./xsd-4.0.0/xsd DESTINATION include ${INSTALL_ARGS})
 
+# ---- libHttp ----
+#file(GLOB_RECURSE Http_SRC ./Http/*.cpp)
+#add_library(Http ${LIB_TYPE} ${Http_SRC})
+#install(TARGETS Http DESTINATION lib)
+#set(INSTALL_ARGS FILES_MATCHING PATTERN "*.h")
+#target_link_libraries (${CMAKE_SOURCE_DIR}/pistache/libpistache.a)
+#install(DIRECTORY ./Http DESTINATION include ${INSTALL_ARGS})
+
+ 
+
+
+
+
+# ---- libmongoose ----
+#file(GLOB_RECURSE mongoose_SRC ./mongoose/*.cpp)
+#add_library(mongoose ./mongoose/Server.cpp ./mongoose/WebController.cpp)
+#install(TARGETS mongoose DESTINATION lib)
+#set(INSTALL_ARGS FILES_MATCHING PATTERN "*.h")
+#install(DIRECTORY ./mongoose DESTINATION include ${INSTALL_ARGS})
+
+
+
+
+# ---- libpistache ----
+#add_library(pistache ./pistache/libpistache.a)
+
+
 if (SAMPLE)
   # ---- samplevenmanager ----
   add_definitions(-DELPP_THREAD_SAFE -DELPP_NO_DEFAULT_LOG_FILE)
   file(GLOB_RECURSE samplevenmanager_SRC ./samplevenmanager/samplevenmanager/*.cpp)
   add_executable(samplevenmgr ${samplevenmanager_SRC})
-  target_link_libraries (samplevenmgr LINK_PUBLIC oadr oadrsd curl xerces-c pthread)
+  target_link_libraries (samplevenmgr LINK_PUBLIC ${CMAKE_SOURCE_DIR}/libpistache/libpistache.a oadr oadrsd mysqlmgr curl xerces-c pthread)
+  
+  # as VENManager.cpp of oadr will use global variable MyDB db which is defined in main.cpp of samplevenmgr,
+  # need to link samplevenmgr.so to liboadr
+  #target_link_libraries (oadr samplevenmgr)
+  #target_link_libraries (samplevenmgr LINK_PUBLIC ${CMAKE_SOURCE_DIR}/pistache/libpistache.a oadr oadrsd Http curl xerces-c pthread)
+  #target_link_libraries (samplevenmgr LINK_PUBLIC -lpistache oadr oadrsd curl xerces-c pthread)
 endif()
 
 if (0)

@@ -160,7 +160,7 @@ void VENImpl::OnGenerateRegisterReport(oadrRegisterReportType::oadrReport_sequen
 			ReadingTypeEnumeratedType::Direct_Read, "", 1, 1, false, &DurationModifier::MINUTES,
 			ReportHelper::eEnergyReal, "Wh", SiScaleCodeType::none);
 
-	// 1 minute power interval
+	// 1 minute power interval 
 	oadrReportDescriptionType power = ReportHelper::generateDescriptionPowerItem("rid_power_4184bb93", "DEVICE1", ReportEnumeratedType::reading,
 			ReadingTypeEnumeratedType::Direct_Read, "", 1, 1, false, &DurationModifier::MINUTES,
 			ReportHelper::ePowerReal, "W", SiScaleCodeType::none, 60.0, 120, true);
@@ -274,6 +274,7 @@ void VENImpl::OnProcessDistributeEventComplete()
 void VENImpl::OnOadrMessageReceived(std::string &message)
 {
 	LOG(INFO) << "\nVEN <--- VTN\n" << message << "\n=================================\n";
+        
 }
 
 /********************************************************************************/

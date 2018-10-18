@@ -326,10 +326,32 @@ CMakeFiles/samplevenmgr.dir/samplevenmanager/samplevenmanager/VENImpl.cpp.o
 CMakeFiles/samplevenmgr.dir/samplevenmanager/samplevenmanager/main.cpp.o
  /home/hao/Downloads/VEN_CPP_source/oadr/oadr/request/DurationModifier.h
  /home/hao/Downloads/VEN_CPP_source/oadr/oadr/request/Oadr2bHelper.h
+ /home/hao/Downloads/VEN_CPP_source/rapidjson/allocators.h
+ /home/hao/Downloads/VEN_CPP_source/rapidjson/document.h
+ /home/hao/Downloads/VEN_CPP_source/rapidjson/encodedstream.h
+ /home/hao/Downloads/VEN_CPP_source/rapidjson/encodings.h
+ /home/hao/Downloads/VEN_CPP_source/rapidjson/error/en.h
+ /home/hao/Downloads/VEN_CPP_source/rapidjson/error/error.h
+ /home/hao/Downloads/VEN_CPP_source/rapidjson/internal/biginteger.h
+ /home/hao/Downloads/VEN_CPP_source/rapidjson/internal/diyfp.h
+ /home/hao/Downloads/VEN_CPP_source/rapidjson/internal/ieee754.h
+ /home/hao/Downloads/VEN_CPP_source/rapidjson/internal/meta.h
+ /home/hao/Downloads/VEN_CPP_source/rapidjson/internal/pow10.h
+ /home/hao/Downloads/VEN_CPP_source/rapidjson/internal/stack.h
+ /home/hao/Downloads/VEN_CPP_source/rapidjson/internal/strfunc.h
+ /home/hao/Downloads/VEN_CPP_source/rapidjson/internal/strtod.h
+ /home/hao/Downloads/VEN_CPP_source/rapidjson/internal/swap.h
+ /home/hao/Downloads/VEN_CPP_source/rapidjson/memorystream.h
+ /home/hao/Downloads/VEN_CPP_source/rapidjson/msinttypes/inttypes.h
+ /home/hao/Downloads/VEN_CPP_source/rapidjson/msinttypes/stdint.h
+ /home/hao/Downloads/VEN_CPP_source/rapidjson/rapidjson.h
+ /home/hao/Downloads/VEN_CPP_source/rapidjson/reader.h
+ /home/hao/Downloads/VEN_CPP_source/rapidjson/stream.h
  /home/hao/Downloads/VEN_CPP_source/samplevenmanager/samplevenmanager/VENImpl.h
  /home/hao/Downloads/VEN_CPP_source/samplevenmanager/samplevenmanager/easylogging++.h
  /home/hao/Downloads/VEN_CPP_source/samplevenmanager/samplevenmanager/global_variable.h
  /home/hao/Downloads/VEN_CPP_source/samplevenmanager/samplevenmanager/main.cpp
+ mysqlmgr/MyDB.h
  oadr/oadr/helper/ISO8601Duration.h
  oadr/oadr/helper/RandomHex.h
  oadr/oadr/helper/conditionalsleep/ConditionalSleep.h
@@ -608,6 +630,7 @@ CMakeFiles/samplevenmgr.dir/samplevenmanager/samplevenmanager/main.cpp.o
  oadrsd/oadrsd/2b/type.hxx
  oadrsd/oadrsd/2b/uid.hxx
  oadrsd/oadrsd/2b/uriType.hxx
+ samplevenmanager/samplevenmanager/global_variable.h
  xsd-4.0.0/xsd/cxx/auto-array.hxx
  xsd-4.0.0/xsd/cxx/compilers/vc-8/post.hxx
  xsd-4.0.0/xsd/cxx/compilers/vc-8/pre.hxx

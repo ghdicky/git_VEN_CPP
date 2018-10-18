@@ -239,6 +239,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "oadr"
   "oadrsd"
   "xsd-4.0.0"
+  "mysqlmgr"
   )
 
 # Targets to which this target links.

@@ -317,6 +317,17 @@
 
 #include "VEN2b.h"
 
+//include the time library for timestamping the sent Request and received Response
+// GlobalTime.h is used for getting time in time_t format
+// ctime.h is used to convert time_t into chart d
+#include "../helper/globaltime/GlobalTime.h"
+#include <ctime>
+
+// include chrono for millisecond processing
+#include <chrono>
+
+
+
 const string VEN2b::_EndpointEiEvent = "/OpenADR2/Simple/2.0b/EiEvent";
 const string VEN2b::_EndpointEiReport = "/OpenADR2/Simple/2.0b/EiReport";
 const string VEN2b::_EndpointEiRegisterParty = "/OpenADR2/Simple/2.0b/EiRegisterParty";
@@ -375,6 +386,13 @@ string VEN2b::vtnID()
 
 /********************************************************************************/
 
+string VEN2b::venName()
+{
+        return m_venName;
+}
+
+/********************************************************************************/
+
 void VEN2b::setOadrMessage(IOadrMessage *oadrMessage)
 {
 	m_oadrMessage = oadrMessage;
@@ -385,6 +403,13 @@ void VEN2b::setOadrMessage(IOadrMessage *oadrMessage)
 string VEN2b::pollFrequency()
 {
 	return m_pollFrequency;
+}
+
+/********************************************************************************/
+
+string VEN2b::vtnURL()
+{
+        return m_baseURL;
 }
 
 /********************************************************************************/
@@ -402,15 +427,170 @@ void VEN2b::postRequest(Oadr2bRequest *request, string endPoint)
 {
 	std::unique_lock<std::mutex> lock(m_mutex);
 
-	string requestBody = request->generateRequestXML();
-
+	string requestBody = request->generateRequestXML(); 
+        
+        //time_t now is the unix timestamp in seconds and will be stored in the database
+        time_t now = GlobalTime::Instance()->now();
+       
+        //milliStart is the unix timestamp in milliseconds
+        //milliEnd is the unix timestamp in milliseconds
+        //they will be used to calculate the time difference between sent Request and received Response
+        
+        auto durationStart = std::chrono::system_clock::now().time_since_epoch();      
+        auto milliStart = std::chrono::duration_cast<std::chrono::milliseconds>(durationStart).count();
+        
+               
+        //char* dt = std::ctime(&now);
+        
+        cout << "Current time is:" << std::to_string(now) << endl;
+        cout << "Current start time in millisecond is:" << std::to_string(milliStart) << endl;
+                
+      
+        
 	m_oadrMessage->OnOadrMessageSent(requestBody);
-
+        
+        //if there no response from the server, the curl exception will be thrown and the run() method of VENManager.cpp will catch 
+        //because run() is run forever as long as the instance of VENManager is not closed/shut down,
+        //run() will be executed again and enter the registerVen() and createPartyRegistration () again and get to this point again,
+        //commands after m_http->post(m_baseURL + endPoint, requestBody); will never be executed
 	m_http->post(m_baseURL + endPoint, requestBody);
 
 	m_oadrMessage->OnOadrMessageReceived(m_http->getResponseBody());
+            
 
 	request->setHttpFields(requestBody, m_http->getResponseBody(), m_http->getResponseCode(), m_http->getResponseMessage());
+        
+        
+        auto durationEnd = std::chrono::system_clock::now().time_since_epoch();
+        auto milliEnd = std::chrono::duration_cast<std::chrono::milliseconds>(durationEnd).count();
+        
+        cout << "Current end time in millisecond is:" << std::to_string(milliEnd) << endl;
+        
+        string responseType;
+        string responseCode;
+        string responseDescription;
+        
+      
+     
+              
+       
+        //oadrPoll can have different response type and need to determined what it is from the response body
+        if ( (request->requestType()).compare("oadrPoll") == 0 ){
+            
+            if (request->response()->oadrSignedObject().oadrResponse().present()) {
+                responseType = "oadrResponse";
+                responseCode = request->response()->oadrSignedObject().oadrResponse()->eiResponse().responseCode();
+                responseDescription = request->response()->oadrSignedObject().oadrResponse()->eiResponse().responseDescription().get();
+            } 
+            else if (request->response()->oadrSignedObject().oadrDistributeEvent().present()) {
+                responseType = "oadrDistributeEvent";
+                responseCode = request->response()->oadrSignedObject().oadrDistributeEvent()->eiResponse()->responseCode();
+                responseDescription = request->response()->oadrSignedObject().oadrDistributeEvent()->eiResponse()->responseDescription().get();
+            }
+            else if (request->response()->oadrSignedObject().oadrCreateReport().present()) {
+                responseType = "oadrCreateReport";
+                //oadrCreateReport does not contain oadr responseCode, so use http responseCode of the request instead 
+                responseCode = request->httpResponseCode();
+                if (responseCode.compare("200") == 0) {
+                    responseDescription = "OK";
+                }
+                else {
+                    responseDescription = "Error";
+                }
+            }
+            else if (request->response()->oadrSignedObject().oadrRegisterReport().present()) {
+                responseType = "oadrRegisterReport";
+                //oadrRegisterReport does not contain oadr responseCode, so use http responseCode of the request instead 
+                responseCode = request->httpResponseCode();
+                if (responseCode.compare("200") == 0) {
+                    responseDescription = "OK";
+                }
+                else {
+                    responseDescription = "Error";
+                }
+            }
+            else if (request->response()->oadrSignedObject().oadrCancelReport().present()) {
+                 responseType = "oadrCancelReport";
+                 //oadrCancelReport does not contain oadr responseCode, so use http responseCode of the request instead 
+                 responseCode = request->httpResponseCode();
+                 if (responseCode.compare("200") == 0) {
+                    responseDescription = "OK";
+                }
+                else {
+                    responseDescription = "Error";
+                }
+            }
+            else if (request->response()->oadrSignedObject().oadrUpdateReport().present()) {
+                 responseType = "Not_Supported";
+                 //oadrCancelReport does not contain oadr responseCode, so use http responseCode of the request instead 
+                 responseCode = request->httpResponseCode();
+                 if (responseCode.compare("200") == 0) {
+                    responseDescription = "OK";
+                }
+                else {
+                    responseDescription = "Error";
+                }
+            }
+            else if (request->response()->oadrSignedObject().oadrCancelPartyRegistration().present()) {
+                 responseType = "oadrCancelPartyRegistration";
+                 //oadrCancelPartyRegistration does not contain oadr responseCode, so use http responseCode of the request instead 
+                 responseCode = request->httpResponseCode();
+                 if (responseCode.compare("200") == 0) {
+                    responseDescription = "OK";
+                }
+                else {
+                    responseDescription = "Error";
+                }
+            }
+            else if (request->response()->oadrSignedObject().oadrRequestReregistration().present()) {
+                 responseType = "oadrRequestRegistration";
+                 //oadrRequestRegistration does not contain oadr responseCode, so use http responseCode of the request instead 
+                 responseCode = request->httpResponseCode();
+                 if (responseCode.compare("200") == 0) {
+                    responseDescription = "OK";
+                }
+                else {
+                    responseDescription = "Error";
+                }
+            }
+        }
+        else if ( (request->requestType()).compare("oadrCreatePartyRegistration") == 0 ) {
+            responseType = request->responseType();
+            responseCode = request->response()->oadrSignedObject().oadrCreatedPartyRegistration()->eiResponse().responseCode();
+            responseDescription = request->response()->oadrSignedObject().oadrCreatedPartyRegistration()->eiResponse().responseDescription().get();
+        } 
+        else if ( (request->requestType()).compare("oadrRegisterReport") == 0 ) {
+            responseType = request->responseType();
+            responseCode = request->response()->oadrSignedObject().oadrRegisteredReport()->eiResponse().responseCode();
+            responseDescription = request->response()->oadrSignedObject().oadrRegisteredReport()->eiResponse().responseDescription().get();
+        } 
+        else if ( (request->requestType()).compare("oadrRequestEvent") == 0 ) {
+            responseType = request->responseType();
+            responseCode = request->response()->oadrSignedObject().oadrDistributeEvent()->eiResponse()->responseCode();
+            responseDescription = request->response()->oadrSignedObject().oadrDistributeEvent()->eiResponse()->responseDescription().get();
+        }
+        else if ( (request->requestType()).compare("oadrCreatedReport") == 0) {
+            responseType = request->responseType();
+            responseCode = request->response()->oadrSignedObject().oadrResponse()->eiResponse().responseCode();
+            responseDescription = request->response()->oadrSignedObject().oadrResponse()->eiResponse().responseDescription().get();
+        }
+        else if ( (request->requestType()).compare("oadrCreatedEvent") == 0) {
+            responseType = request->responseType();
+            responseCode = request->response()->oadrSignedObject().oadrResponse()->eiResponse().responseCode();
+            responseDescription = request->response()->oadrSignedObject().oadrResponse()->eiResponse().responseDescription().get();
+        }
+        else if ( (request->requestType()).compare("oadrUpdateReport") == 0) {
+            responseType = request->responseType();
+            responseCode = request->response()->oadrSignedObject().oadrUpdatedReport()->eiResponse().responseCode();
+            responseDescription = request->response()->oadrSignedObject().oadrUpdatedReport()->eiResponse().responseDescription().get();
+        }
+            
+        
+        float responseTime = (milliEnd - milliStart) / 1000.0;
+        
+        db.updateVENMessageSQL("INSERT INTO venlog (dtstamp, responseTime, venRequest, vtnResponse, responseCode, responseDescription, venRequestXML, vtnResponseXML) VALUES (FROM_UNIXTIME(" + std::to_string(now) + "), '" + std::to_string(responseTime) + "', '" + request->requestType() + "', '" + responseType + "', '" + responseCode + "', '" + responseDescription + "', '" + requestBody + "', '" + request->responseBody() + "')");
+        
+        
 }
 
 /********************************************************************************/
@@ -478,6 +658,22 @@ unique_ptr<CreatePartyRegistration> VEN2b::createPartyRegistration(oadrProfileTy
 	unique_ptr<CreatePartyRegistration> request(new CreatePartyRegistration(m_venID, requestID, m_registrationID,
 			profileType, transportType, transportAddress, reportOnly, xmlSignature, m_venName, httpPullModel));
 
+        
+        //milliStart is the unix timestamp in milliseconds
+        //milliEnd is the unix timestamp in milliseconds
+        //they will be used to calculate the time difference between sent Request and received Response
+        
+        //auto durationStart = std::chrono::system_clock::now().time_since_epoch();      
+        //auto milliStart = std::chrono::duration_cast<std::chrono::milliseconds>(durationStart).count();
+        
+               
+        //char* dt = std::ctime(&now);
+        
+        //cout << "Current time is:" << std::to_string(now) << endl;
+        //cout << "Start time in millisecond is:" << std::to_string(milliStart) << endl;
+                
+        
+        
 	postRequest(request.get(), _EndpointEiRegisterParty);
 
 	// the response should be a oadrCreatedPartyRegistration which contains the VEN ID and
@@ -491,7 +687,16 @@ unique_ptr<CreatePartyRegistration> VEN2b::createPartyRegistration(oadrProfileTy
 			setIDs(cpr);
 		}
 	}
+        
+        
+        //auto durationEnd = std::chrono::system_clock::now().time_since_epoch();
+        //auto milliEnd = std::chrono::duration_cast<std::chrono::milliseconds>(durationEnd).count();
+        
+        //cout << "End time in millisecond is:" << std::to_string(milliEnd) << endl;
+        
+        
 
+        
 	return request;
 }
 
@@ -620,8 +825,8 @@ unique_ptr<CancelOptSchedule> VEN2b::cancelOptSchedule(string optID, string requ
 unique_ptr<Poll> VEN2b::poll()
 {
 	unique_ptr<Poll> request(new Poll(m_venID));
-
-	postRequest(request.get(), _EndpointEiPoll);
+        
+        postRequest(request.get(), _EndpointEiPoll);
 
 	return request;
 }

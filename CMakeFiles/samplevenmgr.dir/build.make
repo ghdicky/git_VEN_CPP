@@ -116,8 +116,11 @@ samplevenmgr_EXTERNAL_OBJECTS =
 samplevenmgr: CMakeFiles/samplevenmgr.dir/samplevenmanager/samplevenmanager/VENImpl.cpp.o
 samplevenmgr: CMakeFiles/samplevenmgr.dir/samplevenmanager/samplevenmanager/main.cpp.o
 samplevenmgr: CMakeFiles/samplevenmgr.dir/build.make
+samplevenmgr: libpistache/libpistache.a
 samplevenmgr: liboadr.so
 samplevenmgr: liboadrsd.so
+samplevenmgr: libmysqlmgr.so
+samplevenmgr: libmysqlclient/libmysqlclient.a
 samplevenmgr: CMakeFiles/samplevenmgr.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/hao/Downloads/VEN_CPP_source/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable samplevenmgr"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/samplevenmgr.dir/link.txt --verbose=$(VERBOSE)

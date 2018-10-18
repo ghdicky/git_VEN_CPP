@@ -21,9 +21,11 @@
 
 // include <iostream> for std::cout (printf) function: added by Hao
 #include <iostream>
+#include <ratio>
 
-/* Use global variable global_optType which is defined in global_variable.h */
-#include "../../../../samplevenmanager/samplevenmanager/global_variable.h"
+
+
+
 
 using namespace oadr2b::oadr;
 using namespace oadr2b::ei;
@@ -187,10 +189,10 @@ void EventManager::scheduleEvent(const string &eventID, const oadr2b::oadr::oadr
 
 			for (const auto &interval : signal.intervals().interval())
 			{
-				string uid = interval.uid()->text();
+				string uid = interval.uid()->text(); 
 
 				const signalPayloadType *spt = (signalPayloadType*)(&(interval.streamPayloadBase().front()));
-				PayloadFloatType *pft = &(PayloadFloatType&)spt->payloadBase();
+				PayloadFloatType *pft = &(PayloadFloatType&)spt->payloadBase(); 
 
 				int durationInSeconds = ISO8601Duration::TotalSeconds(interval.duration()->duration());
 
@@ -222,10 +224,12 @@ void EventManager::handleExistingEvent(const string &eventID, const oadr2b::oadr
 	}
 
 	oadr2b::oadr::oadrEvent *eventCopy = event->_clone();
+        
+        oadr2b::ei::OptTypeType::value optType;
 
 	if (event->eiEvent().eventDescriptor().eventStatus() == EventStatusEnumeratedType::cancelled)
 	{
-		oadr2b::ei::OptTypeType::value optType = oadr2b::ei::OptTypeType::optIn;
+		optType = global_optType;
 
 		m_service->OnEventCancel(eventID, event, optType);
 
@@ -237,7 +241,7 @@ void EventManager::handleExistingEvent(const string &eventID, const oadr2b::oadr
 	else
 	{
 		/*oadr2b::ei::OptTypeType::value optType = oadr2b::ei::OptTypeType::optOut;*/
-                oadr2b::ei::OptTypeType::value optType = global_optType;
+                optType = global_optType;
 
 		m_service->OnEventModify(eventID, event, existingEvent, optType);
 
@@ -247,6 +251,90 @@ void EventManager::handleExistingEvent(const string &eventID, const oadr2b::oadr
 		removeSchedule(eventID);
 		scheduleEvent(eventID, eventCopy);
 	}
+        
+        string optTypeTemp;
+        if (optType == oadr2b::ei::OptTypeType::optIn) {
+            
+            optTypeTemp = "OptIn";
+        
+        } else if (optType == oadr2b::ei::OptTypeType::optOut) {
+            
+             optTypeTemp = "OptOut";
+            
+        }
+        
+        
+        string dateString;
+        struct tm tm;
+        time_t unixTimestamp;
+        
+        // build the string date time using info from Event message 
+        dateString =   std::to_string(eventCopy->eiEvent().eiActivePeriod().properties().dtstart().date_time().year()) + "-"
+                     + std::to_string(eventCopy->eiEvent().eiActivePeriod().properties().dtstart().date_time().month()) + "-"
+                     + std::to_string(eventCopy->eiEvent().eiActivePeriod().properties().dtstart().date_time().day()) + " "
+                     + std::to_string(eventCopy->eiEvent().eiActivePeriod().properties().dtstart().date_time().hours()) + ":"
+                     + std::to_string(eventCopy->eiEvent().eiActivePeriod().properties().dtstart().date_time().minutes()) + ":"
+                     + std::to_string(eventCopy->eiEvent().eiActivePeriod().properties().dtstart().date_time().seconds()) + "";
+        
+        //cout << dateString << endl;
+        
+        // convert string date time to struct tm
+        strptime(dateString.c_str(), "%Y-%m-%d %H:%M:%S", &tm);
+        
+        // convert struct tm to unix timestamp 
+        unixTimestamp = mktime(&tm);
+        
+        
+        // update the existing event record in the db
+        // Note that: everytime the VTN publish an event, the reuqestID will be changed !!
+        db.updateVENEventSQL("UPDATE eventinfo SET startTime=FROM_UNIXTIME(" + std::to_string(unixTimestamp) + 
+                                               "), duration='" + eventCopy->eiEvent().eiActivePeriod().properties().duration().duration().c_str() +
+                                               "', eventStatus='" + eventCopy->eiEvent().eventDescriptor().eventStatus() +
+                                               "', optState='" + optTypeTemp +
+                                               "', marketContext='" + eventCopy->eiEvent().eventDescriptor().eiMarketContext().marketContext() +
+                                               //"', signalType='" + eventCopy->eiEvent().eiEventSignals().eiEventSignal().front().signalType() +
+                                               //"', currentValue='" + std::to_string(eventCopy->eiEvent().eiEventSignals().eiEventSignal().front().currentValue()->payloadFloat().value()) +
+                                               "', vtnComment='" + eventCopy->eiEvent().eventDescriptor().vtnComment()->c_str() +
+                                               "', testEvent='" + eventCopy->eiEvent().eventDescriptor().testEvent()->c_str() +
+                                               "', responseRequired='" + eventCopy->oadrResponseRequired() +
+                                               "', modificationNumber='" + std::to_string(eventCopy->eiEvent().eventDescriptor().modificationNumber()) +
+                                               "', startAfter='" + eventCopy->eiEvent().eiActivePeriod().properties().tolerance()->tolerate().startafter()->c_str() +
+                                               "', eiNotification='" + eventCopy->eiEvent().eiActivePeriod().properties().x_eiNotification()->duration().c_str() +
+                                               "', eiRampUp='" + eventCopy->eiEvent().eiActivePeriod().properties().x_eiRampUp()->duration().c_str() +
+                                               "', eiRecovery='" + eventCopy->eiEvent().eiActivePeriod().properties().x_eiRecovery()->duration().c_str() +
+                                               "' WHERE eventID='" + eventID + "'");     
+        
+        // delete the exisiting event signal record and insert the "new" corresponding event signal
+        db.deleteVENEventSignalSQL("DELETE FROM eventsignal WHERE eventID='" + eventID + "'");
+        
+        // use the interator to get multiple EventSignal and multiple interval 
+        // the structure is: EventSignals -> EventSignal -> intervals -> interval
+        // signalID, signalName, signalType, currentValue in EventSignal
+        // duration, UID and targetValue/payload in interval
+        for(const auto &signal : eventCopy->eiEvent().eiEventSignals().eiEventSignal()) {
+            
+            for (const auto &interval : signal.intervals().interval())
+		{
+                    //cout << "The signalID is: " << signal.signalID().c_str() << endl;
+                            
+                    const signalPayloadType *spt = (signalPayloadType*)(&(interval.streamPayloadBase().front()));
+                    PayloadFloatType *pft = &(PayloadFloatType&)spt->payloadBase(); 
+                            
+                    db.updateVENEventSignalSQL("INSERT INTO eventsignal (eventID, signalID, signalName, signalType, signalInterval, UID, targetValue, currentValue, modificationNumber) VALUES ('"
+                                                                       + eventID + "', '"
+                                                                       + signal.signalID().c_str() + "', '"
+                                                                       + signal.signalName().c_str() + "', '"
+                                                                       + signal.signalType().c_str() + "', '"
+                                                                       + interval.duration()->duration().c_str() + "', '"
+                                                                       + interval.uid()->text() + "', '"
+                                                                       + std::to_string(pft->value()) + "', '"
+                                                                       + std::to_string(signal.currentValue()->payloadFloat().value()) + "', '"
+                                                                       + std::to_string(eventCopy->eiEvent().eventDescriptor().modificationNumber()) + "')");                                                                                               
+                          
+                }
+        }           
+        
+        
 
 	m_events[eventID] = unique_ptr<oadr2b::oadr::oadrEvent>(eventCopy);
 }
@@ -259,7 +347,7 @@ void EventManager::handleNewEvent(const string &eventID, const oadr2b::oadr::oad
 
 	m_events[eventID] = unique_ptr<oadr2b::oadr::oadrEvent>(eventCopy);
         
-                       
+                                     
         /*if (global_optType.compare("Opt_In") == 0){*/
 	
         oadr2b::ei::OptTypeType::value optType = global_optType;
@@ -299,7 +387,171 @@ void EventManager::handleNewEvent(const string &eventID, const oadr2b::oadr::oad
 	/*scheduleEvent(eventID, eventCopy);
         } */
            
+        //cout << eventID << endl;
+        
        
+        string optTypeTemp;
+        if (optType == oadr2b::ei::OptTypeType::optIn) {
+            
+            optTypeTemp = "OptIn";
+        
+        } else if (optType == oadr2b::ei::OptTypeType::optOut) {
+            
+             optTypeTemp = "OptOut";
+            
+        }
+        
+        string dateString;
+        
+        struct tm tm;
+        
+        time_t unixTimestamp;
+        
+       
+        // build the string date time using info from Event message 
+        dateString =   std::to_string(eventCopy->eiEvent().eiActivePeriod().properties().dtstart().date_time().year()) + "-"
+                     + std::to_string(eventCopy->eiEvent().eiActivePeriod().properties().dtstart().date_time().month()) + "-"
+                     + std::to_string(eventCopy->eiEvent().eiActivePeriod().properties().dtstart().date_time().day()) + " "
+                     + std::to_string(eventCopy->eiEvent().eiActivePeriod().properties().dtstart().date_time().hours()) + ":"
+                     + std::to_string(eventCopy->eiEvent().eiActivePeriod().properties().dtstart().date_time().minutes()) + ":"
+                     + std::to_string(eventCopy->eiEvent().eiActivePeriod().properties().dtstart().date_time().seconds()) + "";
+        
+        //cout << dateString << endl;
+        
+        // convert string date time to struct tm
+        strptime(dateString.c_str(), "%Y-%m-%d %H:%M:%S", &tm);
+        
+        // convert struct tm to unix timestamp 
+        unixTimestamp = mktime(&tm);
+        
+        //cout << unixTimestamp << endl;
+        
+                
+        // check if there is matched event record in DB with the same eventID
+        // if there is no eventID, then insert new record for the eveninfo
+        if ( !db.eventRecordExistSQL("SELECT * FROM eventinfo WHERE eventID='" + eventID + "'") ) {
+        
+            // Note that: everytime the VTN publish an event, the reuqestID will be changed !!
+            db.updateVENEventSQL("INSERT INTO eventinfo (eventID, startTime, duration, eventStatus, optState, marketContext, vtnComment, testEvent, responseRequired, modificationNumber, startAfter, eiNotification, eiRampUp, eiRecovery, requestID) VALUES ('" 
+                                                         + eventID + "', FROM_UNIXTIME(" + std::to_string(unixTimestamp) + "), '"
+                                                         + eventCopy->eiEvent().eiActivePeriod().properties().duration().duration().c_str() + "', '" 
+                                                         + eventCopy->eiEvent().eventDescriptor().eventStatus() + "', '" 
+                                                         + optTypeTemp + "', '" 
+                                                         + eventCopy->eiEvent().eventDescriptor().eiMarketContext().marketContext() + "', '"
+                                                         //+ eventCopy->eiEvent().eiEventSignals().eiEventSignal().front().signalType() + "', '"
+                                                         //+ std::to_string(eventCopy->eiEvent().eiEventSignals().eiEventSignal().front().currentValue()->payloadFloat().value()) + "', '"
+                                                         + eventCopy->eiEvent().eventDescriptor().vtnComment()->c_str() + "', '"
+                                                         + eventCopy->eiEvent().eventDescriptor().testEvent()->c_str() + "', '" 
+                                                         + eventCopy->oadrResponseRequired() + "', '"
+                                                         + std::to_string(eventCopy->eiEvent().eventDescriptor().modificationNumber()) + "', '"
+                                                         + eventCopy->eiEvent().eiActivePeriod().properties().tolerance()->tolerate().startafter()->c_str() + "', '"
+                                                         + eventCopy->eiEvent().eiActivePeriod().properties().x_eiNotification()->duration().c_str() + "', '"
+                                                         + eventCopy->eiEvent().eiActivePeriod().properties().x_eiRampUp()->duration().c_str() + "', '"
+                                                         + eventCopy->eiEvent().eiActivePeriod().properties().x_eiRecovery()->duration().c_str() + "', '"
+                                                         + requestID + "')");
+   
+        //else if there is eventID, update the existing event record for the event; 
+        //Note that when VEN initially runs, it will regard whatever event as a new event, no matter if that event already exists in the DB because it does not load the event info from the DB 
+        } else {
+        
+            // Note that: everytime the VTN publish an event, the reuqestID will be changed !!
+            db.updateVENEventSQL("UPDATE eventinfo SET startTime=FROM_UNIXTIME(" + std::to_string(unixTimestamp) + 
+                                                    "), duration='" + eventCopy->eiEvent().eiActivePeriod().properties().duration().duration().c_str() +
+                                                    "', eventStatus='" + eventCopy->eiEvent().eventDescriptor().eventStatus() +
+                                                    "', optState='" + optTypeTemp +
+                                                    "', marketContext='" + eventCopy->eiEvent().eventDescriptor().eiMarketContext().marketContext() +
+                                                    //"', signalType='" + eventCopy->eiEvent().eiEventSignals().eiEventSignal().front().signalType() +
+                                                    //"', currentValue='" + std::to_string(eventCopy->eiEvent().eiEventSignals().eiEventSignal().front().currentValue()->payloadFloat().value()) +
+                                                    "', vtnComment='" + eventCopy->eiEvent().eventDescriptor().vtnComment()->c_str() +
+                                                    "', testEvent='" + eventCopy->eiEvent().eventDescriptor().testEvent()->c_str() +
+                                                    "', responseRequired='" + eventCopy->oadrResponseRequired() +
+                                                    "', modificationNumber='" + std::to_string(eventCopy->eiEvent().eventDescriptor().modificationNumber()) +
+                                                    "', startAfter='" + eventCopy->eiEvent().eiActivePeriod().properties().tolerance()->tolerate().startafter()->c_str() +
+                                                    "', eiNotification='" + eventCopy->eiEvent().eiActivePeriod().properties().x_eiNotification()->duration().c_str() +
+                                                    "', eiRampUp='" + eventCopy->eiEvent().eiActivePeriod().properties().x_eiRampUp()->duration().c_str() +
+                                                    "', eiRecovery='" + eventCopy->eiEvent().eiActivePeriod().properties().x_eiRecovery()->duration().c_str() + 
+                                                    "', requestID='" + requestID +    
+                                                    "' WHERE eventID='" + eventID + "'");     
+        
+        }
+        
+        
+        // check if there is matched event signal record in DB with the same eventID
+        // if there is no eventID, then insert new record for the eveninfo
+        if ( !db.eventSignalExistSQL("SELECT * FROM eventsignal WHERE eventID='" + eventID + "'") ) {
+        
+             // use the interator to get multiple EventSignal and multiple interval 
+             // the structure is: EventSignals -> EventSignal -> intervals -> interval
+             // signalID, signalName, signalType, currentValue in EventSignal
+             // duration, UID and targetValue/payload in interval
+             for(const auto &signal : eventCopy->eiEvent().eiEventSignals().eiEventSignal()) {
+            
+                for (const auto &interval : signal.intervals().interval())
+			{
+                   
+                            const signalPayloadType *spt = (signalPayloadType*)(&(interval.streamPayloadBase().front()));
+                            PayloadFloatType *pft = &(PayloadFloatType&)spt->payloadBase(); 
+                            
+                            db.updateVENEventSignalSQL("INSERT INTO eventsignal (eventID, signalID, signalName, signalType, signalInterval, UID, targetValue, currentValue, modificationNumber) VALUES ('"
+                                                                                + eventID + "', '"
+                                                                                + signal.signalID().c_str() + "', '"
+                                                                                + signal.signalName().c_str() + "', '"
+                                                                                + signal.signalType().c_str() + "', '"
+                                                                                + interval.duration()->duration().c_str() + "', '"
+                                                                                + interval.uid()->text() + "', '"
+                                                                                + std::to_string(pft->value()) + "', '"
+                                                                                + std::to_string(signal.currentValue()->payloadFloat().value()) + "', '"
+                                                                                + std::to_string(eventCopy->eiEvent().eventDescriptor().modificationNumber()) + "')");                                                                      
+                               
+                        }
+            }        
+        
+             
+        //else if there is eventID, update the existing event signal record for the event - first delete all signal belonging to the specific eventID and then insert the record
+        //Note that when VEN initially runs, it will regard whatever event signal as a new event signal, no matter if that event signal already exists in the DB because it does not load the event signal info from the DB
+        } else {
+             
+             // delete all signals belonging to the specific eventID
+             db.deleteVENEventSignalSQL("DELETE FROM eventsignal WHERE eventID='" + eventID + "'");
+             
+             // use the interator to get multiple EventSignal and multiple interval 
+             // the structure is: EventSignals -> EventSignal -> intervals -> interval
+             // signalID, signalName, signalType, currentValue in EventSignal
+             // duration, UID and targetValue/payload in interval
+             for(const auto &signal : eventCopy->eiEvent().eiEventSignals().eiEventSignal()) {
+            
+                for (const auto &interval : signal.intervals().interval())
+			{
+                            //cout << "The signalID is: " << signal.signalID().c_str() << endl;
+                            
+                            const signalPayloadType *spt = (signalPayloadType*)(&(interval.streamPayloadBase().front()));
+                            PayloadFloatType *pft = &(PayloadFloatType&)spt->payloadBase(); 
+                            
+                            db.updateVENEventSignalSQL("INSERT INTO eventsignal (eventID, signalID, signalName, signalType, signalInterval, UID, targetValue, currentValue, modificationNumber) VALUES ('"
+                                                                                + eventID + "', '"
+                                                                                + signal.signalID().c_str() + "', '"
+                                                                                + signal.signalName().c_str() + "', '"
+                                                                                + signal.signalType().c_str() + "', '"
+                                                                                + interval.duration()->duration().c_str() + "', '"
+                                                                                + interval.uid()->text() + "', '"
+                                                                                + std::to_string(pft->value()) + "', '"
+                                                                                + std::to_string(signal.currentValue()->payloadFloat().value()) + "', '"
+                                                                                + std::to_string(eventCopy->eiEvent().eventDescriptor().modificationNumber()) + "')");                                                                      
+                                                       
+                          
+                        }
+            }              
+        
+        }
+        
+        
+        
+        
+        
+        
+        // write the event info into DB
+        //db.updateVENEventSQL();        
+        
 }
 
 /********************************************************************************/
@@ -316,7 +568,7 @@ void EventManager::manageEvents(oadr2b::oadr::oadrDistributeEventType &message)
 
 	for (const auto &event : message.oadrEvent())
 	{
-		const string eventID = event.eiEvent().eventDescriptor().eventID();
+		const string eventID = event.eiEvent().eventDescriptor().eventID();  
 
 		// Does the event exist in the current map?
 		if (m_events.find(eventID) == m_events.end())
@@ -350,4 +602,136 @@ void EventManager::manageEvents(oadr2b::oadr::oadrDistributeEventType &message)
 	}
 
 	m_sendCreatedEvent->sendCreatedEvent("200", "OK", message.requestID(), eventResponses);
+}
+
+/********************************************************************************/
+
+void EventManager::handleExistingEventIndividualOpt(const string &eventID, const string &individualOptValue, oadr2b::ei::eventResponses::eventResponse_sequence &eventResponses) {
+
+        oadr2b::oadr::oadrEvent *existingEvent = m_events[eventID].get();
+    
+        // query the DB for exisiting optState of the individual eventID
+        string individualOptValueDB = db.getIndividualOptSQL(eventID);
+        
+        // query the DB for the requestID for the specific eventID
+        string requestIDDB = db.getRequestIDSQL(eventID); 
+        
+        //cout << "individualOptValueDB = " + individualOptValueDB + "; optRequest = " + individualOptValue << endl;
+
+	
+	oadr2b::oadr::oadrEvent *eventCopy = existingEvent->_clone();
+        
+        // assign value of individualOptValue to optType
+        oadr2b::ei::OptTypeType::value optType;
+        
+        if(individualOptValue.compare("OptIn") == 0) {
+        
+            optType = oadr2b::ei::OptTypeType::optIn;
+            
+        } else if (individualOptValue.compare("OptOut") == 0) {
+        
+            optType = oadr2b::ei::OptTypeType::optOut;
+
+        }
+
+	if (existingEvent->eiEvent().eventDescriptor().eventStatus() == EventStatusEnumeratedType::cancelled)
+	{
+		
+            m_service->OnEventCancel(eventID, existingEvent, optType);
+
+                
+            Oadr2bHelper::appendEventResponse(eventResponses, "200", "OK", eventID,
+                		existingEvent->eiEvent().eventDescriptor().modificationNumber(), optType, requestIDDB);
+
+                                
+            removeSchedule(eventID);
+	}
+	else
+	{
+            /*oadr2b::ei::OptTypeType::value optType = oadr2b::ei::OptTypeType::optOut;*/
+            //optType = global_optType;
+            
+            // If the request opt change of the individual event is different from the DB record, need to change the event schedule  
+            if (individualOptValueDB.compare(individualOptValue) != 0)
+            {
+                //cout << "individualOptValueDB = your request Opt !!" << endl;
+                //return;
+                   
+                m_service->OnEventModify(eventID, existingEvent, existingEvent, optType);
+
+                
+                Oadr2bHelper::appendEventResponse(eventResponses, "200", "OK", eventID,
+                                existingEvent->eiEvent().eventDescriptor().modificationNumber(), optType, requestIDDB);
+
+                removeSchedule(eventID);
+                scheduleEvent(eventID, eventCopy);
+                
+                cout << "You should not see this if the individual opt is the same as existing!!" << endl;
+                   
+                string optTypeTemp;
+                    
+                if (optType == oadr2b::ei::OptTypeType::optIn) {
+            
+                    optTypeTemp = "OptIn";
+        
+                } else if (optType == oadr2b::ei::OptTypeType::optOut) {
+            
+                    optTypeTemp = "OptOut";
+            
+                }
+               
+        
+                // update the optState of existing event record in the db
+                db.updateVENEventSQL("UPDATE eventinfo SET optState='" + optTypeTemp + "' WHERE eventID='" + eventID + "'"); 
+                    
+            // else if the request opt is the same as the individualOpt in the db, 
+            // only generate the eventResponse so that the createdEvent contains valid eventResponse; no need to to anything else  
+            } else if (individualOptValueDB.compare(individualOptValue) == 0) {
+                
+                Oadr2bHelper::appendEventResponse(eventResponses, "200", "OK", eventID,
+                                existingEvent->eiEvent().eventDescriptor().modificationNumber(), optType, requestIDDB);
+                
+            }                  
+        
+        
+        }
+        
+	m_events[eventID] = unique_ptr<oadr2b::oadr::oadrEvent>(eventCopy);
+
+}
+
+/********************************************************************************/
+
+void EventManager::manageIndividualEventOpt(const string &eventID, const string &individualOptValue)
+{
+    
+        oadr2b::ei::eventResponses::eventResponse_sequence eventResponses;
+        
+        
+        
+        //m_events.find(eventID) 
+        
+	// Does the event exist in the current map?
+	if (m_events.find(eventID) == m_events.end())
+		{
+                    // This is a new event that needs to be scheduled and it is impossible to change opt for a new event
+                    // a new event will always use Default Opt
+                    //handleNewEvent(eventID, &event, message.requestID(), eventResponses);
+                    cout << "Error: cannot change opt for an unscheduled new event!" << endl;
+                    return;
+		}
+	else
+		{
+                    // Check if the event has been modified
+                    handleExistingEventIndividualOpt(eventID, individualOptValue, eventResponses);
+		}
+
+	
+	
+
+	
+
+         // oadrCreatedEvent following the change of the opt for individual event does not contain the requestID
+         // so use empty string "" here 
+	m_sendCreatedEvent->sendCreatedEvent("200", "OK", "", eventResponses);
 }

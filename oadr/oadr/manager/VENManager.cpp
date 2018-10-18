@@ -8,10 +8,9 @@
 #include "../manager/VENManager.h"
 
 
-/* Use global variable global_optType which is defined in global_variable.h */
-#include "../../../samplevenmanager/samplevenmanager/global_variable.h"
 
 
+// init() method is called first and then inside the init(), VENManager constructor new VENManager() is called later
 VENManager::VENManager(unique_ptr<VEN2b> ven, IEventService *eventService, IReportService *reportService, IOADRExceptionService *exceptionService) :
 	m_ven(std::move(ven)), // m_ven is object of Class VEN2b.cpp (/source_code_Folder/ven/VEN2b.cpp)
 	m_reportService(reportService),
@@ -32,8 +31,10 @@ VENManager::VENManager(unique_ptr<VEN2b> ven, IEventService *eventService, IRepo
 			));
 
 	m_shutdown = false;
-            
-       
+        
+        /* initialize MyDB db */
+        db.initDB("localhost", "xx", "xx", "test");
+        
 }
 
 /********************************************************************************/
@@ -74,6 +75,7 @@ void VENManager::sendCanceledReport(const set<string> &pendingReports, string re
 
 /********************************************************************************/
 
+// init() method is called first and then inside the init(), VENManager constructor new VENManager() is called later
 IVENManager *VENManager::init(VENManagerConfig &config)
 {
 	unique_ptr<HttpCurl> http(new HttpCurl());
@@ -97,12 +99,15 @@ IVENManager *VENManager::init(VENManagerConfig &config)
 			config.registrationID));
 
 	ven->setOadrMessage(config.services.oadrMessage);
-
+        
+        // init() method is called first and then inside the init(), VENManager constructor new VENManager() is called later
 	VENManager *venManager = new VENManager(std::move(ven),
 			config.services.eventService,
 			config.services.reportService,
 			config.services.exceptionService);
-
+       
+        
+        
 	return venManager;
 }
 
@@ -122,6 +127,7 @@ void VENManager::poll()
 	unique_ptr<Poll> poll = m_ven->poll();
 
 	oadrPayload *response = poll->response();
+        
 
 	if (response == NULL)
 	{
@@ -219,6 +225,8 @@ void VENManager::registerVen()
 		// TODO: throw an exception
 		return;
 	}
+        
+        
 
 	oadrCreatedPartyRegistrationType *cpr = &response->oadrSignedObject().oadrCreatedPartyRegistration().get();
 
@@ -227,6 +235,13 @@ void VENManager::registerVen()
 		// TODO: throw an exception
 		return;
 	}
+        
+        // after VTN sends the oadrCreatedPartyRegistration, VEN is registered
+        // oadrCreatedPartyRegistration from VTN contains the assigned VEN ID and this should be updated to the MySQL database
+        // until now everything is correct and the venName, venID and vtnURL in SQL will be updated
+     
+        configVENInfo();
+        
         
         /* VEN to send {oadrRegisterReport} to VTN */
 	registerReports();
@@ -387,7 +402,7 @@ void VENManager::selectOptType()
         }
     }
     
-}
+} 
 
 
 void VENManager::selectOptFunction()
@@ -433,3 +448,92 @@ void VENManager::selectOptFunction()
 
 
 }
+
+
+/* this configDefaultOpt() function will be called once the Pistache HTTP server receives 
+   HTTP POST Request with content of defaultOptMode */
+string VENManager::configDefaultOpt(string http_opt){
+    
+    cout << "Calling venManager->configDefaultOpt(string http_opt)" << endl;
+    
+    if (http_opt.compare("OptIn") == 0) {
+        
+        //if OptIn is received from the web GUI, 
+        //change the global_optType to oadr2b::ei::OptTypeType::optIn
+        //make the existing status as optIn
+        global_optType = oadr2b::ei::OptTypeType::optIn;
+        existing_opt_status = "OptIn";
+        
+        //update the field defaultopt in table vendefaultopt in MySQL
+        db.updateDefaultOptSQL("UPDATE vendefaultopt SET defaultopt='" + existing_opt_status + "' WHERE recordID=1");
+        
+               
+        
+    } else if (http_opt.compare("OptOut") == 0) {
+        
+        //if OptIn is received from the web GUI, 
+        //change the global_optType to oadr2b::ei::OptTypeType::optIn
+        //make the existing status as optIn
+        global_optType = oadr2b::ei::OptTypeType::optOut;
+        existing_opt_status = "OptOut";
+        
+        //update the field defaultopt in table vendefaultopt in MySQL
+        db.updateDefaultOptSQL("UPDATE vendefaultopt SET defaultopt='" + existing_opt_status + "' WHERE recordID=1");   
+        
+    }
+    
+    // return the defaultopt value from MySQL
+    return db.getDefaultOptSQL();
+
+}
+
+
+
+/* this configVENName() function will be called when init() method is called */
+void VENManager::configVENInfo(){
+    
+    string command;
+   
+    
+    cout << "Calling venManager->configVENInfo()" << endl;
+    
+    command = "UPDATE veninfo SET venName = '" + m_ven->venName() + "', " +
+                                          "vtnURL = '" + m_ven->vtnURL() + "', " +
+                                          "venID = '"  + m_ven->venID() + "', " +
+                                          "vtnID = '"  + m_ven->vtnID() + "', " + 
+                                          "pollFrequency = '" + std::to_string(m_ven->pollFrequencyInSeconds()) + "' WHERE recordID=1";
+      
+    //command = "UPDATE veninfo SET venName = '" + m_ven->venName() + "', vtnURL = '" + vtn_url + "', venID = '" + m_ven->venID() + "', vtnID = '" m_ven->+ "' WHERE recordID = 1";
+    
+    
+    //call db.updateVENInfoSQL() and db.updateDefaultOptSQL() every time the VEN runs 
+    db.updateVENInfoSQL(command);
+    db.updateDefaultOptSQL("UPDATE vendefaultopt SET defaultopt= 'OptIn' WHERE recordID=1"); // the dafault opt when VEN runs is OptOut
+           
+}
+
+
+/* this configVENName() function will be called when init() method is called */
+string VENManager::getVENInfoDB(){
+    
+    
+    return "later";
+}
+
+
+/* this configIndividualOpt() function will be called once the Pistache HTTP server receives 
+ * HTTP Post Request with content of eventID and individualOptMod */
+string VENManager::configIndividualOpt(string eventID, string individualOptValue){
+    
+    m_eventManager->manageIndividualEventOpt(eventID, individualOptValue);
+    
+    string individualOptValueDB = db.getIndividualOptSQL(eventID);
+    
+    string message = "{\"eventID\":" + eventID + ", \"individualOptMode\":" + individualOptValueDB + "}"; 
+    
+    return message;
+        
+}
+
+
+

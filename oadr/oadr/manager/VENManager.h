@@ -42,6 +42,19 @@
 /* Include <unistd.h> for sleep() method */
 #include <unistd.h> 
 
+/* include "MyDB.h" and <iostream>*/
+#include "../../../mysqlmgr/MyDB.h"
+#include <iostream>
+
+/* Use global variable global_optType which is defined in global_variable.h */
+#include "../../../samplevenmanager/samplevenmanager/global_variable.h"
+
+// include globalDB.h to use the global database 
+//#include "../../../mysqlmgr/globalDB.h"
+
+// declare global database 
+//extern MyDB db;
+
 class VENManager : public ISendCreatedEvent, public ISendReport, public IVENManager
 {
 private:
@@ -54,8 +67,8 @@ private:
 
 	IOADRExceptionService *m_exceptionService;
 
-    condition_variable m_condition;
-    mutex m_mutex;
+        condition_variable m_condition;
+        mutex m_mutex;
 
 	bool m_shutdown;
         
@@ -64,13 +77,19 @@ private:
         string input_optType;
 
         /* declared a string that will represent the existing opt status */
-        string existing_opt_status;  
+        string existing_opt_status = "OptIn";  
         
         /* declared a string that will take the input optFunction */
         string input_optFunction;
         
         /* declared a bool that represent if it is in selectOptType method */
         bool in_optType_menu;
+        
+        
+        /* declare a MyDB object */
+        //MyDB db;
+        
+        
         
 	virtual void sendCreatedEvent(string responseCode, string responseDescription, string requestID, oadr2b::ei::eventResponses::eventResponse_sequence &eventResponses);
 
@@ -115,6 +134,18 @@ public:
        
        /* method declaration for selectOptFunction()*/
        virtual void selectOptFunction();
+       
+       /* method declaration for configDefaultOpt() */
+       virtual string configDefaultOpt(string http_opt);
+       
+       /* method declaration for configVENName() */
+       virtual void configVENInfo();
+       
+       /* method declaration for getVENInfoDB() */
+       virtual string getVENInfoDB();
+       
+       /* method declaration for configIndividualOpt() */
+       virtual string configIndividualOpt(string eventID, string individualOpt);
 };
 
 #endif /* VENMANAGER_H_ */

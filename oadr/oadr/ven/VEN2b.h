@@ -351,6 +351,13 @@
 
 #include "../helper/ISO8601Duration.h"
 
+// to use the global database db 
+#include "../../../mysqlmgr/MyDB.h"
+
+// to use the function request.requestType(), need to include the header oadr/oadr/request/Oadr2bRequest.h
+#include "../request/Oadr2bRequest.h"
+
+
 using namespace std;
 using namespace xercesc_3_1;
 
@@ -389,11 +396,14 @@ public:
 
 	virtual ~VEN2b();
 
-	string venID();
+       	string venID();
 	string registrationID();
 	string vtnID();
 	string pollFrequency();
 
+        string venName(); // add venName() to get venName
+        string vtnURL(); // add vtnURL() to get vtnURL
+        
 	void setOadrMessage(IOadrMessage *oadrMessage);
 
 	unsigned int pollFrequencyInSeconds();

@@ -143,6 +143,7 @@ CMakeFiles/oadr.dir/oadr/oadr/manager/IVENManager.cpp.o: oadr/oadr/scheduler/Sch
 CMakeFiles/oadr.dir/oadr/oadr/manager/IVENManager.cpp.o: oadr/oadr/scheduler/SchedulerJob.h
 CMakeFiles/oadr.dir/oadr/oadr/manager/IVENManager.cpp.o: oadr/oadr/scheduler/SchedulerJobs.h
 
+CMakeFiles/oadr.dir/oadr/oadr/manager/VENManager.cpp.o: mysqlmgr/MyDB.h
 CMakeFiles/oadr.dir/oadr/oadr/manager/VENManager.cpp.o: oadr/oadr/helper/ISO8601Duration.h
 CMakeFiles/oadr.dir/oadr/oadr/manager/VENManager.cpp.o: oadr/oadr/helper/RandomHex.h
 CMakeFiles/oadr.dir/oadr/oadr/manager/VENManager.cpp.o: oadr/oadr/helper/conditionalsleep/ConditionalSleep.h
@@ -507,6 +508,7 @@ CMakeFiles/oadr.dir/oadr/oadr/manager/VENManager.cpp.o: xsd-4.0.0/xsd/cxx/xml/st
 CMakeFiles/oadr.dir/oadr/oadr/manager/VENManager.cpp.o: xsd-4.0.0/xsd/cxx/zc-istream.hxx
 CMakeFiles/oadr.dir/oadr/oadr/manager/VENManager.cpp.o: xsd-4.0.0/xsd/cxx/zc-istream.txx
 
+CMakeFiles/oadr.dir/oadr/oadr/manager/eventmanager/EventManager.cpp.o: mysqlmgr/MyDB.h
 CMakeFiles/oadr.dir/oadr/oadr/manager/eventmanager/EventManager.cpp.o: oadr/oadr/helper/DateTimeConverter.h
 CMakeFiles/oadr.dir/oadr/oadr/manager/eventmanager/EventManager.cpp.o: oadr/oadr/helper/ISO8601Duration.h
 CMakeFiles/oadr.dir/oadr/oadr/manager/eventmanager/EventManager.cpp.o: oadr/oadr/helper/Timezone.h
@@ -7975,8 +7977,12 @@ CMakeFiles/oadr.dir/oadr/oadr/scheduler/SchedulerJobs.cpp.o: oadr/oadr/scheduler
 CMakeFiles/oadr.dir/oadr/oadr/ven/IOadrMessage.cpp.o: oadr/oadr/ven/IOadrMessage.cpp
 CMakeFiles/oadr.dir/oadr/oadr/ven/IOadrMessage.cpp.o: oadr/oadr/ven/IOadrMessage.h
 
+CMakeFiles/oadr.dir/oadr/oadr/ven/VEN2b.cpp.o: mysqlmgr/MyDB.h
 CMakeFiles/oadr.dir/oadr/oadr/ven/VEN2b.cpp.o: oadr/oadr/helper/ISO8601Duration.h
 CMakeFiles/oadr.dir/oadr/oadr/ven/VEN2b.cpp.o: oadr/oadr/helper/RandomHex.h
+CMakeFiles/oadr.dir/oadr/oadr/ven/VEN2b.cpp.o: oadr/oadr/helper/globaltime/GlobalTime.h
+CMakeFiles/oadr.dir/oadr/oadr/ven/VEN2b.cpp.o: oadr/oadr/helper/globaltime/GlobalTimeStandard.h
+CMakeFiles/oadr.dir/oadr/oadr/ven/VEN2b.cpp.o: oadr/oadr/helper/globaltime/IGlobalTime.h
 CMakeFiles/oadr.dir/oadr/oadr/ven/VEN2b.cpp.o: oadr/oadr/request/CancelPartyRegistration.h
 CMakeFiles/oadr.dir/oadr/oadr/ven/VEN2b.cpp.o: oadr/oadr/request/CanceledReport.h
 CMakeFiles/oadr.dir/oadr/oadr/ven/VEN2b.cpp.o: oadr/oadr/request/CreatePartyRegistration.h

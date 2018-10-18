@@ -15,7 +15,21 @@
             <in>CMakeCXXCompilerId.cpp</in>
           </df>
         </df>
+        <df name="CMakeRelink.dir">
+        </df>
         <df name="CMakeTmp">
+        </df>
+        <df name="Http.dir">
+          <df name="Http">
+          </df>
+        </df>
+        <df name="mongoose.dir">
+          <df name="mongoose">
+          </df>
+        </df>
+        <df name="mysqlmgr.dir">
+          <df name="mysqlmgr">
+          </df>
         </df>
         <df name="oadr.dir">
           <df name="oadr">
@@ -63,29 +77,11 @@
             </df>
           </df>
         </df>
+        <df name="pistache.dir">
+        </df>
         <df name="samplevenmgr.dir">
           <df name="samplevenmanager">
             <df name="samplevenmanager">
-            </df>
-          </df>
-        </df>
-        <df name="testoadr.dir">
-          <df name="oadrtest">
-            <df name="oadrtest">
-              <df name="helper">
-              </df>
-              <df name="tests">
-                <df name="eventmanager">
-                </df>
-                <df name="helper">
-                </df>
-                <df name="reportmanager">
-                </df>
-                <df name="scheduler">
-                </df>
-                <df name="ven">
-                </df>
-              </df>
             </df>
           </df>
         </df>
@@ -247,9 +243,21 @@
           </df>
         </df>
       </df>
+      <df name="Http">
+        <in>HttpHandler.cpp</in>
+        <in>HttpHandler.h</in>
+      </df>
+      <df name="libmysqlclient">
+      </df>
+      <df name="libpistache">
+      </df>
       <df name="logs">
         <df name="http:">
         </df>
+      </df>
+      <df name="mysqlmgr">
+        <in>MyDB.cpp</in>
+        <in>MyDB.h</in>
       </df>
       <df name="oadr">
         <df name="oadr">
@@ -933,6 +941,50 @@
           </df>
           <in>main.cpp</in>
         </df>
+      </df>
+      <df name="rapidjson">
+        <df name="error">
+          <in>en.h</in>
+          <in>error.h</in>
+        </df>
+        <df name="internal">
+          <in>biginteger.h</in>
+          <in>diyfp.h</in>
+          <in>dtoa.h</in>
+          <in>ieee754.h</in>
+          <in>itoa.h</in>
+          <in>meta.h</in>
+          <in>pow10.h</in>
+          <in>regex.h</in>
+          <in>stack.h</in>
+          <in>strfunc.h</in>
+          <in>strtod.h</in>
+          <in>swap.h</in>
+        </df>
+        <df name="msinttypes">
+          <in>inttypes.h</in>
+          <in>stdint.h</in>
+        </df>
+        <in>allocators.h</in>
+        <in>cursorstreamwrapper.h</in>
+        <in>document.h</in>
+        <in>encodedstream.h</in>
+        <in>encodings.h</in>
+        <in>filereadstream.h</in>
+        <in>filewritestream.h</in>
+        <in>fwd.h</in>
+        <in>istreamwrapper.h</in>
+        <in>memorybuffer.h</in>
+        <in>memorystream.h</in>
+        <in>ostreamwrapper.h</in>
+        <in>pointer.h</in>
+        <in>prettywriter.h</in>
+        <in>rapidjson.h</in>
+        <in>reader.h</in>
+        <in>schema.h</in>
+        <in>stream.h</in>
+        <in>stringbuffer.h</in>
+        <in>writer.h</in>
       </df>
       <df name="samplevenmanager">
         <df name="samplevenmanager">

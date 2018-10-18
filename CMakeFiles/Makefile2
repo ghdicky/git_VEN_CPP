@@ -63,10 +63,10 @@ CMAKE_BINARY_DIR = /home/hao/Downloads/VEN_CPP_source
 # Target rules for target CMakeFiles/oadr.dir
 
 # All Build rule for target.
-CMakeFiles/oadr.dir/all:
+CMakeFiles/oadr.dir/all: CMakeFiles/mysqlmgr.dir/all
 	$(MAKE) -f CMakeFiles/oadr.dir/build.make CMakeFiles/oadr.dir/depend
 	$(MAKE) -f CMakeFiles/oadr.dir/build.make CMakeFiles/oadr.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/hao/Downloads/VEN_CPP_source/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21 "Built target oadr"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/hao/Downloads/VEN_CPP_source/CMakeFiles --progress-num=2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22 "Built target oadr"
 .PHONY : CMakeFiles/oadr.dir/all
 
 # Include target in all.
@@ -76,7 +76,7 @@ all: CMakeFiles/oadr.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/oadr.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hao/Downloads/VEN_CPP_source/CMakeFiles 21
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/hao/Downloads/VEN_CPP_source/CMakeFiles 22
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/oadr.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/hao/Downloads/VEN_CPP_source/CMakeFiles 0
 .PHONY : CMakeFiles/oadr.dir/rule
@@ -85,6 +85,16 @@ CMakeFiles/oadr.dir/rule: cmake_check_build_system
 oadr: CMakeFiles/oadr.dir/rule
 
 .PHONY : oadr
+
+# Pre-install relink rule for target.
+CMakeFiles/oadr.dir/preinstall:
+	$(MAKE) -f CMakeFiles/oadr.dir/build.make CMakeFiles/oadr.dir/preinstall
+.PHONY : CMakeFiles/oadr.dir/preinstall
+
+# Prepare target for install.
+preinstall: CMakeFiles/oadr.dir/preinstall
+
+.PHONY : preinstall
 
 # clean rule for target.
 CMakeFiles/oadr.dir/clean:
@@ -97,13 +107,60 @@ clean: CMakeFiles/oadr.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/mysqlmgr.dir
+
+# All Build rule for target.
+CMakeFiles/mysqlmgr.dir/all:
+	$(MAKE) -f CMakeFiles/mysqlmgr.dir/build.make CMakeFiles/mysqlmgr.dir/depend
+	$(MAKE) -f CMakeFiles/mysqlmgr.dir/build.make CMakeFiles/mysqlmgr.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/hao/Downloads/VEN_CPP_source/CMakeFiles --progress-num=1 "Built target mysqlmgr"
+.PHONY : CMakeFiles/mysqlmgr.dir/all
+
+# Include target in all.
+all: CMakeFiles/mysqlmgr.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/mysqlmgr.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/hao/Downloads/VEN_CPP_source/CMakeFiles 1
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/mysqlmgr.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/hao/Downloads/VEN_CPP_source/CMakeFiles 0
+.PHONY : CMakeFiles/mysqlmgr.dir/rule
+
+# Convenience name for target.
+mysqlmgr: CMakeFiles/mysqlmgr.dir/rule
+
+.PHONY : mysqlmgr
+
+# Pre-install relink rule for target.
+CMakeFiles/mysqlmgr.dir/preinstall:
+	$(MAKE) -f CMakeFiles/mysqlmgr.dir/build.make CMakeFiles/mysqlmgr.dir/preinstall
+.PHONY : CMakeFiles/mysqlmgr.dir/preinstall
+
+# Prepare target for install.
+preinstall: CMakeFiles/mysqlmgr.dir/preinstall
+
+.PHONY : preinstall
+
+# clean rule for target.
+CMakeFiles/mysqlmgr.dir/clean:
+	$(MAKE) -f CMakeFiles/mysqlmgr.dir/build.make CMakeFiles/mysqlmgr.dir/clean
+.PHONY : CMakeFiles/mysqlmgr.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/mysqlmgr.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/oadrsd.dir
 
 # All Build rule for target.
 CMakeFiles/oadrsd.dir/all:
 	$(MAKE) -f CMakeFiles/oadrsd.dir/build.make CMakeFiles/oadrsd.dir/depend
 	$(MAKE) -f CMakeFiles/oadrsd.dir/build.make CMakeFiles/oadrsd.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/hao/Downloads/VEN_CPP_source/CMakeFiles --progress-num=22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98 "Built target oadrsd"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/hao/Downloads/VEN_CPP_source/CMakeFiles --progress-num=23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98 "Built target oadrsd"
 .PHONY : CMakeFiles/oadrsd.dir/all
 
 # Include target in all.
@@ -113,7 +170,7 @@ all: CMakeFiles/oadrsd.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/oadrsd.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/hao/Downloads/VEN_CPP_source/CMakeFiles 77
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/hao/Downloads/VEN_CPP_source/CMakeFiles 76
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/oadrsd.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/hao/Downloads/VEN_CPP_source/CMakeFiles 0
 .PHONY : CMakeFiles/oadrsd.dir/rule
@@ -137,6 +194,7 @@ clean: CMakeFiles/oadrsd.dir/clean
 # Target rules for target CMakeFiles/samplevenmgr.dir
 
 # All Build rule for target.
+CMakeFiles/samplevenmgr.dir/all: CMakeFiles/mysqlmgr.dir/all
 CMakeFiles/samplevenmgr.dir/all: CMakeFiles/oadrsd.dir/all
 CMakeFiles/samplevenmgr.dir/all: CMakeFiles/oadr.dir/all
 	$(MAKE) -f CMakeFiles/samplevenmgr.dir/build.make CMakeFiles/samplevenmgr.dir/depend

@@ -144,6 +144,7 @@ CMakeFiles/oadr.dir/oadr/oadr/manager/IVENManager.cpp.o
  /home/hao/Downloads/VEN_CPP_source/oadr/oadr/scheduler/SchedulerJob.h
  /home/hao/Downloads/VEN_CPP_source/oadr/oadr/scheduler/SchedulerJobs.h
 CMakeFiles/oadr.dir/oadr/oadr/manager/VENManager.cpp.o
+ /home/hao/Downloads/VEN_CPP_source/mysqlmgr/MyDB.h
  /home/hao/Downloads/VEN_CPP_source/oadr/oadr/helper/ISO8601Duration.h
  /home/hao/Downloads/VEN_CPP_source/oadr/oadr/helper/RandomHex.h
  /home/hao/Downloads/VEN_CPP_source/oadr/oadr/helper/conditionalsleep/ConditionalSleep.h
@@ -508,6 +509,7 @@ CMakeFiles/oadr.dir/oadr/oadr/manager/VENManager.cpp.o
  xsd-4.0.0/xsd/cxx/zc-istream.hxx
  xsd-4.0.0/xsd/cxx/zc-istream.txx
 CMakeFiles/oadr.dir/oadr/oadr/manager/eventmanager/EventManager.cpp.o
+ /home/hao/Downloads/VEN_CPP_source/mysqlmgr/MyDB.h
  /home/hao/Downloads/VEN_CPP_source/oadr/oadr/helper/DateTimeConverter.h
  /home/hao/Downloads/VEN_CPP_source/oadr/oadr/helper/ISO8601Duration.h
  /home/hao/Downloads/VEN_CPP_source/oadr/oadr/helper/Timezone.h
@@ -7976,8 +7978,12 @@ CMakeFiles/oadr.dir/oadr/oadr/ven/IOadrMessage.cpp.o
  /home/hao/Downloads/VEN_CPP_source/oadr/oadr/ven/IOadrMessage.cpp
  /home/hao/Downloads/VEN_CPP_source/oadr/oadr/ven/IOadrMessage.h
 CMakeFiles/oadr.dir/oadr/oadr/ven/VEN2b.cpp.o
+ /home/hao/Downloads/VEN_CPP_source/mysqlmgr/MyDB.h
  /home/hao/Downloads/VEN_CPP_source/oadr/oadr/helper/ISO8601Duration.h
  /home/hao/Downloads/VEN_CPP_source/oadr/oadr/helper/RandomHex.h
+ /home/hao/Downloads/VEN_CPP_source/oadr/oadr/helper/globaltime/GlobalTime.h
+ /home/hao/Downloads/VEN_CPP_source/oadr/oadr/helper/globaltime/GlobalTimeStandard.h
+ /home/hao/Downloads/VEN_CPP_source/oadr/oadr/helper/globaltime/IGlobalTime.h
  /home/hao/Downloads/VEN_CPP_source/oadr/oadr/request/CancelPartyRegistration.h
  /home/hao/Downloads/VEN_CPP_source/oadr/oadr/request/CanceledReport.h
  /home/hao/Downloads/VEN_CPP_source/oadr/oadr/request/CreatePartyRegistration.h

@@ -20,12 +20,14 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "oadr"
   "oadrsd"
   "xsd-4.0.0"
+  "mysqlmgr"
   )
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
   "/home/hao/Downloads/VEN_CPP_source/CMakeFiles/oadr.dir/DependInfo.cmake"
   "/home/hao/Downloads/VEN_CPP_source/CMakeFiles/oadrsd.dir/DependInfo.cmake"
+  "/home/hao/Downloads/VEN_CPP_source/CMakeFiles/mysqlmgr.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

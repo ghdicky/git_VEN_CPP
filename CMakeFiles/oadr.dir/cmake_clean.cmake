@@ -63,6 +63,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/oadr.dir/oadr/oadr/scheduler/Scheduler.cpp.o"
   "liboadr.pdb"
   "liboadr.so"
+  "liboadr.pdb"
+  "CMakeFiles/CMakeRelink.dir/liboadr.so"
 )
 
 # Per-language clean rules from dependency scanning.
