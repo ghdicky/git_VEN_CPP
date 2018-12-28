@@ -81,6 +81,8 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "oadrsd"
   "xsd-4.0.0"
   "mysqlmgr"
+  "mysqlwrapper"
+  "goosemgr/c"
   )
 
 # Targets to which this target links.

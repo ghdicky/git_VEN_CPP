@@ -186,6 +186,12 @@ TEST:BOOL=OFF.
 //Set all warnings to errors
 WERROR:BOOL=OFF
 
+//Dependencies for the target
+dbwrapper_LIB_DEPENDS:STATIC=general;mysqlmgr;
+
+//Dependencies for the target
+goosemgr_LIB_DEPENDS:STATIC=general;/home/hao/Downloads/VEN_CPP_source/goosemgr/c/Lib/libpacket.a;general;/home/hao/Downloads/VEN_CPP_source/goosemgr/c/Lib/libwpcap.a;general;/home/hao/Downloads/VEN_CPP_source/goosemgr/c/Lib/Packet.lib;general;/home/hao/Downloads/VEN_CPP_source/goosemgr/c/Lib/wpcap.lib;general;-lpcap;general;dbwrapper;
+
 //Dependencies for target
 mongoose_LIB_DEPENDS:STATIC=
 

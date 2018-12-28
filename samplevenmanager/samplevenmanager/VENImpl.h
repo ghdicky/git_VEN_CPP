@@ -25,11 +25,62 @@ namespace samplevenmanager
 
 class VENImpl : public IEventService, public IReportService, public IOadrMessage, public IOADRExceptionService
 {
-
-public:
-	VENImpl(string venName, bool logToStdout);
+    
+private:
+        bool P21_changed_by_VTN;
+        bool P22_changed_by_VTN;
+        bool P23_changed_by_VTN;
+        bool P24_changed_by_VTN;
+        bool P25_changed_by_VTN;
+        bool P26_changed_by_VTN;
+        bool P27_changed_by_VTN;
+        bool P28_changed_by_VTN;
+        bool P29_changed_by_VTN;
+        bool P30_changed_by_VTN;
+        bool P31_changed_by_VTN;
+        bool P48_changed_by_VTN;
+        bool P49_changed_by_VTN;      
+        bool P50_changed_by_VTN;
+        bool P51_changed_by_VTN;
+        bool P52_changed_by_VTN;
+        
+        bool P53_changed_by_VTN;
+        bool P54_changed_by_VTN;
+        bool P55_changed_by_VTN;
+        bool P56_changed_by_VTN;
+        bool P57_changed_by_VTN;
+        bool P59_changed_by_VTN;
+        bool P60_changed_by_VTN;
+        bool P61_changed_by_VTN;
+        bool P62_changed_by_VTN;
+        bool P63_changed_by_VTN;
+        bool P64_changed_by_VTN;
+        bool P65_changed_by_VTN;      
+        bool P66_changed_by_VTN;
+        bool P67_changed_by_VTN;
+        bool P68_changed_by_VTN;
+        bool P69_changed_by_VTN; 
+        
+        bool P70_changed_by_VTN;
+        bool P42_changed_by_VTN;
+        bool P43_changed_by_VTN;
+        bool P44_changed_by_VTN;
+        bool P45_changed_by_VTN;
+        bool P46_changed_by_VTN;
+        bool P47_changed_by_VTN;
+        bool P47B_changed_by_VTN; 
+        
+        float event_payload;
+        
+        unsigned int durationInSeconds_load_shift;
+    
+public:    
+        
+        /* functions for Class VENImpl */
+        VENImpl(string venName, bool logToStdout);
 	virtual ~VENImpl();
-
+               
+                
 	virtual void OnPeriodicReportStart(const oadrReportRequestType &reportRequest);
 
 	virtual void OnPeriodicReportComplete(const oadrReportRequestType &reportRequest);

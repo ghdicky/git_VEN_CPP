@@ -41,6 +41,9 @@ include_directories(xsd-4.0.0)
 #include_directories(mongoose)
 #include_directories(Http)
 include_directories(mysqlmgr)
+include_directories(mysqlwrapper)
+
+include_directories(goosemgr/c)
 
 
 # ---- libmysqlmgr ----
@@ -54,6 +57,23 @@ install(DIRECTORY ./mysqlmgr DESTINATION include ${INSTALL_ARGS})
 target_link_libraries (mysqlmgr ${CMAKE_SOURCE_DIR}/libmysqlclient/libmysqlclient.a)
 
 
+# ---- libdbwrapper ----
+file(GLOB_RECURSE dbwrapper_SRC ./mysqlwrapper/*.cpp)
+add_library(dbwrapper ${LIB_TYPE} ${dbwrapper_SRC})
+install(TARGETS dbwrapper DESTINATION lib)
+set(INSTALL_ARGS FILES_MATCHING PATTERN "*.h")
+install(DIRECTORY ./mysqlwrapper DESTINATION include ${INSTALL_ARGS})
+target_link_libraries (dbwrapper mysqlmgr)
+
+
+# ---- libgoosemgr ----
+file(GLOB_RECURSE goosemgr_SRC ./goosemgr/*.c)
+add_library(goosemgr ${LIB_TYPE} ${goosemgr_SRC})
+install(TARGETS goosemgr DESTINATION lib)
+set(INSTALL_ARGS FILES_MATCHING PATTERN "*.h")
+install(DIRECTORY ./goosemgr DESTINATION include ${INSTALL_ARGS})
+target_link_libraries (goosemgr ${CMAKE_SOURCE_DIR}/goosemgr/c/Lib/libpacket.a ${CMAKE_SOURCE_DIR}/goosemgr/c/Lib/libwpcap.a ${CMAKE_SOURCE_DIR}/goosemgr/c/Lib/Packet.lib ${CMAKE_SOURCE_DIR}/goosemgr/c/Lib/wpcap.lib -lpcap dbwrapper)
+
 
 # ---- liboadr ----
 file(GLOB_RECURSE oadr_SRC ./oadr/oadr/*.cpp)
@@ -62,6 +82,7 @@ install(TARGETS oadr DESTINATION lib)
 set(INSTALL_ARGS FILES_MATCHING PATTERN "*.h")
 install(DIRECTORY ./oadr/oadr DESTINATION include ${INSTALL_ARGS})
 target_link_libraries (oadr mysqlmgr)
+
 
 # ---- liboadrsd ----
 file(GLOB_RECURSE oadrsd_SRC ./oadrsd/oadrsd/*.cxx)
@@ -103,7 +124,10 @@ if (SAMPLE)
   add_definitions(-DELPP_THREAD_SAFE -DELPP_NO_DEFAULT_LOG_FILE)
   file(GLOB_RECURSE samplevenmanager_SRC ./samplevenmanager/samplevenmanager/*.cpp)
   add_executable(samplevenmgr ${samplevenmanager_SRC})
-  target_link_libraries (samplevenmgr LINK_PUBLIC ${CMAKE_SOURCE_DIR}/libpistache/libpistache.a oadr oadrsd mysqlmgr curl xerces-c pthread)
+  
+  #link static lib "libpistache.a" to main.cpp
+  # and static rapid61850 lib goosemgr which is in fact the shared lib "VEN_CPP_source/libgoosemgr.so"
+  target_link_libraries (samplevenmgr LINK_PUBLIC ${CMAKE_SOURCE_DIR}/libpistache/libpistache.a oadr oadrsd mysqlmgr goosemgr curl xerces-c pthread)
   
   # as VENManager.cpp of oadr will use global variable MyDB db which is defined in main.cpp of samplevenmgr,
   # need to link samplevenmgr.so to liboadr

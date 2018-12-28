@@ -10,6 +10,8 @@
 #include "MyDB.h"
 
 MyDB db;
+MyDB db_GOOSE;
+MyDB db_VENImpl; 
 
 using namespace std;
 
@@ -41,7 +43,15 @@ MyDB::~MyDB() {
 }
 
 //initDB() will establish a connection to a specific schema/database in MySQL database  
-bool MyDB::initDB(string host, string user, string pwd, string db_name) {
+bool MyDB::connectDB(string host, string user, string pwd, string db_name) {
+    
+    connection = mysql_init(NULL); //initialise the variables for MySQL connection
+    if(connection == NULL) 
+    {
+    
+        cout << "Error:" << mysql_error(connection);
+        exit(1); 
+    }
     
     connection = mysql_real_connect(connection, host.c_str(), user.c_str(), pwd.c_str(), db_name.c_str(), 0, NULL, 0);
     
@@ -57,6 +67,17 @@ bool MyDB::initDB(string host, string user, string pwd, string db_name) {
     return true;
     
    
+}
+
+bool MyDB::closeDB() {
+    
+    if(connection != NULL)
+    {
+    
+        mysql_close(connection);  
+    
+    }
+    return true;
 }
 
 
@@ -202,19 +223,23 @@ string MyDB::getVENNameSQL(){
         
     } else {
         
-         result = mysql_use_result(connection); // obtain query result
+        result = mysql_use_result(connection); // obtain query result
      
-         //get the 1st row of the result
-         row = mysql_fetch_row(result);
+        //get the 1st row of the result
+        row = mysql_fetch_row(result);
          
-         // row[0] stores the defautopt values because the whole table only has 1 row, 
-         // and the query "SELECT defaultopt FROM vendefaultopt" only return 1 value 
-         venname = row[0];
+        // row[0] stores the defautopt values because the whole table only has 1 row, 
+        // and the query "SELECT defaultopt FROM vendefaultopt" only return 1 value 
+        venname = row[0];
          
-         //free the memory storing the result
+        //free the memory storing the result
         mysql_free_result(result);
-            
+        
+                   
     }
+    
+    //test for calling db from C
+    cout << "Test for calling db from C. VEN name is: " << venname << endl;
     
     return venname;
        
@@ -282,6 +307,71 @@ bool MyDB::updateVENEventSignalSQL(string sql) {
         //fetchSQL("SELECT * FROM vendefaultopt");
         
         cout << "VEN event signal has been updated!" << endl;
+    
+    }
+    return true;
+    
+}
+
+bool MyDB::updateVENGooseGTNET1SQL(string sql) {
+    
+    //return 0 when mysql_query is successful,
+    //return non 0 value when mysql_query is not successful
+    if(mysql_query(connection, sql.c_str()))
+    {
+        
+        cout << "In updateVENGooseGTNET1SQL, Query Error:" << mysql_error(connection); 
+        exit(1);
+        
+    } else {
+    
+        //fetchSQL("SELECT * FROM vendefaultopt");
+        
+        //cout << "VENGooseGTNET1 record has been updated!" << endl;
+    
+    }
+    
+    
+    return true;
+    
+}
+
+bool MyDB::updateVENGooseGTNET2SQL(string sql) {
+    
+    //return 0 when mysql_query is successful,
+    //return non 0 value when mysql_query is not successful
+    if(mysql_query(connection, sql.c_str()))
+    {
+        
+        cout << "In updateVENGooseGTNET2SQL, Query Error:" << mysql_error(connection); 
+        exit(1);
+        
+    } else {
+    
+        //fetchSQL("SELECT * FROM vendefaultopt");
+        
+        //cout << "VENGooseGTNET2 record has been updated!" << endl;
+    
+    }
+    return true;
+    
+}
+
+bool MyDB::updateVENGooseGTNET3SQL(string sql) {
+    
+    //return 0 when mysql_query is successful,
+    //return non 0 value when mysql_query is not successful
+    if(mysql_query(connection, sql.c_str()))
+    {
+        
+        cout << "In updateVENGooseGTNET3SQL, Query Error:" << mysql_error(connection); 
+        exit(1);
+        
+    } else {
+    
+        //fetchSQL("SELECT * FROM vendefaultopt");
+        
+        //cout << "VENGooseGTNET3 record has been updated!" << endl;
     
     }
     return true;

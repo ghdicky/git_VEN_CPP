@@ -1,0 +1,1 @@
+/usr/bin/g++  -fPIC  -Wall -std=c++11 -O0 -g  -shared -Wl,-soname,libdbwrapper.so -o libdbwrapper.so CMakeFiles/dbwrapper.dir/mysqlwrapper/mysqlwrapper.cpp.o libmysqlmgr.so libmysqlclient/libmysqlclient.a -Wl,-rpath,/home/hao/Downloads/VEN_CPP_source 

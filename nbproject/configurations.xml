@@ -8,11 +8,47 @@
           <in>gtest_main.cc</in>
         </df>
       </df>
+      <df name="goosemgr">
+        <df name="c">
+          <df name="src">
+            <df name="json">
+              <in>dataModelIndex.c</in>
+              <in>json.c</in>
+              <in>mongoose.c</in>
+            </df>
+            <in>ctypes.c</in>
+            <in>datatypes.c</in>
+            <in>decodePacket.c</in>
+            <in>encodePacket.c</in>
+            <in>gse.c</in>
+            <in>gseDecode.c</in>
+            <in>gseDecodeBasic.c</in>
+            <in>gseDecodePacket.c</in>
+            <in>gseEncode.c</in>
+            <in>gseEncodeBasic.c</in>
+            <in>gseEncodePacket.c</in>
+            <in>iec61850.c</in>
+            <in>ied.c</in>
+            <in>interface.c</in>
+            <in>interfaceSendPacket.c</in>
+            <in>sv.c</in>
+            <in>svDecode.c</in>
+            <in>svDecodeBasic.c</in>
+            <in>svDecodePacket.c</in>
+            <in>svEncode.c</in>
+            <in>svEncodeBasic.c</in>
+            <in>svEncodePacket.c</in>
+          </df>
+        </df>
+      </df>
       <df name="Http">
         <in>HttpHandler.cpp</in>
       </df>
       <df name="mysqlmgr">
         <in>MyDB.cpp</in>
+      </df>
+      <df name="mysqlwrapper">
+        <in>mysqlwrapper.cpp</in>
       </df>
       <df name="oadr">
         <df name="oadr">
@@ -418,13 +454,17 @@
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <flagsDictionary>
-        <element flagsID="0"
-                 commonFlags="-mtune=generic -march=x86-64 -std=c++11 -fPIC -fstack-protector-strong"/>
+        <element flagsID="0" commonFlags="-fPIC"/>
         <element flagsID="1"
-                 commonFlags="-mtune=generic -march=x86-64 -std=c++11 -fstack-protector-strong"/>
+                 commonFlags="-mtune=generic -march=x86-64 -fPIC -fstack-protector-strong"/>
         <element flagsID="2"
+                 commonFlags="-mtune=generic -march=x86-64 -std=c++11 -fPIC -fstack-protector-strong"/>
+        <element flagsID="3"
+                 commonFlags="-mtune=generic -march=x86-64 -std=c++11 -fstack-protector-strong"/>
+        <element flagsID="4"
                  commonFlags="-mtune=generic -march=x86-64 -std=c++11 -std=c++11 -fstack-protector-strong"/>
-        <element flagsID="3" commonFlags="-std=c++11 -fPIC"/>
+        <element flagsID="5" commonFlags="-std=c++11"/>
+        <element flagsID="6" commonFlags="-std=c++11 -fPIC"/>
       </flagsDictionary>
       <codeAssistance>
       </codeAssistance>
@@ -434,6 +474,13 @@
           <buildCommand>${MAKE} -f Makefile -j4</buildCommand>
           <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
           <executablePath>samplevenmgr</executablePath>
+          <cTool>
+            <preprocessorList>
+              <Elem>ELPP_NO_DEFAULT_LOG_FILE=1</Elem>
+              <Elem>ELPP_THREAD_SAFE=1</Elem>
+              <Elem>goosemgr_EXPORTS=1</Elem>
+            </preprocessorList>
+          </cTool>
         </makeTool>
         <preBuild>
           <preBuildCommandWorkingDir>.</preBuildCommandWorkingDir>
@@ -441,7 +488,7 @@
         </preBuild>
       </makefileType>
       <item path="Http/HttpHandler.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="3">
+        <ccTool flags="6">
         </ccTool>
       </item>
       <folder path="0/Http">
@@ -474,12 +521,38 @@
           </preprocessorList>
         </ccTool>
       </folder>
+      <folder path="0/goosemgr/c/src/json">
+        <cTool>
+          <incDir>
+            <pElem>goosemgr/c/src/json</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>__PIC__=2</Elem>
+            <Elem>__REGISTER_PREFIX__=</Elem>
+            <Elem>__USER_LABEL_PREFIX__=</Elem>
+            <Elem>__pic__=2</Elem>
+          </preprocessorList>
+        </cTool>
+      </folder>
       <folder path="0/mysqlmgr">
         <ccTool>
           <incDir>
             <pElem>mysqlmgr</pElem>
             <pElem>/usr/include/mysql</pElem>
             <pElem>/usr/include/mysql/mysql/psi</pElem>
+            <pElem>.</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/mysqlwrapper">
+        <ccTool>
+          <incDir>
+            <pElem>mysqlwrapper</pElem>
+            <pElem>/usr/include/mysql</pElem>
+            <pElem>/usr/include/mysql/mysql/psi</pElem>
+            <pElem>mysqlmgr</pElem>
+            <pElem>goosemgr/c/src</pElem>
+            <pElem>goosemgr/c</pElem>
             <pElem>.</pElem>
           </incDir>
         </ccTool>
@@ -491,6 +564,8 @@
             <pElem>oadrsd</pElem>
             <pElem>xsd-4.0.0</pElem>
             <pElem>mysqlmgr</pElem>
+            <pElem>mysqlwrapper</pElem>
+            <pElem>goosemgr/c</pElem>
             <pElem>.</pElem>
           </incDir>
           <incFile>
@@ -524,10 +599,16 @@
           </incDir>
         </ccTool>
       </folder>
-      <folder path="0/oadr/oadr/manager/eventmanager/job">
+      <folder path="0/oadr/oadr/manager/eventmanager">
         <ccTool>
           <incDir>
             <pElem>/usr/include/xercesc/util</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/oadr/oadr/manager/eventmanager/job">
+        <ccTool>
+          <incDir>
             <pElem>oadr/oadr/manager/eventmanager/job/event</pElem>
           </incDir>
         </ccTool>
@@ -575,6 +656,8 @@
             <pElem>oadrsd</pElem>
             <pElem>xsd-4.0.0</pElem>
             <pElem>mysqlmgr</pElem>
+            <pElem>mysqlwrapper</pElem>
+            <pElem>goosemgr/c</pElem>
             <pElem>.</pElem>
           </incDir>
           <incFile>
@@ -616,7 +699,13 @@
       <folder path="0/samplevenmanager">
         <ccTool>
           <incDir>
-            <pElem>/usr/include/xercesc/util</pElem>
+            <pElem>oadr</pElem>
+            <pElem>oadrsd</pElem>
+            <pElem>xsd-4.0.0</pElem>
+            <pElem>mysqlmgr</pElem>
+            <pElem>mysqlwrapper</pElem>
+            <pElem>goosemgr/c</pElem>
+            <pElem>.</pElem>
           </incDir>
           <preprocessorList>
             <Elem>ELPP_NO_DEFAULT_LOG_FILE</Elem>
@@ -628,7 +717,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="2">
+        <ccTool flags="4">
           <incDir>
             <pElem>googletest-release-1.7.0/include/gtest/internal</pElem>
             <pElem>googletest-release-1.7.0/include/gtest</pElem>
@@ -640,7 +729,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="2">
+        <ccTool flags="4">
           <incDir>
             <pElem>googletest-release-1.7.0/include/gtest</pElem>
             <pElem>googletest-release-1.7.0/src</pElem>
@@ -648,15 +737,350 @@
           </incDir>
         </ccTool>
       </item>
+      <item path="goosemgr/c/src/ctypes.c" ex="false" tool="0" flavor2="3">
+        <cTool flags="1">
+          <incDir>
+            <pElem>goosemgr/c/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>__PIC__=2</Elem>
+            <Elem>__REGISTER_PREFIX__=</Elem>
+            <Elem>__USER_LABEL_PREFIX__=</Elem>
+            <Elem>__pic__=2</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="goosemgr/c/src/datatypes.c" ex="false" tool="0" flavor2="3">
+        <cTool flags="1">
+          <incDir>
+            <pElem>goosemgr/c/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>__PIC__=2</Elem>
+            <Elem>__REGISTER_PREFIX__=</Elem>
+            <Elem>__USER_LABEL_PREFIX__=</Elem>
+            <Elem>__pic__=2</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="goosemgr/c/src/decodePacket.c" ex="false" tool="0" flavor2="3">
+        <cTool flags="1">
+          <incDir>
+            <pElem>goosemgr/c/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>__PIC__=2</Elem>
+            <Elem>__REGISTER_PREFIX__=</Elem>
+            <Elem>__USER_LABEL_PREFIX__=</Elem>
+            <Elem>__pic__=2</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="goosemgr/c/src/encodePacket.c" ex="false" tool="0" flavor2="3">
+        <cTool flags="1">
+          <incDir>
+            <pElem>goosemgr/c/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>__PIC__=2</Elem>
+            <Elem>__REGISTER_PREFIX__=</Elem>
+            <Elem>__USER_LABEL_PREFIX__=</Elem>
+            <Elem>__pic__=2</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="goosemgr/c/src/gse.c" ex="false" tool="0" flavor2="3">
+        <cTool flags="1">
+          <incDir>
+            <pElem>goosemgr/c/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>__PIC__=2</Elem>
+            <Elem>__REGISTER_PREFIX__=</Elem>
+            <Elem>__USER_LABEL_PREFIX__=</Elem>
+            <Elem>__pic__=2</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="goosemgr/c/src/gseDecode.c" ex="false" tool="0" flavor2="3">
+        <cTool flags="1">
+          <incDir>
+            <pElem>goosemgr/c/src</pElem>
+            <pElem>mysqlwrapper</pElem>
+            <pElem>oadr</pElem>
+            <pElem>.</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>__PIC__=2</Elem>
+            <Elem>__REGISTER_PREFIX__=</Elem>
+            <Elem>__USER_LABEL_PREFIX__=</Elem>
+            <Elem>__pic__=2</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="goosemgr/c/src/gseDecodeBasic.c" ex="false" tool="0" flavor2="3">
+        <cTool flags="1">
+          <incDir>
+            <pElem>goosemgr/c/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>__PIC__=2</Elem>
+            <Elem>__REGISTER_PREFIX__=</Elem>
+            <Elem>__USER_LABEL_PREFIX__=</Elem>
+            <Elem>__pic__=2</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="goosemgr/c/src/gseDecodePacket.c" ex="false" tool="0" flavor2="3">
+        <cTool flags="1">
+          <incDir>
+            <pElem>goosemgr/c/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>__PIC__=2</Elem>
+            <Elem>__REGISTER_PREFIX__=</Elem>
+            <Elem>__USER_LABEL_PREFIX__=</Elem>
+            <Elem>__pic__=2</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="goosemgr/c/src/gseEncode.c" ex="false" tool="0" flavor2="3">
+        <cTool flags="1">
+          <incDir>
+            <pElem>goosemgr/c/src</pElem>
+            <pElem>.</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>__PIC__=2</Elem>
+            <Elem>__REGISTER_PREFIX__=</Elem>
+            <Elem>__USER_LABEL_PREFIX__=</Elem>
+            <Elem>__pic__=2</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="goosemgr/c/src/gseEncodeBasic.c" ex="false" tool="0" flavor2="3">
+        <cTool flags="1">
+          <incDir>
+            <pElem>goosemgr/c/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>__PIC__=2</Elem>
+            <Elem>__REGISTER_PREFIX__=</Elem>
+            <Elem>__USER_LABEL_PREFIX__=</Elem>
+            <Elem>__pic__=2</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="goosemgr/c/src/gseEncodePacket.c" ex="false" tool="0" flavor2="3">
+        <cTool flags="1">
+          <incDir>
+            <pElem>goosemgr/c/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>__PIC__=2</Elem>
+            <Elem>__REGISTER_PREFIX__=</Elem>
+            <Elem>__USER_LABEL_PREFIX__=</Elem>
+            <Elem>__pic__=2</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="goosemgr/c/src/iec61850.c" ex="false" tool="0" flavor2="3">
+        <cTool flags="1">
+          <incDir>
+            <pElem>goosemgr/c/src</pElem>
+            <pElem>goosemgr/c/src/json</pElem>
+            <pElem>.</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>__PIC__=2</Elem>
+            <Elem>__REGISTER_PREFIX__=</Elem>
+            <Elem>__USER_LABEL_PREFIX__=</Elem>
+            <Elem>__pic__=2</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="goosemgr/c/src/ied.c" ex="false" tool="0" flavor2="3">
+        <cTool flags="1">
+          <incDir>
+            <pElem>goosemgr/c/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>__PIC__=2</Elem>
+            <Elem>__REGISTER_PREFIX__=</Elem>
+            <Elem>__USER_LABEL_PREFIX__=</Elem>
+            <Elem>__pic__=2</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="goosemgr/c/src/interface.c" ex="false" tool="0" flavor2="3">
+        <cTool flags="0">
+          <incDir>
+            <pElem>oadr</pElem>
+            <pElem>oadrsd</pElem>
+            <pElem>xsd-4.0.0</pElem>
+            <pElem>mysqlmgr</pElem>
+            <pElem>mysqlwrapper</pElem>
+            <pElem>goosemgr/c</pElem>
+            <pElem>.</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>ELPP_NO_DEFAULT_LOG_FILE</Elem>
+            <Elem>ELPP_THREAD_SAFE</Elem>
+            <Elem>goosemgr_EXPORTS</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="goosemgr/c/src/interfaceSendPacket.c"
+            ex="false"
+            tool="0"
+            flavor2="3">
+        <cTool flags="0">
+          <incDir>
+            <pElem>oadr</pElem>
+            <pElem>oadrsd</pElem>
+            <pElem>xsd-4.0.0</pElem>
+            <pElem>mysqlmgr</pElem>
+            <pElem>mysqlwrapper</pElem>
+            <pElem>goosemgr/c</pElem>
+            <pElem>.</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>ELPP_NO_DEFAULT_LOG_FILE</Elem>
+            <Elem>ELPP_THREAD_SAFE</Elem>
+            <Elem>goosemgr_EXPORTS</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="goosemgr/c/src/json/dataModelIndex.c"
+            ex="false"
+            tool="0"
+            flavor2="3">
+        <cTool flags="1">
+          <incDir>
+            <pElem>goosemgr/c/src</pElem>
+            <pElem>.</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="goosemgr/c/src/json/json.c" ex="false" tool="0" flavor2="3">
+        <cTool flags="1">
+          <incDir>
+            <pElem>goosemgr/c/src</pElem>
+            <pElem>.</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="goosemgr/c/src/json/mongoose.c" ex="false" tool="0" flavor2="3">
+        <cTool flags="1">
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="goosemgr/c/src/sv.c" ex="false" tool="0" flavor2="3">
+        <cTool flags="1">
+          <incDir>
+            <pElem>goosemgr/c/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>__PIC__=2</Elem>
+            <Elem>__REGISTER_PREFIX__=</Elem>
+            <Elem>__USER_LABEL_PREFIX__=</Elem>
+            <Elem>__pic__=2</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="goosemgr/c/src/svDecode.c" ex="false" tool="0" flavor2="3">
+        <cTool flags="1">
+          <incDir>
+            <pElem>goosemgr/c/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>__PIC__=2</Elem>
+            <Elem>__REGISTER_PREFIX__=</Elem>
+            <Elem>__USER_LABEL_PREFIX__=</Elem>
+            <Elem>__pic__=2</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="goosemgr/c/src/svDecodeBasic.c" ex="false" tool="0" flavor2="3">
+        <cTool flags="1">
+          <incDir>
+            <pElem>goosemgr/c/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>__PIC__=2</Elem>
+            <Elem>__REGISTER_PREFIX__=</Elem>
+            <Elem>__USER_LABEL_PREFIX__=</Elem>
+            <Elem>__pic__=2</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="goosemgr/c/src/svDecodePacket.c" ex="false" tool="0" flavor2="3">
+        <cTool flags="1">
+          <incDir>
+            <pElem>goosemgr/c/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>__PIC__=2</Elem>
+            <Elem>__REGISTER_PREFIX__=</Elem>
+            <Elem>__USER_LABEL_PREFIX__=</Elem>
+            <Elem>__pic__=2</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="goosemgr/c/src/svEncode.c" ex="false" tool="0" flavor2="3">
+        <cTool flags="1">
+          <incDir>
+            <pElem>goosemgr/c/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>__PIC__=2</Elem>
+            <Elem>__REGISTER_PREFIX__=</Elem>
+            <Elem>__USER_LABEL_PREFIX__=</Elem>
+            <Elem>__pic__=2</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="goosemgr/c/src/svEncodeBasic.c" ex="false" tool="0" flavor2="3">
+        <cTool flags="1">
+          <incDir>
+            <pElem>goosemgr/c/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>__PIC__=2</Elem>
+            <Elem>__REGISTER_PREFIX__=</Elem>
+            <Elem>__USER_LABEL_PREFIX__=</Elem>
+            <Elem>__pic__=2</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
+      <item path="goosemgr/c/src/svEncodePacket.c" ex="false" tool="0" flavor2="3">
+        <cTool flags="1">
+          <incDir>
+            <pElem>goosemgr/c/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>__PIC__=2</Elem>
+            <Elem>__REGISTER_PREFIX__=</Elem>
+            <Elem>__USER_LABEL_PREFIX__=</Elem>
+            <Elem>__pic__=2</Elem>
+          </preprocessorList>
+        </cTool>
+      </item>
       <item path="mysqlmgr/MyDB.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="mysqlwrapper/mysqlwrapper.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="oadr/oadr/helper/DateTimeConverter.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>/usr/include/xercesc/util</pElem>
             <pElem>xsd-4.0.0/xsd/cxx/tree</pElem>
@@ -674,21 +1098,21 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>oadr/oadr/helper</pElem>
           </incDir>
         </ccTool>
       </item>
       <item path="oadr/oadr/helper/RandomHex.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>oadr/oadr/helper</pElem>
           </incDir>
         </ccTool>
       </item>
       <item path="oadr/oadr/helper/Timezone.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>oadr/oadr/helper</pElem>
           </incDir>
@@ -698,76 +1122,70 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="oadr/oadr/helper/conditionalsleep/IConditionalSleep.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="oadr/oadr/helper/globaltime/GlobalTime.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="oadr/oadr/helper/globaltime/GlobalTimeStandard.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="oadr/oadr/helper/globaltime/IGlobalTime.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="oadr/oadr/helper/thread/IRun.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="oadr/oadr/helper/thread/ThreadRunner.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="oadr/oadr/manager/IOADRExceptionService.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>oadr/oadr/manager</pElem>
             <pElem>oadr/oadr/ven/http</pElem>
           </incDir>
-          <incFile>
-            <pElem>/usr/local/include/pistache/net.h</pElem>
-          </incFile>
         </ccTool>
       </item>
       <item path="oadr/oadr/manager/IVENManager.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>oadr/oadr/manager</pElem>
             <pElem>oadr/oadr/helper/conditionalsleep</pElem>
             <pElem>oadr/oadr/scheduler</pElem>
           </incDir>
-          <incFile>
-            <pElem>/usr/local/include/pistache/net.h</pElem>
-          </incFile>
         </ccTool>
       </item>
       <item path="oadr/oadr/manager/VENManager.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>/usr/include/xercesc/util</pElem>
             <pElem>xsd-4.0.0/xsd/cxx/tree</pElem>
@@ -792,25 +1210,35 @@
             <pElem>oadr/oadr/helper/conditionalsleep</pElem>
             <pElem>samplevenmanager/samplevenmanager</pElem>
           </incDir>
-          <incFile>
-            <pElem>/usr/local/include/pistache/net.h</pElem>
-          </incFile>
         </ccTool>
       </item>
       <item path="oadr/oadr/manager/eventmanager/EventManager.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="3">
+        <ccTool flags="2">
+          <incDir>
+            <pElem>xsd-4.0.0/xsd/cxx/tree</pElem>
+            <pElem>oadrsd/oadrsd/2b</pElem>
+            <pElem>oadr/oadr/manager/eventmanager</pElem>
+            <pElem>oadr/oadr/scheduler</pElem>
+            <pElem>/usr/include/xercesc/dom</pElem>
+            <pElem>/usr/include/xercesc/framework</pElem>
+            <pElem>xsd-4.0.0/xsd/cxx/xml</pElem>
+            <pElem>xsd-4.0.0/xsd/cxx/xml/dom</pElem>
+            <pElem>oadr/oadr/request</pElem>
+            <pElem>/usr/include/mysql</pElem>
+            <pElem>/usr/include/mysql/mysql/psi</pElem>
+            <pElem>oadr/oadr/helper</pElem>
+          </incDir>
         </ccTool>
       </item>
       <item path="oadr/oadr/manager/eventmanager/IEventService.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
-            <pElem>/usr/include/xercesc/util</pElem>
             <pElem>oadr/oadr/manager/eventmanager</pElem>
             <pElem>/usr/include/xercesc/dom</pElem>
             <pElem>/usr/include/xercesc/framework</pElem>
@@ -819,18 +1247,14 @@
             <pElem>xsd-4.0.0/xsd/cxx/tree</pElem>
             <pElem>oadrsd/oadrsd/2b</pElem>
           </incDir>
-          <incFile>
-            <pElem>/usr/local/include/pistache/net.h</pElem>
-          </incFile>
         </ccTool>
       </item>
       <item path="oadr/oadr/manager/eventmanager/ISendCreatedEvent.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
-            <pElem>/usr/include/xercesc/util</pElem>
             <pElem>oadr/oadr/manager/eventmanager</pElem>
             <pElem>/usr/include/xercesc/dom</pElem>
             <pElem>/usr/include/xercesc/framework</pElem>
@@ -839,16 +1263,13 @@
             <pElem>xsd-4.0.0/xsd/cxx/tree</pElem>
             <pElem>oadrsd/oadrsd/2b</pElem>
           </incDir>
-          <incFile>
-            <pElem>/usr/local/include/pistache/net.h</pElem>
-          </incFile>
         </ccTool>
       </item>
       <item path="oadr/oadr/manager/eventmanager/job/event/JobEventComplete.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>oadr/oadr/scheduler</pElem>
             <pElem>/usr/include/xercesc/dom</pElem>
@@ -864,7 +1285,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>oadr/oadr/scheduler</pElem>
             <pElem>/usr/include/xercesc/dom</pElem>
@@ -880,7 +1301,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>/usr/include/xercesc/dom</pElem>
             <pElem>/usr/include/xercesc/framework</pElem>
@@ -897,7 +1318,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>oadr/oadr/manager/reportmanager</pElem>
             <pElem>/usr/include/xercesc/dom</pElem>
@@ -913,7 +1334,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>oadr/oadr/manager/reportmanager</pElem>
             <pElem>/usr/include/xercesc/dom</pElem>
@@ -929,7 +1350,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree</pElem>
             <pElem>oadr/oadr/manager/reportmanager</pElem>
@@ -945,7 +1366,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree</pElem>
             <pElem>oadr/oadr/manager/reportmanager</pElem>
@@ -963,14 +1384,14 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="oadr/oadr/request/CancelPartyRegistration.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>/usr/include/xercesc/util</pElem>
             <pElem>xsd-4.0.0/xsd/cxx/tree</pElem>
@@ -988,7 +1409,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>/usr/include/xercesc/util</pElem>
             <pElem>xsd-4.0.0/xsd/cxx/tree</pElem>
@@ -1006,7 +1427,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>/usr/include/xercesc/util</pElem>
             <pElem>xsd-4.0.0/xsd/cxx/tree</pElem>
@@ -1021,7 +1442,7 @@
         </ccTool>
       </item>
       <item path="oadr/oadr/request/CreatedEvent.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>/usr/include/xercesc/util</pElem>
             <pElem>xsd-4.0.0/xsd/cxx/tree</pElem>
@@ -1039,7 +1460,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>/usr/include/xercesc/util</pElem>
             <pElem>xsd-4.0.0/xsd/cxx/tree</pElem>
@@ -1057,14 +1478,14 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>oadr/oadr/request</pElem>
           </incDir>
         </ccTool>
       </item>
       <item path="oadr/oadr/request/Oadr2bHelper.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>/usr/include/xercesc/util</pElem>
             <pElem>xsd-4.0.0/xsd/cxx/tree</pElem>
@@ -1081,7 +1502,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>/usr/include/xercesc/util</pElem>
             <pElem>xsd-4.0.0/xsd/cxx/tree</pElem>
@@ -1099,14 +1520,14 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>oadr/oadr/request</pElem>
           </incDir>
         </ccTool>
       </item>
       <item path="oadr/oadr/request/Poll.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>/usr/include/xercesc/util</pElem>
             <pElem>xsd-4.0.0/xsd/cxx/tree</pElem>
@@ -1124,7 +1545,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>/usr/include/xercesc/util</pElem>
             <pElem>xsd-4.0.0/xsd/cxx/tree</pElem>
@@ -1139,7 +1560,7 @@
         </ccTool>
       </item>
       <item path="oadr/oadr/request/RequestEvent.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>/usr/include/xercesc/util</pElem>
             <pElem>xsd-4.0.0/xsd/cxx/tree</pElem>
@@ -1157,7 +1578,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>oadr/oadr/request/opt</pElem>
             <pElem>oadrsd/oadrsd/2b</pElem>
@@ -1174,7 +1595,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>oadrsd/oadrsd/2b</pElem>
             <pElem>oadr/oadr/request/opt</pElem>
@@ -1191,7 +1612,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>oadrsd/oadrsd/2b</pElem>
             <pElem>oadr/oadr/request/opt</pElem>
@@ -1208,7 +1629,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>oadrsd/oadrsd/2b</pElem>
             <pElem>oadr/oadr/request/opt</pElem>
@@ -1225,7 +1646,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>oadrsd/oadrsd/2b</pElem>
             <pElem>oadr/oadr/request/opt</pElem>
@@ -1240,7 +1661,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>oadr/oadr/request/opt</pElem>
             <pElem>oadrsd/oadrsd/2b</pElem>
@@ -1258,7 +1679,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>/usr/include/xercesc/util</pElem>
             <pElem>xsd-4.0.0/xsd/cxx/tree</pElem>
@@ -1277,7 +1698,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>/usr/include/xercesc/util</pElem>
             <pElem>xsd-4.0.0/xsd/cxx/tree</pElem>
@@ -1296,7 +1717,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>/usr/include/xercesc/util</pElem>
             <pElem>xsd-4.0.0/xsd/cxx/tree</pElem>
@@ -1315,7 +1736,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>oadr/oadr/request/report</pElem>
           </incDir>
@@ -1325,7 +1746,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>/usr/include/xercesc/util</pElem>
             <pElem>xsd-4.0.0/xsd/cxx/tree</pElem>
@@ -1341,19 +1762,19 @@
         </ccTool>
       </item>
       <item path="oadr/oadr/scheduler/IJob.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="oadr/oadr/scheduler/IScheduler.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="oadr/oadr/scheduler/JobLambda.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="oadr/oadr/scheduler/Scheduler.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>oadr/oadr/helper/conditionalsleep</pElem>
           </incDir>
@@ -1363,25 +1784,25 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="oadr/oadr/scheduler/SchedulerJobs.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="oadr/oadr/ven/IOadrMessage.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>oadr/oadr/ven</pElem>
           </incDir>
         </ccTool>
       </item>
       <item path="oadr/oadr/ven/VEN2b.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>/usr/include/xercesc/util</pElem>
             <pElem>xsd-4.0.0/xsd/cxx/tree</pElem>
@@ -1401,14 +1822,14 @@
         </ccTool>
       </item>
       <item path="oadr/oadr/ven/http/CurlBuffer.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="oadr/oadr/ven/http/CurlException.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>/usr/include/curl</pElem>
           </incDir>
@@ -1418,29 +1839,29 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="oadr/oadr/ven/http/CurlSendBuffer.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="oadr/oadr/ven/http/HttpCurl.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>/usr/include/curl</pElem>
           </incDir>
         </ccTool>
       </item>
       <item path="oadr/oadr/ven/http/IHttp.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/AccuracyType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -1464,7 +1885,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -1488,7 +1909,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -1512,7 +1933,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -1533,7 +1954,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/AvailableType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -1554,7 +1975,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/BaseUnitType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -1578,7 +1999,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -1602,7 +2023,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -1626,7 +2047,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -1647,7 +2068,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/CryptoBinary.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -1668,7 +2089,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/CurrentType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -1689,7 +2110,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/CurveType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -1713,7 +2134,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -1737,7 +2158,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -1758,7 +2179,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/DateTimeType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -1782,7 +2203,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -1806,7 +2227,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -1830,7 +2251,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -1854,7 +2275,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -1878,7 +2299,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -1902,7 +2323,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -1923,7 +2344,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/ECPointType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -1947,7 +2368,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -1971,7 +2392,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -1992,7 +2413,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/EiOptType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -2016,7 +2437,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -2037,7 +2458,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/EiTargetType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -2061,7 +2482,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -2085,7 +2506,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -2109,7 +2530,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -2133,7 +2554,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -2157,7 +2578,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -2181,7 +2602,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -2205,7 +2626,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -2226,7 +2647,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/FieldIDType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -2247,7 +2668,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/FrequencyType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -2271,7 +2692,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -2295,7 +2716,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -2316,7 +2737,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/IntervalType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -2337,7 +2758,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/ItemBaseType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -2361,7 +2782,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -2382,7 +2803,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/KeyInfoType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -2403,7 +2824,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/KeyValueType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -2424,7 +2845,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/LinearRing.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -2445,7 +2866,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/ManifestType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -2469,7 +2890,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -2493,7 +2914,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -2514,7 +2935,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/MridType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -2538,7 +2959,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -2559,7 +2980,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/NodeType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -2580,7 +3001,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/ObjectType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -2604,7 +3025,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -2625,7 +3046,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/OptReasonType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -2646,7 +3067,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/OptTypeType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -2667,7 +3088,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/PGPDataType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -2691,7 +3112,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -2715,7 +3136,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -2739,7 +3160,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -2760,7 +3181,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/PnodeType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -2781,7 +3202,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/Polygon.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -2805,7 +3226,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -2829,7 +3250,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -2850,7 +3271,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/PowerItemType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -2874,7 +3295,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -2895,7 +3316,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/PowerRealType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -2919,7 +3340,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -2943,7 +3364,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -2967,7 +3388,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -2991,7 +3412,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -3015,7 +3436,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -3036,7 +3457,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/ReferenceType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -3060,7 +3481,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -3084,7 +3505,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -3108,7 +3529,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -3132,7 +3553,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -3156,7 +3577,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -3180,7 +3601,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -3204,7 +3625,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -3225,7 +3646,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/SPKIDataType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -3249,7 +3670,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -3273,7 +3694,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -3297,7 +3718,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -3321,7 +3742,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -3345,7 +3766,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -3369,7 +3790,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -3393,7 +3814,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -3417,7 +3838,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -3441,7 +3862,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -3462,7 +3883,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/SignatureType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -3486,7 +3907,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -3510,7 +3931,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -3534,7 +3955,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -3558,7 +3979,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -3582,7 +4003,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -3603,7 +4024,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/ThermType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -3627,7 +4048,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -3648,7 +4069,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/TransformType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -3672,7 +4093,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -3696,7 +4117,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -3717,7 +4138,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/UidType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -3741,7 +4162,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -3762,7 +4183,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/VoltageType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -3786,7 +4207,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -3807,7 +4228,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/X509DataType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -3831,7 +4252,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -3855,7 +4276,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -3876,7 +4297,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/categoryType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -3897,7 +4318,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/contentType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -3921,7 +4342,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -3942,7 +4363,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/currencyType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -3966,7 +4387,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -3987,7 +4408,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/dateTimeType1.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -4008,7 +4429,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/doubleList.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -4029,7 +4450,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/dtend.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -4050,7 +4471,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/dtstart.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -4074,7 +4495,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -4098,7 +4519,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -4122,7 +4543,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -4146,7 +4567,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -4170,7 +4591,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -4191,7 +4612,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/eiEventType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -4215,7 +4636,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -4239,7 +4660,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -4260,7 +4681,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/emailType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -4281,7 +4702,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/entryType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -4305,7 +4726,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -4326,7 +4747,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/eventResponse.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -4350,7 +4771,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -4371,7 +4792,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/exterior.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -4392,7 +4813,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/feedType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -4413,7 +4834,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/generatorType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -4434,7 +4855,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/iconType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -4455,7 +4876,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/idType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -4476,7 +4897,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/intervals.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -4497,7 +4918,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/linkType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -4518,7 +4939,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/location.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -4539,7 +4960,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/logoType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -4563,7 +4984,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -4587,7 +5008,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -4611,7 +5032,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -4635,7 +5056,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -4659,7 +5080,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -4683,7 +5104,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -4707,7 +5128,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -4731,7 +5152,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -4755,7 +5176,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -4779,7 +5200,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -4803,7 +5224,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -4827,7 +5248,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -4851,7 +5272,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -4875,7 +5296,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -4899,7 +5320,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -4923,7 +5344,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -4944,7 +5365,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/oadrEvent.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -4965,7 +5386,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/oadrExtension.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -4989,7 +5410,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -5013,7 +5434,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -5037,7 +5458,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -5058,7 +5479,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/oadrInfo.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -5082,7 +5503,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -5106,7 +5527,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -5127,7 +5548,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/oadrPayload.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -5151,7 +5572,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -5175,7 +5596,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -5196,7 +5617,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/oadrPollType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -5217,7 +5638,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/oadrProfile.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -5241,7 +5662,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -5262,7 +5683,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/oadrProfiles.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -5286,7 +5707,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -5310,7 +5731,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -5334,7 +5755,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -5358,7 +5779,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -5382,7 +5803,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -5406,7 +5827,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -5430,7 +5851,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -5454,7 +5875,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -5478,7 +5899,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -5502,7 +5923,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -5526,7 +5947,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -5547,7 +5968,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/oadrService.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -5571,7 +5992,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -5595,7 +6016,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -5619,7 +6040,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -5640,7 +6061,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/oadrTransport.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -5664,7 +6085,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -5688,7 +6109,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -5712,7 +6133,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -5736,7 +6157,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -5757,7 +6178,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/oadr_20b.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree</pElem>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
@@ -5783,7 +6204,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -5804,7 +6225,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/oadr_atom.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -5825,7 +6246,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/oadr_ei_20b.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -5846,7 +6267,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/oadr_emix_20b.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -5867,7 +6288,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/oadr_gml_20b.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -5891,7 +6312,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -5912,7 +6333,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/oadr_pyld_20b.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -5936,7 +6357,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -5957,7 +6378,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/oadr_strm_20b.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -5978,7 +6399,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/oadr_xcal_20b.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -5999,7 +6420,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/oadr_xml.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -6020,7 +6441,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/oadr_xmldsig.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -6044,7 +6465,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -6065,7 +6486,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/personType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -6086,7 +6507,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/properties.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -6110,7 +6531,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -6134,7 +6555,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -6158,7 +6579,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -6182,7 +6603,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -6206,7 +6627,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -6230,7 +6651,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -6254,7 +6675,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -6275,7 +6696,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/sourceType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -6296,7 +6717,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/space.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -6320,7 +6741,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -6344,7 +6765,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -6365,7 +6786,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/textType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -6386,7 +6807,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/tolerance.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -6407,7 +6828,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/tolerate.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -6428,7 +6849,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/type.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -6449,7 +6870,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/uid.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -6470,7 +6891,7 @@
         </ccTool>
       </item>
       <item path="oadrsd/oadrsd/2b/uriType.cxx" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="2">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree/bits</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -6494,7 +6915,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="3">
           <incDir>
             <pElem>/usr/include/xercesc/util</pElem>
             <pElem>xsd-4.0.0/xsd/cxx/tree</pElem>
@@ -6513,7 +6934,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="3">
           <incDir>
             <pElem>oadrtest/oadrtest/helper</pElem>
           </incDir>
@@ -6523,7 +6944,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="3">
           <incDir>
             <pElem>oadrtest/oadrtest/helper</pElem>
           </incDir>
@@ -6533,7 +6954,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="3">
           <incDir>
             <pElem>oadrtest/oadrtest/helper</pElem>
             <pElem>oadr/oadr/scheduler</pElem>
@@ -6542,7 +6963,7 @@
         </ccTool>
       </item>
       <item path="oadrtest/oadrtest/main.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="3">
           <incDir>
             <pElem>googletest-release-1.7.0/include/gtest</pElem>
             <pElem>/usr/include/xercesc/util</pElem>
@@ -6555,7 +6976,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="3">
           <incDir>
             <pElem>googletest-release-1.7.0/include/gtest/internal</pElem>
             <pElem>googletest-release-1.7.0/include/gtest</pElem>
@@ -6579,7 +7000,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="3">
           <incDir>
             <pElem>googletest-release-1.7.0/include/gtest/internal</pElem>
             <pElem>googletest-release-1.7.0/include/gtest</pElem>
@@ -6603,7 +7024,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="3">
           <incDir>
             <pElem>googletest-release-1.7.0/include/gtest/internal</pElem>
             <pElem>googletest-release-1.7.0/include/gtest</pElem>
@@ -6625,7 +7046,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="3">
           <incDir>
             <pElem>googletest-release-1.7.0/include/gtest/internal</pElem>
             <pElem>googletest-release-1.7.0/include/gtest</pElem>
@@ -6648,7 +7069,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="3">
           <incDir>
             <pElem>googletest-release-1.7.0/include/gtest/internal</pElem>
             <pElem>googletest-release-1.7.0/include/gtest</pElem>
@@ -6672,7 +7093,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="3">
           <incDir>
             <pElem>googletest-release-1.7.0/include/gtest/internal</pElem>
             <pElem>googletest-release-1.7.0/include/gtest</pElem>
@@ -6700,7 +7121,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="3">
           <incDir>
             <pElem>/usr/include/xercesc/util</pElem>
             <pElem>oadrtest/oadrtest/helper</pElem>
@@ -6728,7 +7149,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="3">
           <incDir>
             <pElem>oadrtest/oadrtest/tests/eventmanager</pElem>
             <pElem>/usr/include/xercesc/dom</pElem>
@@ -6745,7 +7166,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="3">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree</pElem>
             <pElem>oadrtest/oadrtest/tests/eventmanager</pElem>
@@ -6765,7 +7186,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="3">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree</pElem>
             <pElem>oadrtest/oadrtest/tests/eventmanager</pElem>
@@ -6783,7 +7204,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="3">
           <incDir>
             <pElem>xsd-4.0.0/xsd/cxx/tree</pElem>
             <pElem>googletest-release-1.7.0/include/gtest/internal</pElem>
@@ -6806,7 +7227,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="3">
           <incDir>
             <pElem>/usr/include/xercesc/util</pElem>
             <pElem>xsd-4.0.0/xsd/cxx/tree</pElem>
@@ -6826,7 +7247,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="3">
           <incDir>
             <pElem>oadrtest/oadrtest/tests/helper</pElem>
             <pElem>oadr/oadr/helper</pElem>
@@ -6838,7 +7259,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="3">
           <incDir>
             <pElem>/usr/include/xercesc/util</pElem>
             <pElem>xsd-4.0.0/xsd/cxx/tree</pElem>
@@ -6863,7 +7284,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="3">
           <incDir>
             <pElem>oadrtest/oadrtest/tests/helper</pElem>
           </incDir>
@@ -6873,7 +7294,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="3">
           <incDir>
             <pElem>/usr/include/xercesc/util</pElem>
             <pElem>oadrtest/oadrtest/tests/reportmanager</pElem>
@@ -6894,7 +7315,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="3">
           <incDir>
             <pElem>/usr/include/xercesc/util</pElem>
             <pElem>oadrtest/oadrtest/tests/reportmanager</pElem>
@@ -6915,7 +7336,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="3">
           <incDir>
             <pElem>googletest-release-1.7.0/include/gtest/internal</pElem>
             <pElem>googletest-release-1.7.0/include/gtest</pElem>
@@ -6941,7 +7362,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="3">
           <incDir>
             <pElem>/usr/include/xercesc/util</pElem>
             <pElem>xsd-4.0.0/xsd/cxx/tree</pElem>
@@ -6966,7 +7387,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="3">
           <incDir>
             <pElem>oadrtest/oadrtest/tests/scheduler</pElem>
             <pElem>oadr/oadr/scheduler</pElem>
@@ -6978,7 +7399,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="3">
           <incDir>
             <pElem>oadrtest/oadrtest/tests/scheduler</pElem>
             <pElem>oadr/oadr/scheduler</pElem>
@@ -6990,7 +7411,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="3">
           <incDir>
             <pElem>oadrtest/oadrtest/tests/scheduler</pElem>
             <pElem>oadr/oadr/scheduler</pElem>
@@ -7002,7 +7423,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="3">
           <incDir>
             <pElem>oadrtest/oadrtest/tests/scheduler</pElem>
             <pElem>oadr/oadr/helper/conditionalsleep</pElem>
@@ -7014,7 +7435,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="3">
           <incDir>
             <pElem>googletest-release-1.7.0/include/gtest/internal</pElem>
             <pElem>googletest-release-1.7.0/include/gtest</pElem>
@@ -7028,7 +7449,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="3">
           <incDir>
             <pElem>googletest-release-1.7.0/include/gtest/internal</pElem>
             <pElem>googletest-release-1.7.0/include/gtest</pElem>
@@ -7043,7 +7464,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="3">
           <incDir>
             <pElem>oadr/oadr/ven/http</pElem>
             <pElem>oadrtest/oadrtest/tests/ven</pElem>
@@ -7055,7 +7476,7 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="3">
           <incDir>
             <pElem>googletest-release-1.7.0/include/gtest/internal</pElem>
             <pElem>googletest-release-1.7.0/include/gtest</pElem>
@@ -7083,62 +7504,14 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
-          <incDir>
-            <pElem>xsd-4.0.0/xsd/cxx/tree</pElem>
-            <pElem>samplevenmanager/samplevenmanager</pElem>
-            <pElem>/usr/include/xercesc/dom</pElem>
-            <pElem>/usr/include/xercesc/framework</pElem>
-            <pElem>xsd-4.0.0/xsd/cxx/xml</pElem>
-            <pElem>xsd-4.0.0/xsd/cxx/xml/dom</pElem>
-            <pElem>oadrsd/oadrsd/2b</pElem>
-            <pElem>oadr/oadr/manager/reportmanager</pElem>
-            <pElem>oadr/oadr/ven/http</pElem>
-            <pElem>oadr/oadr/request</pElem>
-            <pElem>oadr/oadr/request/report</pElem>
-            <pElem>oadr/oadr/helper</pElem>
-            <pElem>oadr</pElem>
-            <pElem>xsd-4.0.0</pElem>
-            <pElem>oadrsd</pElem>
-            <pElem>.</pElem>
-          </incDir>
+        <ccTool flags="5">
         </ccTool>
       </item>
       <item path="samplevenmanager/samplevenmanager/main.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
-          <incDir>
-            <pElem>oadr/oadr/manager</pElem>
-            <pElem>samplevenmanager/samplevenmanager</pElem>
-            <pElem>/usr/local/include/pistache</pElem>
-            <pElem>rapidjson</pElem>
-            <pElem>rapidjson/internal</pElem>
-            <pElem>rapidjson/error</pElem>
-            <pElem>/usr/include/xercesc/dom</pElem>
-            <pElem>/usr/include/xercesc/framework</pElem>
-            <pElem>xsd-4.0.0/xsd/cxx/xml</pElem>
-            <pElem>xsd-4.0.0/xsd/cxx/xml/dom</pElem>
-            <pElem>xsd-4.0.0/xsd/cxx/tree</pElem>
-            <pElem>oadrsd/oadrsd/2b</pElem>
-            <pElem>oadr/oadr/manager/reportmanager</pElem>
-            <pElem>oadr/oadr/ven/http</pElem>
-            <pElem>oadr/oadr/helper</pElem>
-            <pElem>oadr/oadr/request</pElem>
-            <pElem>oadr/oadr/request/opt</pElem>
-            <pElem>mysqlmgr</pElem>
-            <pElem>oadr/oadr/ven</pElem>
-            <pElem>oadr/oadr/request/report</pElem>
-            <pElem>oadr/oadr/helper/thread</pElem>
-            <pElem>oadr/oadr/scheduler</pElem>
-            <pElem>oadr/oadr/manager/eventmanager</pElem>
-            <pElem>oadr/oadr/helper/conditionalsleep</pElem>
-            <pElem>.</pElem>
-            <pElem>xsd-4.0.0</pElem>
-            <pElem>oadrsd</pElem>
-            <pElem>oadr</pElem>
-          </incDir>
+        <ccTool flags="5">
         </ccTool>
       </item>
     </conf>

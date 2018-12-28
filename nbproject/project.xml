@@ -4,7 +4,7 @@
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
             <name>VEN_CPP_source</name>
-            <c-extensions>c</c-extensions>
+            <c-extensions>c,i</c-extensions>
             <cpp-extensions>cc,cpp,cxx</cpp-extensions>
             <header-extensions>h,hxx,ixx,txx</header-extensions>
             <sourceEncoding>UTF-8</sourceEncoding>

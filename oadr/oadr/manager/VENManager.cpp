@@ -33,7 +33,7 @@ VENManager::VENManager(unique_ptr<VEN2b> ven, IEventService *eventService, IRepo
 	m_shutdown = false;
         
         /* initialize MyDB db */
-        db.initDB("localhost", "xx", "xx", "test");
+        //db.connectDB("localhost", "hao", "111111", "test");
         
 }
 
@@ -454,6 +454,8 @@ void VENManager::selectOptFunction()
    HTTP POST Request with content of defaultOptMode */
 string VENManager::configDefaultOpt(string http_opt){
     
+    string defaultOpt;
+    
     cout << "Calling venManager->configDefaultOpt(string http_opt)" << endl;
     
     if (http_opt.compare("OptIn") == 0) {
@@ -465,8 +467,9 @@ string VENManager::configDefaultOpt(string http_opt){
         existing_opt_status = "OptIn";
         
         //update the field defaultopt in table vendefaultopt in MySQL
+        db.connectDB("localhost", "hao", "111111", "test");
         db.updateDefaultOptSQL("UPDATE vendefaultopt SET defaultopt='" + existing_opt_status + "' WHERE recordID=1");
-        
+        db.closeDB();
                
         
     } else if (http_opt.compare("OptOut") == 0) {
@@ -478,12 +481,17 @@ string VENManager::configDefaultOpt(string http_opt){
         existing_opt_status = "OptOut";
         
         //update the field defaultopt in table vendefaultopt in MySQL
+        db.connectDB("localhost", "hao", "111111", "test");
         db.updateDefaultOptSQL("UPDATE vendefaultopt SET defaultopt='" + existing_opt_status + "' WHERE recordID=1");   
+        db.closeDB();
         
     }
     
     // return the defaultopt value from MySQL
-    return db.getDefaultOptSQL();
+    db.connectDB("localhost", "hao", "111111", "test");
+    defaultOpt = db.getDefaultOptSQL();
+    db.closeDB();
+    return defaultOpt;
 
 }
 
@@ -507,9 +515,10 @@ void VENManager::configVENInfo(){
     
     
     //call db.updateVENInfoSQL() and db.updateDefaultOptSQL() every time the VEN runs 
+    db.connectDB("localhost", "hao", "111111", "test");
     db.updateVENInfoSQL(command);
     db.updateDefaultOptSQL("UPDATE vendefaultopt SET defaultopt= 'OptIn' WHERE recordID=1"); // the dafault opt when VEN runs is OptOut
-           
+    db.closeDB();       
 }
 
 
@@ -527,9 +536,12 @@ string VENManager::configIndividualOpt(string eventID, string individualOptValue
     
     m_eventManager->manageIndividualEventOpt(eventID, individualOptValue);
     
+    
+    db.connectDB("localhost", "hao", "111111", "test");
     string individualOptValueDB = db.getIndividualOptSQL(eventID);
     
     string message = "{\"eventID\":" + eventID + ", \"individualOptMode\":" + individualOptValueDB + "}"; 
+    db.closeDB();
     
     return message;
         

@@ -588,8 +588,9 @@ void VEN2b::postRequest(Oadr2bRequest *request, string endPoint)
         
         float responseTime = (milliEnd - milliStart) / 1000.0;
         
+        db.connectDB("localhost", "hao", "111111", "test");
         db.updateVENMessageSQL("INSERT INTO venlog (dtstamp, responseTime, venRequest, vtnResponse, responseCode, responseDescription, venRequestXML, vtnResponseXML) VALUES (FROM_UNIXTIME(" + std::to_string(now) + "), '" + std::to_string(responseTime) + "', '" + request->requestType() + "', '" + responseType + "', '" + responseCode + "', '" + responseDescription + "', '" + requestBody + "', '" + request->responseBody() + "')");
-        
+        db.closeDB();
         
 }
 

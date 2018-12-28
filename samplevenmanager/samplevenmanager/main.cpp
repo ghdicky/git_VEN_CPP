@@ -30,6 +30,16 @@
 #include "../../rapidjson/error/en.h" // this is to translate the parsing error into english
 
 
+// include the pcap.h header file for capturing incoming packets
+#include <pcap.h>
+
+// include the rapid61850.h and interface.h header files for receiving and sending GOOSE
+// use rapid61850 as high level interface
+extern "C" {
+#include "../../goosemgr/c/src/iec61850.h"
+#include "../../goosemgr/c/src/interface.h"
+}    
+   
 
 
 
@@ -61,10 +71,16 @@ VENManagerConfig config;
 bool logToStdout = true;
 
 
+// length and buffer are used for receiving IEC 61850 packets 
+//int length = 0;
+//unsigned char buffer[2048] = {0};
+
+
 /* Initialise the global variable global_optType */
 /* Default value is optOut */
 oadr2b::ei::OptTypeType::value global_optType = oadr2b::ei::OptTypeType::optOut;
 /* string global_optType = "Opt_Out"; */
+
 
 
 
@@ -356,6 +372,42 @@ int main(int argc, char **argv)
         //MyDB db;
 
         
+        // initialise the GOOSE and SV structures of all emulated IEDs
+        // especially VENIED1, VENIED2 and VENIED3 
+        start();
+        
+        //E1Q1SB1.S1.C1.TVTRa_1.Vol.instMag.f = 1.024;                   // set a value that appears in the dataset used by the "ItlPositions" GOOSE Control
+        //length = E1Q1SB1.S1.C1.LN0.ItlPositions.send(buffer, 1, 512);  // generate a goose packet, and store the bytes in "buffer"
+        //send_ethernet_packet(buffer, length);                          // platform-specific call to send an Ethernet packet
+        
+        
+        
+        //length = recv_ethernet_packet(buffer);
+        //gse_sv_packet_filter(buffer, length);
+        
+        // read value that was updated by the packet
+        //float = inputValue = D1
+                
+
+	//interface_gse_send_E1Q1SB1_C1_Performance(1, 512);
+        
+        //SendVENIED1.P1.C1.GGIO_1_21P.AnIn.mag.f = 0.002;
+        //SendVENIED2.P1.C1.GGIO_1_53P.AnIn.mag.f = 0.0018;
+        //SendVENIED3.P1.C1.GGIO_1_70P.AnIn.mag.f = 0.0012;
+        
+        //interface_gse_send_SendVENIED1_C1_outputs1(1, 600000);
+        //interface_gse_send_SendVENIED2_C1_outputs2(1, 600000);
+        //interface_gse_send_SendVENIED3_C1_outputs3(1, 600000);
+        
+        //interface_gse_send_SendVENIED1_C1_outputs1(1, 600000);
+        //interface_gse_send_SendVENIED1_C1_outputs1(1, 600000);
+        //interface_gse_send_SendVENIED1_C1_outputs1(1, 600000);
+
+        
+
+        
+        
+	//return 0;
         
         //MyController myController;
         //Server server(2000);
@@ -390,6 +442,11 @@ int main(int argc, char **argv)
         std::thread first (&IVENManager::run, venManager); /* This is the 1st thread running venManager->run() */  
         //std::thread second (&IVENManager::selectOptFunction, venManager); /* This is the 2nd thread running venManager->selectOptType() */
         
+        // to continually sniff incoming GOOSE packets using readPacket() of interface.c  
+        std::thread second (readPacket); /* This is the 2nd thread running readPacket */
+        
+        // to continually send GOOSE if event and load shift process starts and in the event interval or the load shift period
+        std::thread third (periodic_interface_gse_send);
         
         /* run the HTTP server */
         /*runHttpServer();*/
@@ -398,11 +455,12 @@ int main(int argc, char **argv)
         //first.join();
         //second.join();
         
-        
+        cout << ReceiveGTNET1.received_gtnet_c1_outputs1.C1_GGIO_2_SubP.mag.f << endl;
         //http server starts running
         //server.serve(); 
         Http::listenAndServe<HttpHandler>("127.0.0.1:9080");
         
+  
         
                        
 

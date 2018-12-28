@@ -119,6 +119,12 @@ samplevenmgr: CMakeFiles/samplevenmgr.dir/build.make
 samplevenmgr: libpistache/libpistache.a
 samplevenmgr: liboadr.so
 samplevenmgr: liboadrsd.so
+samplevenmgr: libgoosemgr.so
+samplevenmgr: goosemgr/c/Lib/libpacket.a
+samplevenmgr: goosemgr/c/Lib/libwpcap.a
+samplevenmgr: goosemgr/c/Lib/Packet.lib
+samplevenmgr: goosemgr/c/Lib/wpcap.lib
+samplevenmgr: libdbwrapper.so
 samplevenmgr: libmysqlmgr.so
 samplevenmgr: libmysqlclient/libmysqlclient.a
 samplevenmgr: CMakeFiles/samplevenmgr.dir/link.txt

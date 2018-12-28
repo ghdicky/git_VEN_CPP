@@ -18,6 +18,8 @@
 #include <iostream>
 #include <string>
 
+
+
 /* mysql.h is from package libmysqlclient-dev, path is /usr/include/mysql/mysql.h*/
 /* install the package by >sudo apt-get install libmysqlclient-dev */
 #include <mysql/mysql.h>
@@ -31,7 +33,9 @@ public:
         
         MyDB(); //declare constructor for Class MyDB
         ~MyDB(); //declare the desctructor for Class MyDB
-        bool initDB(string host, string user, string pwd, string db_name); //declare the initDB() function to connect to mySQL database
+        bool connectDB(string host, string user, string pwd, string db_name); //declare the connectDB() function to connect to mySQL database
+        bool closeDB(); // decleare the closeDB() function to quit the mySQL database 
+        
         bool fetchSQL(string sql); // declare the fetchSQL() function to execute SQL SELECT query
         bool updateDefaultOptSQL(string sql); // declare the updateDefaultOptSQL() function to update the Default Opt mode of VEN
         string getDefaultOptSQL(); // declare the getDefaultOptSQL() function to retrieve the Default Opt mode of VEN
@@ -42,6 +46,10 @@ public:
         bool updateVENMessageSQL(string sql); // declare the updateVENNameSQL() function to update the VEN Logs
         
         bool updateVENEventSQL(string sql); // declare the updateVENEventSQL() function to update the VEN Events 
+        
+        bool updateVENGooseGTNET1SQL(string sql); // declare the updateVENGooseGTNET1SQL() function to update the VEN GOOSE 
+        bool updateVENGooseGTNET2SQL(string sql); // declare the updateVENGooseGTNET2SQL() function to update the VEN GOOSE 
+        bool updateVENGooseGTNET3SQL(string sql); // declare the updateVENGooseGTNET3SQL() function to update the VEN GOOSE 
         
         bool updateVENEventSignalSQL(string sql); // declare the updateVENEventSignalSQL() function to update the VEN Event signals 
         bool deleteVENEventSignalSQL(string sql); // declare the deleteVENEventSignalSQL() function to delete the VEN Event signals 
@@ -63,6 +71,10 @@ private:
 
 
 extern MyDB db;
+extern MyDB db_GOOSE;
+extern MyDB db_VENImpl;
+
+
 
 #endif /* MYDB_H */
 

@@ -56,50 +56,6 @@ CMAKE_BINARY_DIR = /home/hao/Downloads/VEN_CPP_source
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: install/local
-
-.PHONY : install/local/fast
-
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: install/strip
-
-.PHONY : install/strip/fast
-
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
@@ -121,6 +77,50 @@ list_install_components:
 list_install_components/fast: list_install_components
 
 .PHONY : list_install_components/fast
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: install/strip
+
+.PHONY : install/strip/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: install/local
+
+.PHONY : install/local/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -155,22 +155,22 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named oadr
+# Target rules for targets named goosemgr
 
 # Build rule for target.
-oadr: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 oadr
-.PHONY : oadr
+goosemgr: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 goosemgr
+.PHONY : goosemgr
 
 # fast build rule for target.
-oadr/fast:
-	$(MAKE) -f CMakeFiles/oadr.dir/build.make CMakeFiles/oadr.dir/build
-.PHONY : oadr/fast
+goosemgr/fast:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/build
+.PHONY : goosemgr/fast
 
 # Manual pre-install relink rule for target.
-oadr/preinstall:
-	$(MAKE) -f CMakeFiles/oadr.dir/build.make CMakeFiles/oadr.dir/preinstall
-.PHONY : oadr/preinstall
+goosemgr/preinstall:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/preinstall
+.PHONY : goosemgr/preinstall
 
 #=============================================================================
 # Target rules for targets named mysqlmgr
@@ -191,17 +191,22 @@ mysqlmgr/preinstall:
 .PHONY : mysqlmgr/preinstall
 
 #=============================================================================
-# Target rules for targets named oadrsd
+# Target rules for targets named oadr
 
 # Build rule for target.
-oadrsd: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 oadrsd
-.PHONY : oadrsd
+oadr: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 oadr
+.PHONY : oadr
 
 # fast build rule for target.
-oadrsd/fast:
-	$(MAKE) -f CMakeFiles/oadrsd.dir/build.make CMakeFiles/oadrsd.dir/build
-.PHONY : oadrsd/fast
+oadr/fast:
+	$(MAKE) -f CMakeFiles/oadr.dir/build.make CMakeFiles/oadr.dir/build
+.PHONY : oadr/fast
+
+# Manual pre-install relink rule for target.
+oadr/preinstall:
+	$(MAKE) -f CMakeFiles/oadr.dir/build.make CMakeFiles/oadr.dir/preinstall
+.PHONY : oadr/preinstall
 
 #=============================================================================
 # Target rules for targets named samplevenmgr
@@ -215,6 +220,712 @@ samplevenmgr: cmake_check_build_system
 samplevenmgr/fast:
 	$(MAKE) -f CMakeFiles/samplevenmgr.dir/build.make CMakeFiles/samplevenmgr.dir/build
 .PHONY : samplevenmgr/fast
+
+#=============================================================================
+# Target rules for targets named dbwrapper
+
+# Build rule for target.
+dbwrapper: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 dbwrapper
+.PHONY : dbwrapper
+
+# fast build rule for target.
+dbwrapper/fast:
+	$(MAKE) -f CMakeFiles/dbwrapper.dir/build.make CMakeFiles/dbwrapper.dir/build
+.PHONY : dbwrapper/fast
+
+# Manual pre-install relink rule for target.
+dbwrapper/preinstall:
+	$(MAKE) -f CMakeFiles/dbwrapper.dir/build.make CMakeFiles/dbwrapper.dir/preinstall
+.PHONY : dbwrapper/preinstall
+
+#=============================================================================
+# Target rules for targets named oadrsd
+
+# Build rule for target.
+oadrsd: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 oadrsd
+.PHONY : oadrsd
+
+# fast build rule for target.
+oadrsd/fast:
+	$(MAKE) -f CMakeFiles/oadrsd.dir/build.make CMakeFiles/oadrsd.dir/build
+.PHONY : oadrsd/fast
+
+goosemgr/c/src/ctypes.o: goosemgr/c/src/ctypes.c.o
+
+.PHONY : goosemgr/c/src/ctypes.o
+
+# target to build an object file
+goosemgr/c/src/ctypes.c.o:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/ctypes.c.o
+.PHONY : goosemgr/c/src/ctypes.c.o
+
+goosemgr/c/src/ctypes.i: goosemgr/c/src/ctypes.c.i
+
+.PHONY : goosemgr/c/src/ctypes.i
+
+# target to preprocess a source file
+goosemgr/c/src/ctypes.c.i:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/ctypes.c.i
+.PHONY : goosemgr/c/src/ctypes.c.i
+
+goosemgr/c/src/ctypes.s: goosemgr/c/src/ctypes.c.s
+
+.PHONY : goosemgr/c/src/ctypes.s
+
+# target to generate assembly for a file
+goosemgr/c/src/ctypes.c.s:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/ctypes.c.s
+.PHONY : goosemgr/c/src/ctypes.c.s
+
+goosemgr/c/src/datatypes.o: goosemgr/c/src/datatypes.c.o
+
+.PHONY : goosemgr/c/src/datatypes.o
+
+# target to build an object file
+goosemgr/c/src/datatypes.c.o:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/datatypes.c.o
+.PHONY : goosemgr/c/src/datatypes.c.o
+
+goosemgr/c/src/datatypes.i: goosemgr/c/src/datatypes.c.i
+
+.PHONY : goosemgr/c/src/datatypes.i
+
+# target to preprocess a source file
+goosemgr/c/src/datatypes.c.i:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/datatypes.c.i
+.PHONY : goosemgr/c/src/datatypes.c.i
+
+goosemgr/c/src/datatypes.s: goosemgr/c/src/datatypes.c.s
+
+.PHONY : goosemgr/c/src/datatypes.s
+
+# target to generate assembly for a file
+goosemgr/c/src/datatypes.c.s:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/datatypes.c.s
+.PHONY : goosemgr/c/src/datatypes.c.s
+
+goosemgr/c/src/decodePacket.o: goosemgr/c/src/decodePacket.c.o
+
+.PHONY : goosemgr/c/src/decodePacket.o
+
+# target to build an object file
+goosemgr/c/src/decodePacket.c.o:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/decodePacket.c.o
+.PHONY : goosemgr/c/src/decodePacket.c.o
+
+goosemgr/c/src/decodePacket.i: goosemgr/c/src/decodePacket.c.i
+
+.PHONY : goosemgr/c/src/decodePacket.i
+
+# target to preprocess a source file
+goosemgr/c/src/decodePacket.c.i:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/decodePacket.c.i
+.PHONY : goosemgr/c/src/decodePacket.c.i
+
+goosemgr/c/src/decodePacket.s: goosemgr/c/src/decodePacket.c.s
+
+.PHONY : goosemgr/c/src/decodePacket.s
+
+# target to generate assembly for a file
+goosemgr/c/src/decodePacket.c.s:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/decodePacket.c.s
+.PHONY : goosemgr/c/src/decodePacket.c.s
+
+goosemgr/c/src/encodePacket.o: goosemgr/c/src/encodePacket.c.o
+
+.PHONY : goosemgr/c/src/encodePacket.o
+
+# target to build an object file
+goosemgr/c/src/encodePacket.c.o:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/encodePacket.c.o
+.PHONY : goosemgr/c/src/encodePacket.c.o
+
+goosemgr/c/src/encodePacket.i: goosemgr/c/src/encodePacket.c.i
+
+.PHONY : goosemgr/c/src/encodePacket.i
+
+# target to preprocess a source file
+goosemgr/c/src/encodePacket.c.i:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/encodePacket.c.i
+.PHONY : goosemgr/c/src/encodePacket.c.i
+
+goosemgr/c/src/encodePacket.s: goosemgr/c/src/encodePacket.c.s
+
+.PHONY : goosemgr/c/src/encodePacket.s
+
+# target to generate assembly for a file
+goosemgr/c/src/encodePacket.c.s:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/encodePacket.c.s
+.PHONY : goosemgr/c/src/encodePacket.c.s
+
+goosemgr/c/src/gse.o: goosemgr/c/src/gse.c.o
+
+.PHONY : goosemgr/c/src/gse.o
+
+# target to build an object file
+goosemgr/c/src/gse.c.o:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/gse.c.o
+.PHONY : goosemgr/c/src/gse.c.o
+
+goosemgr/c/src/gse.i: goosemgr/c/src/gse.c.i
+
+.PHONY : goosemgr/c/src/gse.i
+
+# target to preprocess a source file
+goosemgr/c/src/gse.c.i:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/gse.c.i
+.PHONY : goosemgr/c/src/gse.c.i
+
+goosemgr/c/src/gse.s: goosemgr/c/src/gse.c.s
+
+.PHONY : goosemgr/c/src/gse.s
+
+# target to generate assembly for a file
+goosemgr/c/src/gse.c.s:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/gse.c.s
+.PHONY : goosemgr/c/src/gse.c.s
+
+goosemgr/c/src/gseDecode.o: goosemgr/c/src/gseDecode.c.o
+
+.PHONY : goosemgr/c/src/gseDecode.o
+
+# target to build an object file
+goosemgr/c/src/gseDecode.c.o:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/gseDecode.c.o
+.PHONY : goosemgr/c/src/gseDecode.c.o
+
+goosemgr/c/src/gseDecode.i: goosemgr/c/src/gseDecode.c.i
+
+.PHONY : goosemgr/c/src/gseDecode.i
+
+# target to preprocess a source file
+goosemgr/c/src/gseDecode.c.i:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/gseDecode.c.i
+.PHONY : goosemgr/c/src/gseDecode.c.i
+
+goosemgr/c/src/gseDecode.s: goosemgr/c/src/gseDecode.c.s
+
+.PHONY : goosemgr/c/src/gseDecode.s
+
+# target to generate assembly for a file
+goosemgr/c/src/gseDecode.c.s:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/gseDecode.c.s
+.PHONY : goosemgr/c/src/gseDecode.c.s
+
+goosemgr/c/src/gseDecodeBasic.o: goosemgr/c/src/gseDecodeBasic.c.o
+
+.PHONY : goosemgr/c/src/gseDecodeBasic.o
+
+# target to build an object file
+goosemgr/c/src/gseDecodeBasic.c.o:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/gseDecodeBasic.c.o
+.PHONY : goosemgr/c/src/gseDecodeBasic.c.o
+
+goosemgr/c/src/gseDecodeBasic.i: goosemgr/c/src/gseDecodeBasic.c.i
+
+.PHONY : goosemgr/c/src/gseDecodeBasic.i
+
+# target to preprocess a source file
+goosemgr/c/src/gseDecodeBasic.c.i:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/gseDecodeBasic.c.i
+.PHONY : goosemgr/c/src/gseDecodeBasic.c.i
+
+goosemgr/c/src/gseDecodeBasic.s: goosemgr/c/src/gseDecodeBasic.c.s
+
+.PHONY : goosemgr/c/src/gseDecodeBasic.s
+
+# target to generate assembly for a file
+goosemgr/c/src/gseDecodeBasic.c.s:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/gseDecodeBasic.c.s
+.PHONY : goosemgr/c/src/gseDecodeBasic.c.s
+
+goosemgr/c/src/gseDecodePacket.o: goosemgr/c/src/gseDecodePacket.c.o
+
+.PHONY : goosemgr/c/src/gseDecodePacket.o
+
+# target to build an object file
+goosemgr/c/src/gseDecodePacket.c.o:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/gseDecodePacket.c.o
+.PHONY : goosemgr/c/src/gseDecodePacket.c.o
+
+goosemgr/c/src/gseDecodePacket.i: goosemgr/c/src/gseDecodePacket.c.i
+
+.PHONY : goosemgr/c/src/gseDecodePacket.i
+
+# target to preprocess a source file
+goosemgr/c/src/gseDecodePacket.c.i:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/gseDecodePacket.c.i
+.PHONY : goosemgr/c/src/gseDecodePacket.c.i
+
+goosemgr/c/src/gseDecodePacket.s: goosemgr/c/src/gseDecodePacket.c.s
+
+.PHONY : goosemgr/c/src/gseDecodePacket.s
+
+# target to generate assembly for a file
+goosemgr/c/src/gseDecodePacket.c.s:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/gseDecodePacket.c.s
+.PHONY : goosemgr/c/src/gseDecodePacket.c.s
+
+goosemgr/c/src/gseEncode.o: goosemgr/c/src/gseEncode.c.o
+
+.PHONY : goosemgr/c/src/gseEncode.o
+
+# target to build an object file
+goosemgr/c/src/gseEncode.c.o:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/gseEncode.c.o
+.PHONY : goosemgr/c/src/gseEncode.c.o
+
+goosemgr/c/src/gseEncode.i: goosemgr/c/src/gseEncode.c.i
+
+.PHONY : goosemgr/c/src/gseEncode.i
+
+# target to preprocess a source file
+goosemgr/c/src/gseEncode.c.i:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/gseEncode.c.i
+.PHONY : goosemgr/c/src/gseEncode.c.i
+
+goosemgr/c/src/gseEncode.s: goosemgr/c/src/gseEncode.c.s
+
+.PHONY : goosemgr/c/src/gseEncode.s
+
+# target to generate assembly for a file
+goosemgr/c/src/gseEncode.c.s:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/gseEncode.c.s
+.PHONY : goosemgr/c/src/gseEncode.c.s
+
+goosemgr/c/src/gseEncodeBasic.o: goosemgr/c/src/gseEncodeBasic.c.o
+
+.PHONY : goosemgr/c/src/gseEncodeBasic.o
+
+# target to build an object file
+goosemgr/c/src/gseEncodeBasic.c.o:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/gseEncodeBasic.c.o
+.PHONY : goosemgr/c/src/gseEncodeBasic.c.o
+
+goosemgr/c/src/gseEncodeBasic.i: goosemgr/c/src/gseEncodeBasic.c.i
+
+.PHONY : goosemgr/c/src/gseEncodeBasic.i
+
+# target to preprocess a source file
+goosemgr/c/src/gseEncodeBasic.c.i:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/gseEncodeBasic.c.i
+.PHONY : goosemgr/c/src/gseEncodeBasic.c.i
+
+goosemgr/c/src/gseEncodeBasic.s: goosemgr/c/src/gseEncodeBasic.c.s
+
+.PHONY : goosemgr/c/src/gseEncodeBasic.s
+
+# target to generate assembly for a file
+goosemgr/c/src/gseEncodeBasic.c.s:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/gseEncodeBasic.c.s
+.PHONY : goosemgr/c/src/gseEncodeBasic.c.s
+
+goosemgr/c/src/gseEncodePacket.o: goosemgr/c/src/gseEncodePacket.c.o
+
+.PHONY : goosemgr/c/src/gseEncodePacket.o
+
+# target to build an object file
+goosemgr/c/src/gseEncodePacket.c.o:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/gseEncodePacket.c.o
+.PHONY : goosemgr/c/src/gseEncodePacket.c.o
+
+goosemgr/c/src/gseEncodePacket.i: goosemgr/c/src/gseEncodePacket.c.i
+
+.PHONY : goosemgr/c/src/gseEncodePacket.i
+
+# target to preprocess a source file
+goosemgr/c/src/gseEncodePacket.c.i:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/gseEncodePacket.c.i
+.PHONY : goosemgr/c/src/gseEncodePacket.c.i
+
+goosemgr/c/src/gseEncodePacket.s: goosemgr/c/src/gseEncodePacket.c.s
+
+.PHONY : goosemgr/c/src/gseEncodePacket.s
+
+# target to generate assembly for a file
+goosemgr/c/src/gseEncodePacket.c.s:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/gseEncodePacket.c.s
+.PHONY : goosemgr/c/src/gseEncodePacket.c.s
+
+goosemgr/c/src/iec61850.o: goosemgr/c/src/iec61850.c.o
+
+.PHONY : goosemgr/c/src/iec61850.o
+
+# target to build an object file
+goosemgr/c/src/iec61850.c.o:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/iec61850.c.o
+.PHONY : goosemgr/c/src/iec61850.c.o
+
+goosemgr/c/src/iec61850.i: goosemgr/c/src/iec61850.c.i
+
+.PHONY : goosemgr/c/src/iec61850.i
+
+# target to preprocess a source file
+goosemgr/c/src/iec61850.c.i:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/iec61850.c.i
+.PHONY : goosemgr/c/src/iec61850.c.i
+
+goosemgr/c/src/iec61850.s: goosemgr/c/src/iec61850.c.s
+
+.PHONY : goosemgr/c/src/iec61850.s
+
+# target to generate assembly for a file
+goosemgr/c/src/iec61850.c.s:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/iec61850.c.s
+.PHONY : goosemgr/c/src/iec61850.c.s
+
+goosemgr/c/src/ied.o: goosemgr/c/src/ied.c.o
+
+.PHONY : goosemgr/c/src/ied.o
+
+# target to build an object file
+goosemgr/c/src/ied.c.o:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/ied.c.o
+.PHONY : goosemgr/c/src/ied.c.o
+
+goosemgr/c/src/ied.i: goosemgr/c/src/ied.c.i
+
+.PHONY : goosemgr/c/src/ied.i
+
+# target to preprocess a source file
+goosemgr/c/src/ied.c.i:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/ied.c.i
+.PHONY : goosemgr/c/src/ied.c.i
+
+goosemgr/c/src/ied.s: goosemgr/c/src/ied.c.s
+
+.PHONY : goosemgr/c/src/ied.s
+
+# target to generate assembly for a file
+goosemgr/c/src/ied.c.s:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/ied.c.s
+.PHONY : goosemgr/c/src/ied.c.s
+
+goosemgr/c/src/interface.o: goosemgr/c/src/interface.c.o
+
+.PHONY : goosemgr/c/src/interface.o
+
+# target to build an object file
+goosemgr/c/src/interface.c.o:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/interface.c.o
+.PHONY : goosemgr/c/src/interface.c.o
+
+goosemgr/c/src/interface.i: goosemgr/c/src/interface.c.i
+
+.PHONY : goosemgr/c/src/interface.i
+
+# target to preprocess a source file
+goosemgr/c/src/interface.c.i:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/interface.c.i
+.PHONY : goosemgr/c/src/interface.c.i
+
+goosemgr/c/src/interface.s: goosemgr/c/src/interface.c.s
+
+.PHONY : goosemgr/c/src/interface.s
+
+# target to generate assembly for a file
+goosemgr/c/src/interface.c.s:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/interface.c.s
+.PHONY : goosemgr/c/src/interface.c.s
+
+goosemgr/c/src/interfaceSendPacket.o: goosemgr/c/src/interfaceSendPacket.c.o
+
+.PHONY : goosemgr/c/src/interfaceSendPacket.o
+
+# target to build an object file
+goosemgr/c/src/interfaceSendPacket.c.o:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/interfaceSendPacket.c.o
+.PHONY : goosemgr/c/src/interfaceSendPacket.c.o
+
+goosemgr/c/src/interfaceSendPacket.i: goosemgr/c/src/interfaceSendPacket.c.i
+
+.PHONY : goosemgr/c/src/interfaceSendPacket.i
+
+# target to preprocess a source file
+goosemgr/c/src/interfaceSendPacket.c.i:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/interfaceSendPacket.c.i
+.PHONY : goosemgr/c/src/interfaceSendPacket.c.i
+
+goosemgr/c/src/interfaceSendPacket.s: goosemgr/c/src/interfaceSendPacket.c.s
+
+.PHONY : goosemgr/c/src/interfaceSendPacket.s
+
+# target to generate assembly for a file
+goosemgr/c/src/interfaceSendPacket.c.s:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/interfaceSendPacket.c.s
+.PHONY : goosemgr/c/src/interfaceSendPacket.c.s
+
+goosemgr/c/src/json/dataModelIndex.o: goosemgr/c/src/json/dataModelIndex.c.o
+
+.PHONY : goosemgr/c/src/json/dataModelIndex.o
+
+# target to build an object file
+goosemgr/c/src/json/dataModelIndex.c.o:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/json/dataModelIndex.c.o
+.PHONY : goosemgr/c/src/json/dataModelIndex.c.o
+
+goosemgr/c/src/json/dataModelIndex.i: goosemgr/c/src/json/dataModelIndex.c.i
+
+.PHONY : goosemgr/c/src/json/dataModelIndex.i
+
+# target to preprocess a source file
+goosemgr/c/src/json/dataModelIndex.c.i:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/json/dataModelIndex.c.i
+.PHONY : goosemgr/c/src/json/dataModelIndex.c.i
+
+goosemgr/c/src/json/dataModelIndex.s: goosemgr/c/src/json/dataModelIndex.c.s
+
+.PHONY : goosemgr/c/src/json/dataModelIndex.s
+
+# target to generate assembly for a file
+goosemgr/c/src/json/dataModelIndex.c.s:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/json/dataModelIndex.c.s
+.PHONY : goosemgr/c/src/json/dataModelIndex.c.s
+
+goosemgr/c/src/json/json.o: goosemgr/c/src/json/json.c.o
+
+.PHONY : goosemgr/c/src/json/json.o
+
+# target to build an object file
+goosemgr/c/src/json/json.c.o:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/json/json.c.o
+.PHONY : goosemgr/c/src/json/json.c.o
+
+goosemgr/c/src/json/json.i: goosemgr/c/src/json/json.c.i
+
+.PHONY : goosemgr/c/src/json/json.i
+
+# target to preprocess a source file
+goosemgr/c/src/json/json.c.i:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/json/json.c.i
+.PHONY : goosemgr/c/src/json/json.c.i
+
+goosemgr/c/src/json/json.s: goosemgr/c/src/json/json.c.s
+
+.PHONY : goosemgr/c/src/json/json.s
+
+# target to generate assembly for a file
+goosemgr/c/src/json/json.c.s:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/json/json.c.s
+.PHONY : goosemgr/c/src/json/json.c.s
+
+goosemgr/c/src/json/mongoose.o: goosemgr/c/src/json/mongoose.c.o
+
+.PHONY : goosemgr/c/src/json/mongoose.o
+
+# target to build an object file
+goosemgr/c/src/json/mongoose.c.o:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/json/mongoose.c.o
+.PHONY : goosemgr/c/src/json/mongoose.c.o
+
+goosemgr/c/src/json/mongoose.i: goosemgr/c/src/json/mongoose.c.i
+
+.PHONY : goosemgr/c/src/json/mongoose.i
+
+# target to preprocess a source file
+goosemgr/c/src/json/mongoose.c.i:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/json/mongoose.c.i
+.PHONY : goosemgr/c/src/json/mongoose.c.i
+
+goosemgr/c/src/json/mongoose.s: goosemgr/c/src/json/mongoose.c.s
+
+.PHONY : goosemgr/c/src/json/mongoose.s
+
+# target to generate assembly for a file
+goosemgr/c/src/json/mongoose.c.s:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/json/mongoose.c.s
+.PHONY : goosemgr/c/src/json/mongoose.c.s
+
+goosemgr/c/src/sv.o: goosemgr/c/src/sv.c.o
+
+.PHONY : goosemgr/c/src/sv.o
+
+# target to build an object file
+goosemgr/c/src/sv.c.o:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/sv.c.o
+.PHONY : goosemgr/c/src/sv.c.o
+
+goosemgr/c/src/sv.i: goosemgr/c/src/sv.c.i
+
+.PHONY : goosemgr/c/src/sv.i
+
+# target to preprocess a source file
+goosemgr/c/src/sv.c.i:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/sv.c.i
+.PHONY : goosemgr/c/src/sv.c.i
+
+goosemgr/c/src/sv.s: goosemgr/c/src/sv.c.s
+
+.PHONY : goosemgr/c/src/sv.s
+
+# target to generate assembly for a file
+goosemgr/c/src/sv.c.s:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/sv.c.s
+.PHONY : goosemgr/c/src/sv.c.s
+
+goosemgr/c/src/svDecode.o: goosemgr/c/src/svDecode.c.o
+
+.PHONY : goosemgr/c/src/svDecode.o
+
+# target to build an object file
+goosemgr/c/src/svDecode.c.o:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/svDecode.c.o
+.PHONY : goosemgr/c/src/svDecode.c.o
+
+goosemgr/c/src/svDecode.i: goosemgr/c/src/svDecode.c.i
+
+.PHONY : goosemgr/c/src/svDecode.i
+
+# target to preprocess a source file
+goosemgr/c/src/svDecode.c.i:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/svDecode.c.i
+.PHONY : goosemgr/c/src/svDecode.c.i
+
+goosemgr/c/src/svDecode.s: goosemgr/c/src/svDecode.c.s
+
+.PHONY : goosemgr/c/src/svDecode.s
+
+# target to generate assembly for a file
+goosemgr/c/src/svDecode.c.s:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/svDecode.c.s
+.PHONY : goosemgr/c/src/svDecode.c.s
+
+goosemgr/c/src/svDecodeBasic.o: goosemgr/c/src/svDecodeBasic.c.o
+
+.PHONY : goosemgr/c/src/svDecodeBasic.o
+
+# target to build an object file
+goosemgr/c/src/svDecodeBasic.c.o:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/svDecodeBasic.c.o
+.PHONY : goosemgr/c/src/svDecodeBasic.c.o
+
+goosemgr/c/src/svDecodeBasic.i: goosemgr/c/src/svDecodeBasic.c.i
+
+.PHONY : goosemgr/c/src/svDecodeBasic.i
+
+# target to preprocess a source file
+goosemgr/c/src/svDecodeBasic.c.i:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/svDecodeBasic.c.i
+.PHONY : goosemgr/c/src/svDecodeBasic.c.i
+
+goosemgr/c/src/svDecodeBasic.s: goosemgr/c/src/svDecodeBasic.c.s
+
+.PHONY : goosemgr/c/src/svDecodeBasic.s
+
+# target to generate assembly for a file
+goosemgr/c/src/svDecodeBasic.c.s:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/svDecodeBasic.c.s
+.PHONY : goosemgr/c/src/svDecodeBasic.c.s
+
+goosemgr/c/src/svDecodePacket.o: goosemgr/c/src/svDecodePacket.c.o
+
+.PHONY : goosemgr/c/src/svDecodePacket.o
+
+# target to build an object file
+goosemgr/c/src/svDecodePacket.c.o:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/svDecodePacket.c.o
+.PHONY : goosemgr/c/src/svDecodePacket.c.o
+
+goosemgr/c/src/svDecodePacket.i: goosemgr/c/src/svDecodePacket.c.i
+
+.PHONY : goosemgr/c/src/svDecodePacket.i
+
+# target to preprocess a source file
+goosemgr/c/src/svDecodePacket.c.i:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/svDecodePacket.c.i
+.PHONY : goosemgr/c/src/svDecodePacket.c.i
+
+goosemgr/c/src/svDecodePacket.s: goosemgr/c/src/svDecodePacket.c.s
+
+.PHONY : goosemgr/c/src/svDecodePacket.s
+
+# target to generate assembly for a file
+goosemgr/c/src/svDecodePacket.c.s:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/svDecodePacket.c.s
+.PHONY : goosemgr/c/src/svDecodePacket.c.s
+
+goosemgr/c/src/svEncode.o: goosemgr/c/src/svEncode.c.o
+
+.PHONY : goosemgr/c/src/svEncode.o
+
+# target to build an object file
+goosemgr/c/src/svEncode.c.o:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/svEncode.c.o
+.PHONY : goosemgr/c/src/svEncode.c.o
+
+goosemgr/c/src/svEncode.i: goosemgr/c/src/svEncode.c.i
+
+.PHONY : goosemgr/c/src/svEncode.i
+
+# target to preprocess a source file
+goosemgr/c/src/svEncode.c.i:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/svEncode.c.i
+.PHONY : goosemgr/c/src/svEncode.c.i
+
+goosemgr/c/src/svEncode.s: goosemgr/c/src/svEncode.c.s
+
+.PHONY : goosemgr/c/src/svEncode.s
+
+# target to generate assembly for a file
+goosemgr/c/src/svEncode.c.s:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/svEncode.c.s
+.PHONY : goosemgr/c/src/svEncode.c.s
+
+goosemgr/c/src/svEncodeBasic.o: goosemgr/c/src/svEncodeBasic.c.o
+
+.PHONY : goosemgr/c/src/svEncodeBasic.o
+
+# target to build an object file
+goosemgr/c/src/svEncodeBasic.c.o:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/svEncodeBasic.c.o
+.PHONY : goosemgr/c/src/svEncodeBasic.c.o
+
+goosemgr/c/src/svEncodeBasic.i: goosemgr/c/src/svEncodeBasic.c.i
+
+.PHONY : goosemgr/c/src/svEncodeBasic.i
+
+# target to preprocess a source file
+goosemgr/c/src/svEncodeBasic.c.i:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/svEncodeBasic.c.i
+.PHONY : goosemgr/c/src/svEncodeBasic.c.i
+
+goosemgr/c/src/svEncodeBasic.s: goosemgr/c/src/svEncodeBasic.c.s
+
+.PHONY : goosemgr/c/src/svEncodeBasic.s
+
+# target to generate assembly for a file
+goosemgr/c/src/svEncodeBasic.c.s:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/svEncodeBasic.c.s
+.PHONY : goosemgr/c/src/svEncodeBasic.c.s
+
+goosemgr/c/src/svEncodePacket.o: goosemgr/c/src/svEncodePacket.c.o
+
+.PHONY : goosemgr/c/src/svEncodePacket.o
+
+# target to build an object file
+goosemgr/c/src/svEncodePacket.c.o:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/svEncodePacket.c.o
+.PHONY : goosemgr/c/src/svEncodePacket.c.o
+
+goosemgr/c/src/svEncodePacket.i: goosemgr/c/src/svEncodePacket.c.i
+
+.PHONY : goosemgr/c/src/svEncodePacket.i
+
+# target to preprocess a source file
+goosemgr/c/src/svEncodePacket.c.i:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/svEncodePacket.c.i
+.PHONY : goosemgr/c/src/svEncodePacket.c.i
+
+goosemgr/c/src/svEncodePacket.s: goosemgr/c/src/svEncodePacket.c.s
+
+.PHONY : goosemgr/c/src/svEncodePacket.s
+
+# target to generate assembly for a file
+goosemgr/c/src/svEncodePacket.c.s:
+	$(MAKE) -f CMakeFiles/goosemgr.dir/build.make CMakeFiles/goosemgr.dir/goosemgr/c/src/svEncodePacket.c.s
+.PHONY : goosemgr/c/src/svEncodePacket.c.s
 
 mysqlmgr/MyDB.o: mysqlmgr/MyDB.cpp.o
 
@@ -242,6 +953,33 @@ mysqlmgr/MyDB.s: mysqlmgr/MyDB.cpp.s
 mysqlmgr/MyDB.cpp.s:
 	$(MAKE) -f CMakeFiles/mysqlmgr.dir/build.make CMakeFiles/mysqlmgr.dir/mysqlmgr/MyDB.cpp.s
 .PHONY : mysqlmgr/MyDB.cpp.s
+
+mysqlwrapper/mysqlwrapper.o: mysqlwrapper/mysqlwrapper.cpp.o
+
+.PHONY : mysqlwrapper/mysqlwrapper.o
+
+# target to build an object file
+mysqlwrapper/mysqlwrapper.cpp.o:
+	$(MAKE) -f CMakeFiles/dbwrapper.dir/build.make CMakeFiles/dbwrapper.dir/mysqlwrapper/mysqlwrapper.cpp.o
+.PHONY : mysqlwrapper/mysqlwrapper.cpp.o
+
+mysqlwrapper/mysqlwrapper.i: mysqlwrapper/mysqlwrapper.cpp.i
+
+.PHONY : mysqlwrapper/mysqlwrapper.i
+
+# target to preprocess a source file
+mysqlwrapper/mysqlwrapper.cpp.i:
+	$(MAKE) -f CMakeFiles/dbwrapper.dir/build.make CMakeFiles/dbwrapper.dir/mysqlwrapper/mysqlwrapper.cpp.i
+.PHONY : mysqlwrapper/mysqlwrapper.cpp.i
+
+mysqlwrapper/mysqlwrapper.s: mysqlwrapper/mysqlwrapper.cpp.s
+
+.PHONY : mysqlwrapper/mysqlwrapper.s
+
+# target to generate assembly for a file
+mysqlwrapper/mysqlwrapper.cpp.s:
+	$(MAKE) -f CMakeFiles/dbwrapper.dir/build.make CMakeFiles/dbwrapper.dir/mysqlwrapper/mysqlwrapper.cpp.s
+.PHONY : mysqlwrapper/mysqlwrapper.cpp.s
 
 oadr/oadr/helper/DateTimeConverter.o: oadr/oadr/helper/DateTimeConverter.cpp.o
 
@@ -7944,19 +8682,99 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... rebuild_cache"
-	@echo "... edit_cache"
-	@echo "... install/local"
-	@echo "... install/strip"
 	@echo "... install"
-	@echo "... list_install_components"
-	@echo "... oadr"
+	@echo "... goosemgr"
 	@echo "... mysqlmgr"
-	@echo "... oadrsd"
+	@echo "... oadr"
 	@echo "... samplevenmgr"
+	@echo "... list_install_components"
+	@echo "... dbwrapper"
+	@echo "... install/strip"
+	@echo "... oadrsd"
+	@echo "... install/local"
+	@echo "... edit_cache"
+	@echo "... rebuild_cache"
+	@echo "... goosemgr/c/src/ctypes.o"
+	@echo "... goosemgr/c/src/ctypes.i"
+	@echo "... goosemgr/c/src/ctypes.s"
+	@echo "... goosemgr/c/src/datatypes.o"
+	@echo "... goosemgr/c/src/datatypes.i"
+	@echo "... goosemgr/c/src/datatypes.s"
+	@echo "... goosemgr/c/src/decodePacket.o"
+	@echo "... goosemgr/c/src/decodePacket.i"
+	@echo "... goosemgr/c/src/decodePacket.s"
+	@echo "... goosemgr/c/src/encodePacket.o"
+	@echo "... goosemgr/c/src/encodePacket.i"
+	@echo "... goosemgr/c/src/encodePacket.s"
+	@echo "... goosemgr/c/src/gse.o"
+	@echo "... goosemgr/c/src/gse.i"
+	@echo "... goosemgr/c/src/gse.s"
+	@echo "... goosemgr/c/src/gseDecode.o"
+	@echo "... goosemgr/c/src/gseDecode.i"
+	@echo "... goosemgr/c/src/gseDecode.s"
+	@echo "... goosemgr/c/src/gseDecodeBasic.o"
+	@echo "... goosemgr/c/src/gseDecodeBasic.i"
+	@echo "... goosemgr/c/src/gseDecodeBasic.s"
+	@echo "... goosemgr/c/src/gseDecodePacket.o"
+	@echo "... goosemgr/c/src/gseDecodePacket.i"
+	@echo "... goosemgr/c/src/gseDecodePacket.s"
+	@echo "... goosemgr/c/src/gseEncode.o"
+	@echo "... goosemgr/c/src/gseEncode.i"
+	@echo "... goosemgr/c/src/gseEncode.s"
+	@echo "... goosemgr/c/src/gseEncodeBasic.o"
+	@echo "... goosemgr/c/src/gseEncodeBasic.i"
+	@echo "... goosemgr/c/src/gseEncodeBasic.s"
+	@echo "... goosemgr/c/src/gseEncodePacket.o"
+	@echo "... goosemgr/c/src/gseEncodePacket.i"
+	@echo "... goosemgr/c/src/gseEncodePacket.s"
+	@echo "... goosemgr/c/src/iec61850.o"
+	@echo "... goosemgr/c/src/iec61850.i"
+	@echo "... goosemgr/c/src/iec61850.s"
+	@echo "... goosemgr/c/src/ied.o"
+	@echo "... goosemgr/c/src/ied.i"
+	@echo "... goosemgr/c/src/ied.s"
+	@echo "... goosemgr/c/src/interface.o"
+	@echo "... goosemgr/c/src/interface.i"
+	@echo "... goosemgr/c/src/interface.s"
+	@echo "... goosemgr/c/src/interfaceSendPacket.o"
+	@echo "... goosemgr/c/src/interfaceSendPacket.i"
+	@echo "... goosemgr/c/src/interfaceSendPacket.s"
+	@echo "... goosemgr/c/src/json/dataModelIndex.o"
+	@echo "... goosemgr/c/src/json/dataModelIndex.i"
+	@echo "... goosemgr/c/src/json/dataModelIndex.s"
+	@echo "... goosemgr/c/src/json/json.o"
+	@echo "... goosemgr/c/src/json/json.i"
+	@echo "... goosemgr/c/src/json/json.s"
+	@echo "... goosemgr/c/src/json/mongoose.o"
+	@echo "... goosemgr/c/src/json/mongoose.i"
+	@echo "... goosemgr/c/src/json/mongoose.s"
+	@echo "... goosemgr/c/src/sv.o"
+	@echo "... goosemgr/c/src/sv.i"
+	@echo "... goosemgr/c/src/sv.s"
+	@echo "... goosemgr/c/src/svDecode.o"
+	@echo "... goosemgr/c/src/svDecode.i"
+	@echo "... goosemgr/c/src/svDecode.s"
+	@echo "... goosemgr/c/src/svDecodeBasic.o"
+	@echo "... goosemgr/c/src/svDecodeBasic.i"
+	@echo "... goosemgr/c/src/svDecodeBasic.s"
+	@echo "... goosemgr/c/src/svDecodePacket.o"
+	@echo "... goosemgr/c/src/svDecodePacket.i"
+	@echo "... goosemgr/c/src/svDecodePacket.s"
+	@echo "... goosemgr/c/src/svEncode.o"
+	@echo "... goosemgr/c/src/svEncode.i"
+	@echo "... goosemgr/c/src/svEncode.s"
+	@echo "... goosemgr/c/src/svEncodeBasic.o"
+	@echo "... goosemgr/c/src/svEncodeBasic.i"
+	@echo "... goosemgr/c/src/svEncodeBasic.s"
+	@echo "... goosemgr/c/src/svEncodePacket.o"
+	@echo "... goosemgr/c/src/svEncodePacket.i"
+	@echo "... goosemgr/c/src/svEncodePacket.s"
 	@echo "... mysqlmgr/MyDB.o"
 	@echo "... mysqlmgr/MyDB.i"
 	@echo "... mysqlmgr/MyDB.s"
+	@echo "... mysqlwrapper/mysqlwrapper.o"
+	@echo "... mysqlwrapper/mysqlwrapper.i"
+	@echo "... mysqlwrapper/mysqlwrapper.s"
 	@echo "... oadr/oadr/helper/DateTimeConverter.o"
 	@echo "... oadr/oadr/helper/DateTimeConverter.i"
 	@echo "... oadr/oadr/helper/DateTimeConverter.s"

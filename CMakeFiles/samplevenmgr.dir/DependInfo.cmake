@@ -21,12 +21,16 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "oadrsd"
   "xsd-4.0.0"
   "mysqlmgr"
+  "mysqlwrapper"
+  "goosemgr/c"
   )
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
   "/home/hao/Downloads/VEN_CPP_source/CMakeFiles/oadr.dir/DependInfo.cmake"
   "/home/hao/Downloads/VEN_CPP_source/CMakeFiles/oadrsd.dir/DependInfo.cmake"
+  "/home/hao/Downloads/VEN_CPP_source/CMakeFiles/goosemgr.dir/DependInfo.cmake"
+  "/home/hao/Downloads/VEN_CPP_source/CMakeFiles/dbwrapper.dir/DependInfo.cmake"
   "/home/hao/Downloads/VEN_CPP_source/CMakeFiles/mysqlmgr.dir/DependInfo.cmake"
   )
 

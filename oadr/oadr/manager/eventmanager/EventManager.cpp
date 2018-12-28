@@ -141,7 +141,7 @@ void EventManager::scheduleEventIntervalStart(const string &eventID, const oadr2
 		if (dtstart + durationInSeconds > now)
 		{
 			m_service->OnEventIntervalStart(eventID, event, eventSignal, uid, payload, dtstart, durationInSeconds - (now - dtstart));
-		}
+                }
 		else if (durationInSeconds == 0)
 		{
 			m_service->OnEventIntervalStart(eventID, event, eventSignal, uid, payload, dtstart, durationInSeconds);
@@ -226,11 +226,22 @@ void EventManager::handleExistingEvent(const string &eventID, const oadr2b::oadr
 	oadr2b::oadr::oadrEvent *eventCopy = event->_clone();
         
         oadr2b::ei::OptTypeType::value optType;
+        
+        // initialise a new db connection
+        db.connectDB("localhost", "hao", "111111", "test");
+        
+        if (db.getDefaultOptSQL().compare("OptIn") == 0) {
+            optType = oadr2b::ei::OptTypeType::value::optIn;
+        } 
+        else if (db.getDefaultOptSQL().compare("OptOut") == 0) {
+            optType = oadr2b::ei::OptTypeType::value::optOut;
+        }
+        
 
 	if (event->eiEvent().eventDescriptor().eventStatus() == EventStatusEnumeratedType::cancelled)
 	{
-		optType = global_optType;
-
+		//optType = oadr2b::ei::OptTypeType::value::optOut;
+                                
 		m_service->OnEventCancel(eventID, event, optType);
 
 		Oadr2bHelper::appendEventResponse(eventResponses, "200", "OK", eventID,
@@ -241,9 +252,9 @@ void EventManager::handleExistingEvent(const string &eventID, const oadr2b::oadr
 	else
 	{
 		/*oadr2b::ei::OptTypeType::value optType = oadr2b::ei::OptTypeType::optOut;*/
-                optType = global_optType;
-
-		m_service->OnEventModify(eventID, event, existingEvent, optType);
+                //optType = global_optType;
+                
+                m_service->OnEventModify(eventID, event, existingEvent, optType);
 
 		Oadr2bHelper::appendEventResponse(eventResponses, "200", "OK", eventID,
 				event->eiEvent().eventDescriptor().modificationNumber(), optType, requestID);
@@ -282,8 +293,7 @@ void EventManager::handleExistingEvent(const string &eventID, const oadr2b::oadr
         strptime(dateString.c_str(), "%Y-%m-%d %H:%M:%S", &tm);
         
         // convert struct tm to unix timestamp 
-        unixTimestamp = mktime(&tm);
-        
+        unixTimestamp = mktime(&tm);  
         
         // update the existing event record in the db
         // Note that: everytime the VTN publish an event, the reuqestID will be changed !!
@@ -304,7 +314,7 @@ void EventManager::handleExistingEvent(const string &eventID, const oadr2b::oadr
                                                "', eiRecovery='" + eventCopy->eiEvent().eiActivePeriod().properties().x_eiRecovery()->duration().c_str() +
                                                "' WHERE eventID='" + eventID + "'");     
         
-        // delete the exisiting event signal record and insert the "new" corresponding event signal
+        // delete the existing event signal record and insert the "new" corresponding event signal
         db.deleteVENEventSignalSQL("DELETE FROM eventsignal WHERE eventID='" + eventID + "'");
         
         // use the interator to get multiple EventSignal and multiple interval 
@@ -334,7 +344,7 @@ void EventManager::handleExistingEvent(const string &eventID, const oadr2b::oadr
                 }
         }           
         
-        
+        db.closeDB();
 
 	m_events[eventID] = unique_ptr<oadr2b::oadr::oadrEvent>(eventCopy);
 }
@@ -350,7 +360,18 @@ void EventManager::handleNewEvent(const string &eventID, const oadr2b::oadr::oad
                                      
         /*if (global_optType.compare("Opt_In") == 0){*/
 	
-        oadr2b::ei::OptTypeType::value optType = global_optType;
+        //oadr2b::ei::OptTypeType::value optType = global_optType;
+        oadr2b::ei::OptTypeType::value optType;
+        
+        // initialise a new db connection 
+        db.connectDB("localhost", "hao", "111111", "test");
+             
+        if (db.getDefaultOptSQL().compare("OptIn") == 0) {
+            optType = oadr2b::ei::OptTypeType::optIn;
+        }
+        else if (db.getDefaultOptSQL().compare("OptOut") == 0) {
+            optType = oadr2b::ei::OptTypeType::optOut;
+        }
         /*oadr2b::ei::OptTypeType::value optType = oadr2b::ei::OptTypeType::optIn;*/
         
           // handle the new incoming events from VTN and the the OptType is optIn
@@ -428,7 +449,7 @@ void EventManager::handleNewEvent(const string &eventID, const oadr2b::oadr::oad
         
                 
         // check if there is matched event record in DB with the same eventID
-        // if there is no eventID, then insert new record for the eveninfo
+        // if there is no eventID, then insert new record for the eveninfo       
         if ( !db.eventRecordExistSQL("SELECT * FROM eventinfo WHERE eventID='" + eventID + "'") ) {
         
             // Note that: everytime the VTN publish an event, the reuqestID will be changed !!
@@ -547,7 +568,7 @@ void EventManager::handleNewEvent(const string &eventID, const oadr2b::oadr::oad
         
         
         
-        
+        db.closeDB();
         
         // write the event info into DB
         //db.updateVENEventSQL();        
@@ -611,10 +632,13 @@ void EventManager::handleExistingEventIndividualOpt(const string &eventID, const
         oadr2b::oadr::oadrEvent *existingEvent = m_events[eventID].get();
     
         // query the DB for exisiting optState of the individual eventID
+        db.connectDB("localhost", "hao", "111111", "test");
         string individualOptValueDB = db.getIndividualOptSQL(eventID);
         
         // query the DB for the requestID for the specific eventID
         string requestIDDB = db.getRequestIDSQL(eventID); 
+        
+        db.closeDB();
         
         //cout << "individualOptValueDB = " + individualOptValueDB + "; optRequest = " + individualOptValue << endl;
 
@@ -682,8 +706,10 @@ void EventManager::handleExistingEventIndividualOpt(const string &eventID, const
                
         
                 // update the optState of existing event record in the db
+                db.connectDB("localhost", "hao", "111111", "test");
                 db.updateVENEventSQL("UPDATE eventinfo SET optState='" + optTypeTemp + "' WHERE eventID='" + eventID + "'"); 
-                    
+                db.closeDB();
+                
             // else if the request opt is the same as the individualOpt in the db, 
             // only generate the eventResponse so that the createdEvent contains valid eventResponse; no need to to anything else  
             } else if (individualOptValueDB.compare(individualOptValue) == 0) {
